@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="./roadMapStyle.css" />
+    <title>지하철 혼잡도 알리미</title>
+    <script src="trainlocation_api.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" aria-hidden="true" viewBox="0 0 1525 1000"
+             style="position: absolute; z-index: 1000; transform-origin: 0px 0px 0px; backface-visibility: hidden; width: 1290.2px; height: 846px; transform: scale(1.4) scaleZ(1); transition-timing-function: ease; cursor: default;">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 2440 1600" width="100%">
+                <path d="M 65 305 H 370 V 430 H 500 L 850 780 H 940 V 888 H 1480 L 1560 808 H 1830 L 1910 888 H 2010 L 2090 808 V 620 H 2300 M 940 860 H 850 L 730 740 H 800"
+                      fill="none" stroke="#d3effb" stroke-width="23" stroke-linejoin="round" stroke-linecap="round"></path>
+            </svg>
+            <!-- 라인들 선 -->
+            <g id="line-6" class="line" fill="none" stroke="#d08d1a" stroke-linejoin="round" stroke-linecap="round">
+                <path class="path L6 P26492648 P26482649" stroke-width="3" d="M 1260 255 L 1245 240 "></path>
+                <path class="path L6 P26482647 P26472648" stroke-width="3"
+                      d="M 1245 240 L 1235 230 Q 1230 225 1220 225 H 1195 "></path>
+                <path class="path L6 P26472646 P26462647" stroke-width="3" d="M 1195 225 H 1165 "></path>
+                <path class="path L6 P26462645 P26452646" stroke-width="3" d="M 1165 225 H 1070 "></path>
+                <path class="path L6 P26452644 P26442645" stroke-width="3" d="M 1070 225 H 1045 "></path>
+                <path class="path L6 P26442643 P26432644" stroke-width="3" d="M 1045 225 H 1010 "></path>
+                <path class="path L6 P26432642 P26422643" stroke-width="3" d="M 1010 225 H 970 "></path>
+                <path class="path L6 P26422641 P26412642" stroke-width="3" d="M 970 225 H 940 "></path>
+                <path class="path L6 P26412640 P26402641" stroke-width="3" d="M 940 225 H 905 "></path>
+                <path class="path L6 P26402639 P26392640" stroke-width="3" d="M 905 225 Q 900 225 900 230 V 240 "></path>
+                <path class="path L6 P26392638 P26382639" stroke-width="3" d="M 900 240 V 255 "></path>
+                <path class="path L6 P26382637 P26372638" stroke-width="3" d="M 900 255 V 275 "></path>
+                <path class="path L6 P26372636 P26362637" stroke-width="3" d="M 900 275 V 345 "></path>
+                <path class="path L6 P26362635 P26352636" stroke-width="3" d="M 900 345 L 850 395 "></path>
+                <path class="path L6 P26352634 P26342635" stroke-width="3" d="M 850 395 V 400 V 475 "></path>
+                <path class="path L6 P26342633 P26332634" stroke-width="3" d="M 850 475 H 825 "></path>
+                <path class="path L6 P26332632 P26322633" stroke-width="3" d="M 825 475 H 795 "></path>
+                <path class="path L6 P26322631 P26312632" stroke-width="3" d="M 795 475 H 755 "></path>
+                <path class="path L6 P26312630 P26302631" stroke-width="3" d="M 755 475 H 725 "></path>
+                <path class="path L6 P26302629 P26292630" stroke-width="3" d="M 725 475 H 705 "></path>
+                <path class="path L6 P26292628 P26282629" stroke-width="3" d="M 705 475 H 635 "></path>
+                <path class="path L6 P26282628 P26282628" stroke-width="3" d="M 635 475 V 470 "></path>
+                <path class="path L6 P26282628 P26282628" stroke-width="3" d="M 635 470 V 475 "></path>
+                <path class="path L6 P26282627 P26272628" stroke-width="3" d="M 635 475 H 605 "></path>
+                <path class="path L6 P26272626 P26262627" stroke-width="3" d="M 605 475 H 580 "></path>
+                <path class="path L6 P26262625 P26252626" stroke-width="3" d="M 580 475 H 545 "></path>
+                <path class="path L6 P26252624 P26242625" stroke-width="3" d="M 545 475 Q 540 475 535 470 L 525 460 "></path>
+                <path class="path L6 P26242623 P26232624" stroke-width="3" d="M 525 460 L 510 445 "></path>
+                <path class="path L6 P26232622 P26222623" stroke-width="3" d="M 510 445 L 485 420 "></path>
+                <path class="path L6 P26222621 P26212622" stroke-width="3" d="M 485 420 L 475 410 Q 470 405 470 400 V 375 ">
+                </path>
+                <path class="path L6 P26212620 P26202621" stroke-width="3" d="M 470 375 V 350 "></path>
+                <path class="path L6 P26202619 P26192620" stroke-width="3" d="M 470 350 V 310 "></path>
+                <path class="path L6 P26192618 P26182619" stroke-width="3" d="M 470 310 V 280 "></path>
+                <path class="path L6 P26182617 P26172618" stroke-width="3" d="M 470 280 V 250 "></path>
+                <path class="path L6 P26172611 P26112617" stroke-width="3" d="M 470 250 V 205 "></path>
+                <path class="path L6 P26112612 P26122611" stroke-width="3" d="M 470 205 L 485 190 "></path>
+                <path class="path L6 P26122613 P26132612" stroke-width="3" d="M 485 190 L 500 175 "></path>
+                <path class="path L6 P26132614 P26142613" stroke-width="3" d="M 500 175 L 470 145 "></path>
+                <path class="path L6 P26142615 P26152614" stroke-width="3" d="M 470 145 L 440 175 "></path>
+                <path class="path L6 P26152616 P26162615" stroke-width="3" d="M 440 175 L 455 190 "></path>
+                <path class="path L6 P26162611 P26112616" stroke-width="3" d="M 455 190 L 470 205 "></path>
+                <g class="path L6">
+                    <rect x="1210" y="250" width="10" height="10" fill="#d08d1a" stroke="#d08d1a" stroke-linejoin="round"
+                          stroke-linecap="round" stroke-width="5"></rect>
+                    <text x="1215" y="258" lengthAdjust="spacingAndGlyphs"
+                          text-anchor="middle"
+                          style="fill:white; stroke:white; stroke-width:0.6; font-size:9px; font-weight:normal; line-height:10px">6</text>
+                </g>
+            </g>
+            <!-- 역(동그라미)나타나는 곳 -->
+            <g class="marker-group" transform-origin="50% 50% 0">
+                <!-- 1호선:소요산역부터 시작 -->
+                <g class="marker M2649 L6 interchange M1311 LG" cx="1260" cy="255" id="M1311" uid="1311" lineId="6 G">
+                    <rect x="1257" y="252" width="6" height="11" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="1260" cy="255" r="1.5" stroke="#d08d1a" stroke-width="1" fill="#d08d1a"></circle>
+                    <circle cx="1260" cy="260" r="1.5" stroke="#0ba382" stroke-width="1" fill="#0ba382"></circle>
+                </g>
+                <circle class="accent A2649 A1311" cx="1260" cy="255" r="3" id="A1311" stroke="black" stroke-width="1"
+                        fill="red" uid="1311" lineId="6" style="display:none"></circle>
+                <circle class="marker M2648 L6" cx="1245" cy="240" r="1.7999999999999998" id="M2648" stroke="#d08d1a"
+                        stroke-width="1" fill="#ffffff" uid="2648" lineId="6"></circle>
+                <circle class="accent A2648" cx="1245" cy="240" r="3" id="A2648" stroke="black" stroke-width="1" fill="red"
+                        uid="2648" lineId="6" style="display:none"></circle>
+                <circle class="marker M2647 L6" cx="1195" cy="225" r="1.7999999999999998" id="M2647" stroke="#d08d1a"
+                        stroke-width="1" fill="#ffffff" uid="2647" lineId="6"></circle>
+                <circle class="accent A2647" cx="1195" cy="225" r="3" id="A2647" stroke="black" stroke-width="1" fill="red"
+                        uid="2647" lineId="6" style="display:none"></circle>
+                <g class="marker M2646 L6 interchange M2719 L7" cx="1165" cy="225" id="M2646" uid="2646" lineId="6 7">
+                    <rect x="1157" y="222" width="11" height="6" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="1160" cy="225" r="1.5" stroke="#d08d1a" stroke-width="1" fill="#d08d1a"></circle>
+                    <circle cx="1165" cy="225" r="1.5" stroke="#657931" stroke-width="1" fill="#657931"></circle>
+                </g>
+                <circle class="accent A2646 A2719" cx="1165" cy="225" r="3" id="A2646" stroke="black" stroke-width="1"
+                        fill="red" uid="2646" lineId="6" style="display:none"></circle>
+                <circle class="marker M2644 L6" cx="1045" cy="225" r="1.7999999999999998" id="M2644" stroke="#d08d1a"
+                        stroke-width="1" fill="#ffffff" uid="2644" lineId="6"></circle>
+                <circle class="accent A2644" cx="1045" cy="225" r="3" id="A2644" stroke="black" stroke-width="1" fill="red"
+                        uid="2644" lineId="6" style="display:none"></circle>
+                <circle class="marker M2643 L6" cx="1010" cy="225" r="1.7999999999999998" id="M2643" stroke="#d08d1a"
+                        stroke-width="1" fill="#ffffff" uid="2643" lineId="6"></circle>
+                <circle class="accent A2643" cx="1010" cy="225" r="3" id="A2643" stroke="black" stroke-width="1" fill="red"
+                        uid="2643" lineId="6" style="display:none"></circle>
+                <circle class="marker M2642 L6" cx="970" cy="225" r="1.7999999999999998" id="M2642" stroke="#d08d1a"
+                        stroke-width="1" fill="#ffffff" uid="2642" lineId="6"></circle>
+                <circle class="accent A2642" cx="970" cy="225" r="3" id="A2642" stroke="black" stroke-width="1" fill="red"
+                        uid="2642" lineId="6" style="display:none"></circle>
+                <circle class="marker M2641 L6" cx="940" cy="225" r="1.7999999999999998" id="M2641" stroke="#d08d1a"
+                        stroke-width="1" fill="#ffffff" uid="2641" lineId="6"></circle>
+                <circle class="accent A2641" cx="940" cy="225" r="3" id="A2641" stroke="black" stroke-width="1" fill="red"
+                        uid="2641" lineId="6" style="display:none"></circle>
+                <circle class="marker M2640 L6" cx="905" cy="225" r="1.7999999999999998" id="M2640" stroke="#d08d1a"
+                        stroke-width="1" fill="#ffffff" uid="2640" lineId="6"></circle>
+                <circle class="accent A2640" cx="905" cy="225" r="3" id="A2640" stroke="black" stroke-width="1" fill="red"
+                        uid="2640" lineId="6" style="display:none"></circle>
+                <g class="marker M2639 L6 interchange M4712 LW" cx="900" cy="240" id="M2639" uid="2639" lineId="6 W">
+                    <rect x="897" y="232" width="6" height="11" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="900" cy="240" r="1.5" stroke="#d08d1a" stroke-width="1" fill="#d08d1a"></circle>
+                    <circle cx="900" cy="235" r="1.5" stroke="#878787" stroke-width="1" fill="#878787"></circle>
+                </g>
+                <circle class="accent A2639 A4712" cx="900" cy="240" r="3" id="A2639" stroke="black" stroke-width="1" fill="red"
+                        uid="2639" lineId="6" style="display:none"></circle>
+                <circle class="marker M2638 L6" cx="900" cy="255" r="1.7999999999999998" id="M2638" stroke="#d08d1a"
+                        stroke-width="1" fill="#ffffff" uid="2638" lineId="6"></circle>
+                <circle class="accent A2638" cx="900" cy="255" r="3" id="A2638" stroke="black" stroke-width="1" fill="red"
+                        uid="2638" lineId="6" style="display:none"></circle>
+                <circle class="marker M2633 L6" cx="825" cy="475" r="1.7999999999999998" id="M2633" stroke="#d08d1a"
+                        stroke-width="1" fill="#ffffff" uid="2633" lineId="6"></circle>
+                <circle class="accent A2633" cx="825" cy="475" r="3" id="A2633" stroke="black" stroke-width="1" fill="red"
+                        uid="2633" lineId="6" style="display:none"></circle>
+                <circle class="marker M2632 L6" cx="795" cy="475" r="1.7999999999999998" id="M2632" stroke="#d08d1a"
+                        stroke-width="1" fill="#ffffff" uid="2632" lineId="6"></circle>
+                <circle class="accent A2632" cx="795" cy="475" r="3" id="A2632" stroke="black" stroke-width="1" fill="red"
+                        uid="2632" lineId="6" style="display:none"></circle>
+                <circle class="marker M2631 L6" cx="755" cy="475" r="1.7999999999999998" id="M2631" stroke="#d08d1a"
+                        stroke-width="1" fill="#ffffff" uid="2631" lineId="6"></circle>
+                <circle class="accent A2631" cx="755" cy="475" r="3" id="A2631" stroke="black" stroke-width="1" fill="red"
+                        uid="2631" lineId="6" style="display:none"></circle>
+                <circle class="marker M2630 L6" cx="725" cy="475" r="1.7999999999999998" id="M2630" stroke="#d08d1a"
+                        stroke-width="1" fill="#ffffff" uid="2630" lineId="6"></circle>
+                <circle class="accent A2630" cx="725" cy="475" r="3" id="A2630" stroke="black" stroke-width="1" fill="red"
+                        uid="2630" lineId="6" style="display:none"></circle>
+                <g class="marker M2628 L6 interchange M1261 LK" cx="635" cy="470" id="M2628" uid="2628" lineId="6 K">
+                    <rect x="632" y="467" width="6" height="11" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="635" cy="475" r="1.5" stroke="#d08d1a" stroke-width="1" fill="#d08d1a"></circle>
+                    <circle cx="635" cy="470" r="1.5" stroke="#5f9c82" stroke-width="1" fill="#5f9c82"></circle>
+                </g>
+                <circle class="accent A2628 A1261" cx="635" cy="470" r="3" id="A2628" stroke="black" stroke-width="1" fill="red"
+                        uid="2628" lineId="6" style="display:none"></circle>
+                <circle class="marker M2626 L6" cx="580" cy="475" r="1.7999999999999998" id="M2626" stroke="#d08d1a"
+                        stroke-width="1" fill="#ffffff" uid="2626" lineId="6"></circle>
+                <circle class="accent A2626" cx="580" cy="475" r="3" id="A2626" stroke="black" stroke-width="1" fill="red"
+                        uid="2626" lineId="6" style="display:none"></circle>
+                <circle class="marker M2625 L6" cx="545" cy="475" r="1.7999999999999998" id="M2625" stroke="#d08d1a"
+                        stroke-width="1" fill="#ffffff" uid="2625" lineId="6"></circle>
+                <circle class="accent A2625" cx="545" cy="475" r="3" id="A2625" stroke="black" stroke-width="1" fill="red"
+                        uid="2625" lineId="6" style="display:none"></circle>
+                <circle class="marker M2624 L6" cx="525" cy="460" r="1.7999999999999998" id="M2624" stroke="#d08d1a"
+                        stroke-width="1" fill="#ffffff" uid="2624" lineId="6"></circle>
+                <circle class="accent A2624" cx="525" cy="460" r="3" id="A2624" stroke="black" stroke-width="1" fill="red"
+                        uid="2624" lineId="6" style="display:none"></circle>
+                <circle class="marker M2622 L6" cx="485" cy="420" r="1.7999999999999998" id="M2622" stroke="#d08d1a"
+                        stroke-width="1" fill="#ffffff" uid="2622" lineId="6"></circle>
+                <circle class="accent A2622" cx="485" cy="420" r="3" id="A2622" stroke="black" stroke-width="1" fill="red"
+                        uid="2622" lineId="6" style="display:none"></circle>
+                <circle class="marker M2621 L6" cx="470" cy="375" r="1.7999999999999998" id="M2621" stroke="#d08d1a"
+                        stroke-width="1" fill="#ffffff" uid="2621" lineId="6"></circle>
+                <circle class="accent A2621" cx="470" cy="375" r="3" id="A2621" stroke="black" stroke-width="1" fill="red"
+                        uid="2621" lineId="6" style="display:none"></circle>
+                <circle class="marker M2620 L6" cx="470" cy="350" r="1.7999999999999998" id="M2620" stroke="#d08d1a"
+                        stroke-width="1" fill="#ffffff" uid="2620" lineId="6"></circle>
+                <circle class="accent A2620" cx="470" cy="350" r="3" id="A2620" stroke="black" stroke-width="1" fill="red"
+                        uid="2620" lineId="6" style="display:none"></circle>
+                <g class="marker M2619 L6 interchange M1266 LK M4204 LA" cx="470" cy="310" id="M2619" uid="2619" lineId="6 K A">
+                    <rect x="467" y="307" width="6" height="16" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="470" cy="310" r="1.5" stroke="#d08d1a" stroke-width="1" fill="#d08d1a"></circle>
+                    <circle cx="470" cy="315" r="1.5" stroke="#5f9c82" stroke-width="1" fill="#5f9c82"></circle>
+                    <circle cx="470" cy="320" r="1.5" stroke="#038fa0" stroke-width="1" fill="#038fa0"></circle>
+                </g>
+                <circle class="accent A2619 A1266 A4204" cx="470" cy="310" r="3" id="A2619" stroke="black" stroke-width="1"
+                        fill="red" uid="2619" lineId="6" style="display:none"></circle>
+                <circle class="marker M2618 L6" cx="470" cy="280" r="1.7999999999999998" id="M2618" stroke="#d08d1a"
+                        stroke-width="1" fill="#ffffff" uid="2618" lineId="6"></circle>
+                <circle class="accent A2618" cx="470" cy="280" r="3" id="A2618" stroke="black" stroke-width="1" fill="red"
+                        uid="2618" lineId="6" style="display:none"></circle>
+                <circle class="marker M2617 L6" cx="470" cy="250" r="1.7999999999999998" id="M2617" stroke="#d08d1a"
+                        stroke-width="1" fill="#ffffff" uid="2617" lineId="6"></circle>
+                <circle class="accent A2617" cx="470" cy="250" r="3" id="A2617" stroke="black" stroke-width="1" fill="red"
+                        uid="2617" lineId="6" style="display:none"></circle>
+                <circle class="marker M2611 L6" cx="470" cy="205" r="1.7999999999999998" id="M2611" stroke="#d08d1a"
+                        stroke-width="1" fill="#ffffff" uid="2611" lineId="6"></circle>
+                <circle class="accent A2611" cx="470" cy="205" r="3" id="A2611" stroke="black" stroke-width="1" fill="red"
+                        uid="2611" lineId="6" style="display:none"></circle>
+                <circle class="marker M2612 L6" cx="485" cy="190" r="1.7999999999999998" id="M2612" stroke="#d08d1a"
+                        stroke-width="1" fill="#ffffff" uid="2612" lineId="6"></circle>
+                <circle class="accent A2612" cx="485" cy="190" r="3" id="A2612" stroke="black" stroke-width="1" fill="red"
+                        uid="2612" lineId="6" style="display:none"></circle>
+                <circle class="marker M2614 L6" cx="470" cy="145" r="1.7999999999999998" id="M2614" stroke="#d08d1a"
+                        stroke-width="1" fill="#ffffff" uid="2614" lineId="6"></circle>
+                <circle class="accent A2614" cx="470" cy="145" r="3" id="A2614" stroke="black" stroke-width="1" fill="red"
+                        uid="2614" lineId="6" style="display:none"></circle>
+                <circle class="marker M2616 L6" cx="455" cy="190" r="1.7999999999999998" id="M2616" stroke="#d08d1a"
+                        stroke-width="1" fill="#ffffff" uid="2616" lineId="6"></circle>
+                <circle class="accent A2616" cx="455" cy="190" r="3" id="A2616" stroke="black" stroke-width="1" fill="red"
+                        uid="2616" lineId="6" style="display:none"></circle>
+            </g>
+            <g class="marker M0311 L3 interchange M2615 L6" cx="440" cy="175" id="M0311" uid="0311" lineId="3 6">
+                <rect x="437" y="172" width="11" height="6" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                <circle cx="445" cy="175" r="1.5" stroke="#de6d00" stroke-width="1" fill="#de6d00"></circle>
+                <circle cx="440" cy="175" r="1.5" stroke="#d08d1a" stroke-width="1" fill="#d08d1a"></circle>
+            </g>
+            <g class="marker M0312 L3 interchange M2613 L6" cx="500" cy="175" id="M0312" uid="0312" lineId="3 6">
+                <rect x="492" y="172" width="11" height="6" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                <circle cx="495" cy="175" r="1.5" stroke="#de6d00" stroke-width="1" fill="#de6d00"></circle>
+                <circle cx="500" cy="175" r="1.5" stroke="#d08d1a" stroke-width="1" fill="#d08d1a"></circle>
+            </g>
+            <g class="marker M0238 L2 interchange M2623 L6" cx="510" cy="445" id="M0238" uid="0238" lineId="2 6">
+                <rect x="502" y="442" width="11" height="6" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                <circle cx="505" cy="445" r="1.5" stroke="#10a643" stroke-width="1" fill="#10a643"></circle>
+                <circle cx="510" cy="445" r="1.5" stroke="#d08d1a" stroke-width="1" fill="#d08d1a"></circle>
+            </g>
+            <g class="marker M2530 L5 interchange M2627 L6 M1262 LK M4202 LA" cx="605" cy="460" id="M2530" uid="2530"
+                   lineId="5 6 K A">
+                    <rect x="602" y="457" width="6" height="21" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="605" cy="465" r="1.5" stroke="#a95094" stroke-width="1" fill="#a95094"></circle>
+                    <circle cx="605" cy="475" r="1.5" stroke="#d08d1a" stroke-width="1" fill="#d08d1a"></circle>
+                    <circle cx="605" cy="470" r="1.5" stroke="#5f9c82" stroke-width="1" fill="#5f9c82"></circle>
+                    <circle cx="605" cy="460" r="1.5" stroke="#038fa0" stroke-width="1" fill="#038fa0"></circle>
+                </g>
+                <g class="marker M0428 L4 interchange M2629 L6" cx="705" cy="475" id="M0428" uid="0428" lineId="4 6">
+                    <rect x="697" y="472" width="11" height="6" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="705" cy="475" r="1.5" stroke="#0099d1" stroke-width="1" fill="#0099d1"></circle>
+                    <circle cx="700" cy="475" r="1.5" stroke="#d08d1a" stroke-width="1" fill="#d08d1a"></circle>
+                </g>
+                <g class="marker M0323 L3 interchange M2634 L6" cx="850" cy="475" id="M0323" uid="0323" lineId="3 6">
+                    <rect x="847" y="467" width="6" height="11" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="850" cy="475" r="1.5" stroke="#de6d00" stroke-width="1" fill="#de6d00"></circle>
+                    <circle cx="850" cy="470" r="1.5" stroke="#d08d1a" stroke-width="1" fill="#d08d1a"></circle>
+                </g>
+                <g class="marker M2538 L5 interchange M2635 L6" cx="850" cy="395" id="M2538" uid="2538" lineId="5 6">
+                    <rect x="847" y="387" width="6" height="11" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="850" cy="390" r="1.5" stroke="#a95094" stroke-width="1" fill="#a95094"></circle>
+                    <circle cx="850" cy="395" r="1.5" stroke="#d08d1a" stroke-width="1" fill="#d08d1a"></circle>
+                </g>
+                <g class="marker M0206 L2 interchange M2636 L6" cx="900" cy="345" id="M0206" uid="0206" lineId="2 6">
+                    <rect x="892" y="342" width="11" height="6" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="895" cy="345" r="1.5" stroke="#10a643" stroke-width="1" fill="#10a643"></circle>
+                    <circle cx="900" cy="345" r="1.5" stroke="#d08d1a" stroke-width="1" fill="#d08d1a"></circle>
+                </g>
+                <g class="marker M0159 L1 interchange M2637 L6" cx="900" cy="275" id="M0159" uid="0159" lineId="1 6">
+                    <rect x="897" y="267" width="6" height="11" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="900" cy="275" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                    <circle cx="900" cy="270" r="1.5" stroke="#d08d1a" stroke-width="1" fill="#d08d1a"></circle>
+                </g>
+                <g class="marker M1018 L1 interchange M2645 L6" cx="1070" cy="225" id="M1018" uid="1018" lineId="1 6">
+                    <rect x="1067" y="222" width="11" height="6" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="1070" cy="225" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                    <circle cx="1075" cy="225" r="1.5" stroke="#d08d1a" stroke-width="1" fill="#d08d1a"></circle>
+                </g>
+            <!-- 역이름 나타나는 곳 -->
+            <g class="label-group"
+               style="fill:black; letter-spacing:-1px; font-size:9px; font-weight:normal; font-family: NanumGothic, MalgunGothic, Dotum, Arial;">
+               <text class="label S1018 L1 S2645 L6" y="225" id="S1018" style=" text-anchor:start;" uid="1018"
+                      lineId="1 6">
+                    <tspan x="1070" dx="7" dy="15" font-size="9px" font-weight="bold">석계</tspan>
+                </text>
+               <text class="label S0159 L1 S2637 L6" y="275" id="S0159" style=" text-anchor:end;" uid="0159"
+                      lineId="1 6">
+                    <tspan x="900" dx="-7" dy="15" font-size="9px" font-weight="bold">동묘앞</tspan>
+                </text>
+               <text class="label S0206 L2 S2636 L6" y="345" id="S0206" style=" text-anchor:start;" uid="0206"
+                      lineId="2 6">
+                    <tspan x="900" dx="7" dy="15" font-size="9px" font-weight="bold">신당</tspan>
+                </text>
+               <text class="label S2538 L5 S2635 L6" y="395" id="S2538" style=" text-anchor:start;" uid="2538"
+                      lineId="5 6">
+                    <tspan x="850" dx="7" dy="15" font-size="9px" font-weight="bold">청구</tspan>
+                </text>
+               <text class="label S0323 L3 S2634 L6" y="475" id="S0323" style=" text-anchor:start;" uid="0323"
+                      lineId="3 6">
+                    <tspan x="850" dx="7" dy="-7" font-size="9px" font-weight="bold">약수</tspan>
+                </text>
+               <text class="label S0428 L4 S2629 L6" y="475" id="S0428" style=" text-anchor:end;" uid="0428"
+                      lineId="4 6">
+                    <tspan x="705" dx="-7" dy="15" font-size="9px" font-weight="bold">삼각지</tspan>
+                </text>
+               <text class="label S2530 L5 S2627 L6 S1262 LK S4202 LA" y="460" id="S2530" style=" text-anchor:end;"
+                      uid="2530" lineId="5 6 K A">
+                    <tspan x="605" dx="-9" dy="3" font-size="9px" font-weight="bold">공덕</tspan>
+                </text>
+               <text class="label S0238 L2 S2623 L6" y="445" id="S0238" style=" text-anchor:end;" uid="0238"
+                      lineId="2 6">
+                    <tspan x="510" dx="-7" dy="15" font-size="9px" font-weight="bold">합정</tspan>
+                </text>
+               <text class="label S0312 L3 S2613 L6" y="175" id="S0312" style=" text-anchor:start;" uid="0312"
+                      lineId="3 6">
+                    <tspan x="500" dx="7" dy="15" font-size="9px" font-weight="bold">불광</tspan>
+                </text>
+               <text class="label S0311 L3 S2615 L6" y="175" id="S0311" style=" text-anchor:end;" uid="0311"
+                      lineId="3 6">
+                    <tspan x="440" dx="-7" dy="15" font-size="9px" font-weight="bold">연신내</tspan>
+                </text>
+                <text class="label S2649 L6 S1311 LG" y="255" id="S1311" style=" text-anchor:end;" uid="1311"
+                      lineId="6 G">
+                    <tspan x="1260" dx="-9" dy="3" font-size="9px" font-weight="bold">신내</tspan>
+                </text>
+                <text class="label S2648 L6" y="240" id="S2648" style=" text-anchor:end;" uid="2648" lineId="6">
+                    <tspan x="1245" dx="-5" dy="3" font-size="9px">봉화산</tspan>
+                </text>
+                <text class="label S2647 L6" y="225" id="S2647" style=" text-anchor:start;" uid="2647" lineId="6">
+                    <tspan x="1195" dx="3" dy="-3" font-size="9px">화랑대</tspan>
+                </text>
+                <text class="label S2646 L6 S2719 L7" y="225" id="S2646" style=" text-anchor:end;" uid="2646"
+                      lineId="6 7">
+                    <tspan x="1165" dx="-7" dy="-7" font-size="9px" font-weight="bold">태릉입구</tspan>
+                </text>
+                <text class="label S2644 L6" y="225" id="S2644" style=" text-anchor:middle;" uid="2644" lineId="6">
+                    <tspan x="1045" dx="0" dy="-5" font-size="9px">돌곶이</tspan>
+                </text>
+                <text class="label S2643 L6" y="225" id="S2643" style=" text-anchor:middle;" uid="2643" lineId="6">
+                    <tspan x="1010" dx="0" dy="-5" font-size="9px">상월곡</tspan>
+                </text>
+                <text class="label S2642 L6" y="225" id="S2642" style=" text-anchor:middle;" uid="2642" lineId="6">
+                    <tspan x="970" dx="0" dy="-5" font-size="9px">월곡</tspan>
+                </text>
+                <text class="label S2641 L6" y="225" id="S2641" style=" text-anchor:middle;" uid="2641" lineId="6">
+                    <tspan x="940" dx="0" dy="-5" font-size="9px">고려대</tspan>
+                </text>
+                <text class="label S2640 L6" y="225" id="S2640" style=" text-anchor:middle;" uid="2640" lineId="6">
+                    <tspan x="905" dx="0" dy="-5" font-size="9px">안암</tspan>
+                </text>
+                <text class="label S2639 L6 S4712 LW" y="240" id="S2639" style=" text-anchor:start;" uid="2639"
+                      lineId="6 W">
+                    <tspan x="900" dx="9" dy="3" font-size="9px" font-weight="bold">보문</tspan>
+                </text>
+                <text class="label S2638 L6" y="255" id="S2638" style=" text-anchor:end;" uid="2638" lineId="6">
+                    <tspan x="900" dx="-5" dy="3" font-size="9px">창신</tspan>
+                </text>
+                <text class="label S2633 L6" y="475" id="S2633" style=" text-anchor:middle;" uid="2633" lineId="6">
+                    <tspan x="825" dx="0" dy="13" font-size="9px">버티고개</tspan>
+                </text>
+                <text class="label S2632 L6" y="475" id="S2632" style=" text-anchor:middle;" uid="2632" lineId="6">
+                    <tspan x="795" dx="0" dy="13" font-size="9px">한강진</tspan>
+                </text>
+                <text class="label S2631 L6" y="475" id="S2631" style=" text-anchor:middle;" uid="2631" lineId="6">
+                    <tspan x="755" dx="0" dy="13" font-size="9px">이태원</tspan>
+                </text>
+                <text class="label S2630 L6" y="475" id="S2630" style=" text-anchor:middle;" uid="2630" lineId="6">
+                    <tspan x="725" dx="0" dy="13" font-size="9px">녹사평</tspan>
+                </text>
+                <text class="label S2628 L6 S1261 LK" y="470" id="S2628" style=" text-anchor:middle;" uid="2628"
+                      lineId="6 K">
+                    <tspan x="635" dx="0" dy="-9" font-size="9px" font-weight="bold">효창공원앞</tspan>
+                </text>
+                <text class="label S2626 L6" y="475" id="S2626" style=" text-anchor:middle;" uid="2626" lineId="6">
+                    <tspan x="580" dx="0" dy="13" font-size="9px">대흥</tspan>
+                </text>
+                <text class="label S2625 L6" y="475" id="S2625" style=" text-anchor:middle;" uid="2625" lineId="6">
+                    <tspan x="545" dx="0" dy="13" font-size="9px">광흥창</tspan>
+                </text>
+                <text class="label S2624 L6" y="460" id="S2624" style=" text-anchor:start;" uid="2624" lineId="6">
+                    <tspan x="525" dx="3" dy="-3" font-size="9px">상수</tspan>
+                </text>
+                <text class="label S2622 L6" y="420" id="S2622" style=" text-anchor:start;" uid="2622" lineId="6">
+                    <tspan x="485" dx="3" dy="-3" font-size="9px">망원</tspan>
+                </text>
+                <text class="label S2621 L6" y="375" id="S2621" style=" text-anchor:end;" uid="2621" lineId="6">
+                    <tspan x="470" dx="-5" dy="3" font-size="9px">마포구청</tspan>
+                </text>
+                <text class="label S2620 L6" y="350" id="S2620" style=" text-anchor:end;" uid="2620" lineId="6">
+                    <tspan x="470" dx="-5" dy="3" font-size="9px">월드컵경기장</tspan>
+                </text>
+                <text class="label S2619 L6 S1266 LK S4204 LA" y="310" id="S2619" style=" text-anchor:end;" uid="2619"
+                      lineId="6 K A">
+                    <tspan x="470" dx="-7" dy="-7" font-size="9px" font-weight="bold">디지털미디어시티</tspan>
+                </text>
+                <text class="label S2618 L6" y="280" id="S2618" style=" text-anchor:end;" uid="2618" lineId="6">
+                    <tspan x="470" dx="-5" dy="3" font-size="9px">증산</tspan>
+                </text>
+                <text class="label S2617 L6" y="250" id="S2617" style=" text-anchor:end;" uid="2617" lineId="6">
+                    <tspan x="470" dx="-5" dy="3" font-size="9px">새절</tspan>
+                </text>
+                <text class="label S2611 L6" y="205" id="S2611" style=" text-anchor:end;" uid="2611" lineId="6">
+                    <tspan x="470" dx="-3" dy="11" font-size="9px">응암</tspan>
+                </text>
+                <text class="label S2612 L6" y="190" id="S2612" style=" text-anchor:start;" uid="2612" lineId="6">
+                    <tspan x="485" dx="3" dy="11" font-size="9px">역촌</tspan>
+                </text>
+                <text class="label S2614 L6" y="145" id="S2614" style=" text-anchor:middle;" uid="2614" lineId="6">
+                    <tspan x="470" dx="0" dy="-5" font-size="9px">독바위</tspan>
+                </text>
+                <text class="label S2616 L6" y="190" id="S2616" style=" text-anchor:end;" uid="2616" lineId="6">
+                    <tspan x="455" dx="-3" dy="11" font-size="9px">구산</tspan>
+                </text>
+            </g>
+           
+            <!-- 여기까지 없어도 될듯:아래3줄도 없어도 되는데 지우면 오류남 -->
+            <use id="marker-start" class="routeMarker" href="#def-marker-start"></use>
+            <use id="marker-stop" class="routeMarker" href="#def-marker-stop"></use>
+            <use id="marker-end" class="routeMarker" href="#def-marker-end"></use>
+        </svg>
+    </div>
+    <!-- 지하철 노선도 끝 -->
+    <!-- 로고 -->
+        <span style="display:inline-block; height:50px; width:170px; background-color:rgb(249, 250, 217); font: italic bold 2.5em/1em Georgia, serif ;" onclick="location.href='index.html'">
+                VSCode
+            </span>
+    <!-- 네비바-->
+    <div class="nav">
+        <div>
+            <!-- <input name="line" type="radio" class="line-1" id="1"></input> -->
+            <label for="1" onclick="location.href='1lines.html'">1호선</label>
+        </div>
+
+        <div>
+            <label for="2" onclick="location.href='2lines.html'">2호선</label>
+        </div>
+
+        <div>
+            <label for="3" onclick="location.href='3lines.html'">3호선</label>
+        </div>
+
+        <div>
+            <label for="4" onclick="location.href='4lines.html'">4호선</label>
+        </div>
+
+        <div>
+            <label for="5" onclick="location.href='5lines.html'">5호선</label>
+        </div>
+
+        <div>
+            <label for="6" onclick="location.href='6lines.html'" style='background-color: navy'>6호선</label>
+        </div>
+
+        <div>
+            <label for="7" onclick="location.href='7lines.html'">7호선</label>
+        </div>
+
+        <div>
+            <label for="8" onclick="location.href='8lines.html'">8호선</label>
+        </div>
+
+        <div>
+            <label for="9" onclick="location.href='9lines.html'">9호선</label>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+ 
+    <style>
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script src="trainlocation_api.js"></script>
+</head>
+<body>
+ 
+<!--
+    <div id="zoom-buttons">
+        <button onclick="zoomIn()">+</button>
+        <button onclick="zoomOut()">-</button>
+    </div>
+-->
+<!--
+    <script>
+        function zoomIn() {
+            var zoomLevel = 100;
+            var maxZoomLevel = 200;
+            var zoomStep = 25;
+            if (document.body.style.zoom) {
+                zoomLevel = parseInt(document.body.style.zoom.replace("%", ""));
+            }
+            if (zoomLevel < maxZoomLevel) {
+                zoomLevel += zoomStep;
+            }
+            document.body.style.zoom = zoomLevel + "%";
+        }
+
+        function zoomOut() {
+            var zoomLevel = 100;
+            var minZoomLevel = 50;
+            var zoomStep = 25;
+            if (document.body.style.zoom) {
+                zoomLevel = parseInt(document.body.style.zoom.replace("%", ""));
+            }
+            if (zoomLevel > minZoomLevel) {
+                zoomLevel -= zoomStep;
+            }
+            document.body.style.zoom = zoomLevel + "%";
+        }
+
+        var zoomButtons = document.getElementById("zoom-buttons");
+        zoomButtons.style.position = "fixed";
+        zoomButtons.style.top = "30%";
+        zoomButtons.style.right = "20px";
+        zoomButtons.style.transform = "translateY(-50%)";
+    </script>
+    -->
+
+    <script src="scroll.js"></script>
+    <script>
+        train_loc_info('6');
+    </script>
+
+</body>
+</html>

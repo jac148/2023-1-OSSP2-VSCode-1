@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="./roadMapStyle.css" />
+    <title>지하철 혼잡도 알리미</title>
+    <script src="trainlocation_api.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" aria-hidden="true" viewBox="0 0 1525 1000"
+             style="position: absolute; z-index: 1000; transform-origin: 0px 0px 0px; backface-visibility: hidden; width: 1290.2px; height: 846px; transform: scale(1.4) scaleZ(1); transition-timing-function: ease; cursor: default;">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 2440 1600" width="100%">
+                <path d="M 65 305 H 370 V 430 H 500 L 850 780 H 940 V 888 H 1480 L 1560 808 H 1830 L 1910 888 H 2010 L 2090 808 V 620 H 2300 M 940 860 H 850 L 730 740 H 800"
+                      fill="none" stroke="#d3effb" stroke-width="23" stroke-linejoin="round" stroke-linecap="round"></path>
+            </svg>
+            <!-- 라인들 선 -->
+            <g id="line-1" class="line" fill="none" stroke="#052f93" stroke-linejoin="round" stroke-linecap="round">
+                <path class="path L1" stroke-width="3" d="M 620 65 H 645 "></path>
+                <path class="path L1 P19161915 P19151916" stroke-width="3" d="M 645 65 H 680 "></path>
+                <path class="path L1 P19151914 P19141915" stroke-width="3" d="M 680 65 H 710 "></path>
+                <path class="path L1 P19141913 P19131914" stroke-width="3" d="M 710 65 H 742.5 "></path>
+                <path class="path L1 P19131912 P19121913" stroke-width="3" d="M 742.5 65 H 775 "></path>
+                <path class="path L1 P19121911 P19111912" stroke-width="3" d="M 775 65 H 805 "></path>
+                <path class="path L1 P19111910 P19101911" stroke-width="3" d="M 805 65 H 840 "></path>
+                <path class="path L1 P19101909 P19091910" stroke-width="3" d="M 840 65 H 870 "></path>
+                <path class="path L1 P19091908 P19081909" stroke-width="3" d="M 870 65 H 902.5 "></path>
+                <path class="path L1 P19081907 P19071908" stroke-width="3" d="M 902.5 65 H 935 "></path>
+                <path class="path L1 P19071906 P19061907" stroke-width="3" d="M 935 65 H 965 "></path>
+                <path class="path L1 P19061905 P19051906" stroke-width="3" d="M 965 65 H 992.5 "></path>
+                <path class="path L1 P19051904 P19041905" stroke-width="3" d="M 992.5 65 H 1030 "></path>
+                <path class="path L1 P19041903 P19031904" stroke-width="3" d="M 1030 65 H 1065 Q 1070 65 1070 70 V 80 "></path>
+                <path class="path L1 P19031902 P19021903" stroke-width="3" d="M 1070 80 V 100 "></path>
+                <path class="path L1 P19021901 P19011902" stroke-width="3" d="M 1070 100 V 120 "></path>
+                <path class="path L1 P19011022 P10221901" stroke-width="3" d="M 1070 120 V 155 "></path>
+                <path class="path L1 P10221021 P10211022" stroke-width="3" d="M 1070 155 V 172.5 "></path>
+                <path class="path L1 P10211020 P10201021" stroke-width="3" d="M 1070 172.5 V 190 "></path>
+                <path class="path L1 P10201019 P10191020" stroke-width="3" d="M 1070 190 V 210 "></path>
+                <path class="path L1 P10191018 P10181019" stroke-width="3" d="M 1070 210 V 225 "></path>
+                <path class="path L1 P10181017 P10171018" stroke-width="3" d="M 1070 225 V 235 Q 1070 240 1065 245 "></path>
+                <path class="path L1 P10171016 P10161017" stroke-width="3" d="M 1065 245 L 1050 260 "></path>
+                <path class="path L1 P10161015 P10151016" stroke-width="3" d="M 1050 260 L 1040 270 Q 1035 275 1030 275 ">
+                </path>
+                <path class="path L1 P10150158 P01581015" stroke-width="3" d="M 1030 275 H 995 "></path>
+                <path class="path L1 P01580157 P01570158" stroke-width="3" d="M 995 275 H 960 "></path>
+                <path class="path L1 P01570156 P01560157" stroke-width="3" d="M 960 275 H 930 "></path>
+                <path class="path L1 P01560159 P01590156" stroke-width="3" d="M 930 275 H 900 "></path>
+                <path class="path L1 P01590155 P01550159" stroke-width="3" d="M 900 275 H 865 "></path>
+                <path class="path L1 P01550154 P01540155" stroke-width="3" d="M 865 275 H 795 "></path>
+                <path class="path L1 P01540153 P01530154" stroke-width="3" d="M 795 275 H 715 "></path>
+                <path class="path L1 P01530152 P01520153" stroke-width="3" d="M 715 275 L 680 310 "></path>
+                <path class="path L1 P01520151 P01510152" stroke-width="3" d="M 680 310 L 660 330 Q 655 335 655 340 V 345 ">
+                </path>
+                <path class="path L1 P01510150 P01500151" stroke-width="3" d="M 655 345 V 400 "></path>
+                <path class="path L1 P01501002 P10020150" stroke-width="3" d="M 655 400 V 440 "></path>
+                <path class="path L1 P10021003 P10031002" stroke-width="3" d="M 655 440 V 545 "></path>
+                <path class="path L1 P10031004 P10041003" stroke-width="3" d="M 655 545 V 560 Q 655 565 650 565 H 590 "></path>
+                <path class="path L1 P10041005 P10051004" stroke-width="3"
+                      d="M 590 565 H 539 Q 534.5000000000014 565 529 560 L 512.5 545 "></path>
+                <path class="path L1 P10051032 P10321005" stroke-width="3" d="M 512.5 545 L 480 515 H 475 "></path>
+                <path class="path L1 P10321006 P10061032" stroke-width="3" d="M 475 515 L 460 530 "></path>
+                <path class="path L1 P10061007 P10071006" stroke-width="3" d="M 460 530 L 440 550 "></path>
+                <path class="path L1 P10071701 P17011007" stroke-width="3" d="M 440 550 L 415 575 "></path>
+                <path class="path L1 P17011813 P18131701" stroke-width="3" d="M 415 575 L 400 590 "></path>
+                <path class="path L1 P18131801 P18011813" stroke-width="3" d="M 400 590 Q 395 595 390 595 H 380 "></path>
+                <path class="path L1 P18011802 P18021801" stroke-width="3" d="M 380 595 H 355 "></path>
+                <path class="path L1 P18021821 P18211802" stroke-width="3" d="M 355 595 H 340 Q 335 595 330 600 "></path>
+                <path class="path L1 P18211803 P18031821" stroke-width="3" d="M 330 600 L 305 625 "></path>
+                <path class="path L1 P18031814 P18141803" stroke-width="3" d="M 305 625 L 285 645 "></path>
+                <path class="path L1 P18141804 P18041814" stroke-width="3" d="M 285 645 L 265 665 Q 260 670 255 670 "></path>
+                <path class="path L1 P18041822 P18221804" stroke-width="3" d="M 255 670 H 222.5 "></path>
+                <path class="path L1 P18221805 P18051822" stroke-width="3" d="M 222.5 670 H 195 "></path>
+                <path class="path L1 P18051815 P18151805" stroke-width="3" d="M 195 670 H 167.5 "></path>
+                <path class="path L1 P18151806 P18061815" stroke-width="3" d="M 167.5 670 H 140 "></path>
+                <path class="path L1 P18061807 P18071806" stroke-width="3" d="M 140 670 H 115 "></path>
+                <path class="path L1 P18071808 P18081807" stroke-width="3" d="M 115 670 H 105 Q 95 670 95 680 V 697.5 "></path>
+                <path class="path L1 P18081816 P18161808" stroke-width="3" d="M 95 697.5 V 715 "></path>
+                <path class="path L1 P18161809 P18091816" stroke-width="3" d="M 95 715 V 735 "></path>
+                <path class="path L1 P18091823 P18231809" stroke-width="3" d="M 95 735 V 760 "></path>
+                <path class="path L1 P18231810 P18101823" stroke-width="3" d="M 95 760 V 790 Q 95 800 105 800 H 125 "></path>
+                <path class="path L1 P18101817 P18171810" stroke-width="3" d="M 125 800 H 155 "></path>
+                <path class="path L1 P18171811 P18111817" stroke-width="3" d="M 155 800 H 185 "></path>
+                <path class="path L1 P18111812 P18121811" stroke-width="3" d="M 185 800 H 220 "></path>
+                <path class="path L1 P17011702 P17021701" stroke-width="3" d="M 415 575 L 415 640 "></path>
+                <path class="path L1 P17021714 P17141702" stroke-width="3" d="M 415 640 V 685 "></path>
+                <path class="path L1 P17141703 P17031714" stroke-width="3" d="M 415 685 V 720 "></path>
+                <path class="path L1 P17501703 P17031750" stroke-width="3" d="M 390 700 L 405 715 Q 410 720 415 720 "></path>
+                <path class="path L1 P17031704 P17041703" stroke-width="3" d="M 415 720 H 470 "></path>
+                <path class="path L1 P17041705 P17051704" stroke-width="3" d="M 470 720 H 510 Q 515 720 515 725 V 750 "></path>
+                <path class="path L1 P17051706 P17061705" stroke-width="3" d="M 515 750 V 790 "></path>
+                <path class="path L1 P17061707 P17071706" stroke-width="3" d="M 515 790 V 830 "></path>
+                <path class="path L1 P17071708 P17081707" stroke-width="3" d="M 515 830 V 860 "></path>
+                <path class="path L1 P17081709 P17091708" stroke-width="3" d="M 515 860 V 890 Q 515 895 520 900 L 530 910 ">
+                </path>
+                <path class="path L1 P17091729 P17291709" stroke-width="3" d="M 530 910 L 550 930 "></path>
+                <path class="path L1 P17291710 P17101729" stroke-width="3" d="M 550 930 L 565 945 Q 570 950 575 950 H 585 ">
+                </path>
+                <path class="path L1 P17101711 P17111710" stroke-width="3" d="M 585 950 H 620 "></path>
+                <path class="path L1 P17111712 P17121711" stroke-width="3" d="M 620 950 H 647.5 "></path>
+                <path class="path L1 P17121713 P17131712" stroke-width="3" d="M 647.5 950 H 670 "></path>
+                <path class="path L1 P17131715 P17151713" stroke-width="3" d="M 670 950 H 697.5 "></path>
+                <path class="path L1 P17151716 P17161715" stroke-width="3" d="M 697.5 950 H 730 "></path>
+                <path class="path L1 P17161717 P17171716" stroke-width="3" d="M 730 950 H 760 "></path>
+                <path class="path L1 P17171718 P17181717" stroke-width="3" d="M 760 950 H 795 "></path>
+                <path class="path L1 P17181719 P17191718" stroke-width="3" d="M 795 950 H 825 "></path>
+                <path class="path L1 P17191720 P17201719" stroke-width="3" d="M 825 950 H 855 "></path>
+                <path class="path L1 P17201721 P17211720" stroke-width="3" d="M 855 950 H 885 "></path>
+                <path class="path L1 P17211722 P17221721" stroke-width="3" d="M 885 950 H 917.5 "></path>
+                <path class="path L1 P17221723 P17231722" stroke-width="3" d="M 917.5 950 H 950 "></path>
+                <path class="path L1 P17231724 P17241723" stroke-width="3" d="M 950 950 H 980 "></path>
+                <path class="path L1 P17241725 P17251724" stroke-width="3" d="M 980 950 H 1010 "></path>
+                <path class="path L1 P17251726 P17261725" stroke-width="3" d="M 1010 950 H 1040 "></path>
+                <path class="path L1 P17261727 P17271726" stroke-width="3" d="M 1040 950 H 1070 "></path>
+                <path class="path L1 P17271728 P17281727" stroke-width="3" d="M 1070 950 H 1100 "></path>
+                <path class="path L1 P17281401 P14011728" stroke-width="3" d="M 1100 950 H 1130 "></path>
+                <path class="path L1 P14011402 P14021401" stroke-width="3" d="M 1130 950 H 1165 "></path>
+                <path class="path L1 P14021403 P14031402" stroke-width="3" d="M 1165 950 H 1197.5 "></path>
+                <path class="path L1 P14031404 P14041403" stroke-width="3" d="M 1197.5 950 H 1230 "></path>
+                <path class="path L1 P14041405 P14051404" stroke-width="3" d="M 1230 950 H 1270 "></path>
+                <path class="path L1 P14051407 P14071405" stroke-width="3" d="M 1270 950 H 1310 "></path>
+                <path class="path L1 P14071408 P14081407" stroke-width="3" d="M 1310 950 H 1350 "></path>
+                <path class="path L1" stroke-width="3" d="M 1350 950 H 1390 "></path>
+                <path class="path L1 P17161749 P17491716" stroke-width="3" d="M 730 950 L 730 920 "></path>
+                <g class="path L1">
+                    <rect x="615" y="60" width="10" height="10" fill="#052f93" stroke="#052f93" stroke-linejoin="round"
+                          stroke-linecap="round" stroke-width="5"></rect>
+                    <text x="620" y="68" lengthAdjust="spacingAndGlyphs"
+                          text-anchor="middle"
+                          style="fill:white; stroke:white; stroke-width:0.6; font-size:9px; font-weight:normal; line-height:10px">1</text>
+                    <rect x="225" y="765" width="10" height="10" fill="#052f93" stroke="#052f93" stroke-linejoin="round"
+                          stroke-linecap="round" stroke-width="5"></rect>
+                    <text x="230" y="773" lengthAdjust="spacingAndGlyphs"
+                          text-anchor="middle"
+                          style="fill:white; stroke:white; stroke-width:0.6; font-size:9px; font-weight:normal; line-height:10px">1</text>
+                    <rect x="1385" y="945" width="10" height="10" fill="#052f93" stroke="#052f93" stroke-linejoin="round"
+                          stroke-linecap="round" stroke-width="5"></rect>
+                    <text x="1390" y="953" lengthAdjust="spacingAndGlyphs"
+                          text-anchor="middle"
+                          style="fill:white; stroke:white; stroke-width:0.6; font-size:9px; font-weight:normal; line-height:10px">1</text>
+                </g>
+            </g>
+            <!-- 역(동그라미)나타나는 곳 -->
+            <g class="marker-group" transform-origin="50% 50% 0">
+                <!-- 1호선:소요산역부터 시작 -->
+                <circle class="marker M1916 L1" cx="645" cy="65" r="1.7999999999999998" id="M1916" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1916" lineId="1"></circle>
+                <circle class="accent A1916" cx="645" cy="65" r="3" id="A1916" stroke="black" stroke-width="1" fill="red"
+                        uid="1916" lineId="1" style="display:none"></circle>
+                <circle class="marker M1915 L1" cx="680" cy="65" r="1.7999999999999998" id="M1915" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1915" lineId="1"></circle>
+                <circle class="accent A1915" cx="680" cy="65" r="3" id="A1915" stroke="black" stroke-width="1" fill="red"
+                        uid="1915" lineId="1" style="display:none"></circle>
+                <circle class="marker M1914 L1" cx="710" cy="65" r="1.7999999999999998" id="M1914" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1914" lineId="1"></circle>
+                <circle class="accent A1914" cx="710" cy="65" r="3" id="A1914" stroke="black" stroke-width="1" fill="red"
+                        uid="1914" lineId="1" style="display:none"></circle>
+                <circle class="marker M1913 L1" cx="742.5" cy="65" r="1.7999999999999998" id="M1913" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1913" lineId="1"></circle>
+                <circle class="accent A1913" cx="742.5" cy="65" r="3" id="A1913" stroke="black" stroke-width="1" fill="red"
+                        uid="1913" lineId="1" style="display:none"></circle>
+                <circle class="marker M1912 L1" cx="775" cy="65" r="1.7999999999999998" id="M1912" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1912" lineId="1"></circle>
+                <circle class="accent A1912" cx="775" cy="65" r="3" id="A1912" stroke="black" stroke-width="1" fill="red"
+                        uid="1912" lineId="1" style="display:none"></circle>
+                <circle class="marker M1911 L1" cx="805" cy="65" r="1.7999999999999998" id="M1911" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1911" lineId="1"></circle>
+                <circle class="accent A1911" cx="805" cy="65" r="3" id="A1911" stroke="black" stroke-width="1" fill="red"
+                        uid="1911" lineId="1" style="display:none"></circle>
+                <circle class="marker M1910 L1" cx="840" cy="65" r="1.7999999999999998" id="M1910" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1910" lineId="1"></circle>
+                <circle class="accent A1910" cx="840" cy="65" r="3" id="A1910" stroke="black" stroke-width="1" fill="red"
+                        uid="1910" lineId="1" style="display:none"></circle>
+                <circle class="marker M1909 L1" cx="870" cy="65" r="1.7999999999999998" id="M1909" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1909" lineId="1"></circle>
+                <circle class="accent A1909" cx="870" cy="65" r="3" id="A1909" stroke="black" stroke-width="1" fill="red"
+                        uid="1909" lineId="1" style="display:none"></circle>
+                <circle class="marker M1908 L1" cx="902.5" cy="65" r="1.7999999999999998" id="M1908" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1908" lineId="1"></circle>
+                <circle class="accent A1908" cx="902.5" cy="65" r="3" id="A1908" stroke="black" stroke-width="1" fill="red"
+                        uid="1908" lineId="1" style="display:none"></circle>
+                <circle class="marker M1907 L1" cx="935" cy="65" r="1.7999999999999998" id="M1907" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1907" lineId="1"></circle>
+                <circle class="accent A1907" cx="935" cy="65" r="3" id="A1907" stroke="black" stroke-width="1" fill="red"
+                        uid="1907" lineId="1" style="display:none"></circle>
+                <circle class="marker M1906 L1" cx="965" cy="65" r="1.7999999999999998" id="M1906" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1906" lineId="1"></circle>
+                <circle class="accent A1906" cx="965" cy="65" r="3" id="A1906" stroke="black" stroke-width="1" fill="red"
+                        uid="1906" lineId="1" style="display:none"></circle>
+                <g class="marker M1905 L1 interchange M4602 LU" cx="992.5" cy="65" id="M1905" uid="1905" lineId="1 U">
+                    <rect x="989.5" y="62" width="6" height="11" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="992.5" cy="65" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                    <circle cx="992.5" cy="70" r="1.5" stroke="#d9750d" stroke-width="1" fill="#d9750d"></circle>
+                </g>
+                <circle class="accent A1905 A4602" cx="992.5" cy="65" r="3" id="A1905" stroke="black" stroke-width="1"
+                        fill="red" uid="1905" lineId="1" style="display:none"></circle>
+                <circle class="marker M1904 L1" cx="1030" cy="65" r="1.7999999999999998" id="M1904" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1904" lineId="1"></circle>
+                <circle class="accent A1904" cx="1030" cy="65" r="3" id="A1904" stroke="black" stroke-width="1" fill="red"
+                        uid="1904" lineId="1" style="display:none"></circle>
+                <g class="marker M1903 L1 interchange M2712 L7" cx="1070" cy="80" id="M1903" uid="1903" lineId="1 7">
+                    <rect x="1067" y="77" width="11" height="6" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="1070" cy="80" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                    <circle cx="1075" cy="80" r="1.5" stroke="#657931" stroke-width="1" fill="#657931"></circle>
+                </g>
+                <circle class="accent A1903 A2712" cx="1070" cy="80" r="3" id="A1903" stroke="black" stroke-width="1" fill="red"
+                        uid="1903" lineId="1" style="display:none"></circle>
+                <circle class="marker M1902 L1" cx="1070" cy="100" r="1.7999999999999998" id="M1902" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1902" lineId="1"></circle>
+                <circle class="accent A1902" cx="1070" cy="100" r="3" id="A1902" stroke="black" stroke-width="1" fill="red"
+                        uid="1902" lineId="1" style="display:none"></circle>
+                <circle class="marker M1901 L1" cx="1070" cy="120" r="1.7999999999999998" id="M1901" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1901" lineId="1"></circle>
+                <circle class="accent A1901" cx="1070" cy="120" r="3" id="A1901" stroke="black" stroke-width="1" fill="red"
+                        uid="1901" lineId="1" style="display:none"></circle>
+                <g class="marker M1022 L1 interchange M0412 L4" cx="1070" cy="155" id="M0412" uid="0412" lineId="1 4">
+                    <rect x="1067" y="152" width="11" height="6" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="1070" cy="155" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                    <circle cx="1075" cy="155" r="1.5" stroke="#0099d1" stroke-width="1" fill="#0099d1"></circle>
+                </g>
+                <circle class="accent A1022 A0412" cx="1070" cy="155" r="3" id="A0412" stroke="black" stroke-width="1"
+                        fill="red" uid="0412" lineId="1" style="display:none"></circle>
+                <circle class="marker M1021 L1" cx="1070" cy="172.5" r="1.7999999999999998" id="M1021" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1021" lineId="1"></circle>
+                <circle class="accent A1021" cx="1070" cy="172.5" r="3" id="A1021" stroke="black" stroke-width="1" fill="red"
+                        uid="1021" lineId="1" style="display:none"></circle>
+                <circle class="marker M1020 L1" cx="1070" cy="190" r="1.7999999999999998" id="M1020" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1020" lineId="1"></circle>
+                <circle class="accent A1020" cx="1070" cy="190" r="3" id="A1020" stroke="black" stroke-width="1" fill="red"
+                        uid="1020" lineId="1" style="display:none"></circle>
+                <g class="marker M1019 L1 interchange M LG" cx="1070" cy="210" id="M1019" uid="1019" lineId="1 G">
+                    <rect x="1067" y="207" width="11" height="6" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="1070" cy="210" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                    <circle cx="1075" cy="210" r="1.5" stroke="#0ba382" stroke-width="1" fill="#0ba382"></circle>
+                </g>
+                <circle class="accent A1019 A" cx="1070" cy="210" r="3" id="A1019" stroke="black" stroke-width="1" fill="red"
+                        uid="1019" lineId="1" style="display:none"></circle>
+                <g class="marker M1018 L1 interchange M2645 L6" cx="1070" cy="225" id="M1018" uid="1018" lineId="1 6">
+                    <rect x="1067" y="222" width="11" height="6" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="1070" cy="225" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                    <circle cx="1075" cy="225" r="1.5" stroke="#d08d1a" stroke-width="1" fill="#d08d1a"></circle>
+                </g>
+                <circle class="accent A1018 A2645" cx="1070" cy="225" r="3" id="A1018" stroke="black" stroke-width="1"
+                        fill="red" uid="1018" lineId="1" style="display:none"></circle>
+                <circle class="marker M1017 L1" cx="1065" cy="245" r="1.7999999999999998" id="M1017" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1017" lineId="1"></circle>
+                <circle class="accent A1017" cx="1065" cy="245" r="3" id="A1017" stroke="black" stroke-width="1" fill="red"
+                        uid="1017" lineId="1" style="display:none"></circle>
+                <circle class="marker M1016 L1" cx="1050" cy="260" r="1.7999999999999998" id="M1016" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1016" lineId="1"></circle>
+                <circle class="accent A1016" cx="1050" cy="260" r="3" id="A1016" stroke="black" stroke-width="1" fill="red"
+                        uid="1016" lineId="1" style="display:none"></circle>
+                <g class="marker M1015 L1 interchange M1307 LG M101C LK" cx="1030" cy="275" id="M1015" uid="1015"
+                   lineId="1 G K">
+                    <rect x="1027" y="272" width="6" height="16" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="1030" cy="275" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                    <circle cx="1030" cy="280" r="1.5" stroke="#0ba382" stroke-width="1" fill="#0ba382"></circle>
+                    <circle cx="1030" cy="285" r="1.5" stroke="#5f9c82" stroke-width="1" fill="#5f9c82"></circle>
+                </g>
+                <circle class="accent A1015 A1307 A101C" cx="1030" cy="275" r="3" id="A1015" stroke="black" stroke-width="1"
+                        fill="red" uid="1015" lineId="1" style="display:none"></circle>
+                <g class="marker M0158 L1 interchange M1306 LG M1014 LK M1845 LB" cx="995" cy="275" id="M0158" uid="0158"
+                   lineId="1 G K B">
+                    <rect x="992" y="272" width="6" height="21" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="995" cy="275" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                    <circle cx="995" cy="280" r="1.5" stroke="#0ba382" stroke-width="1" fill="#0ba382"></circle>
+                    <circle cx="995" cy="285" r="1.5" stroke="#5f9c82" stroke-width="1" fill="#5f9c82"></circle>
+                    <circle cx="995" cy="290" r="1.5" stroke="#a69500" stroke-width="1" fill="#a69500"></circle>
+                </g>
+                <circle class="accent A0158 A1306 A1014 A1845" cx="995" cy="275" r="3" id="A0158" stroke="black"
+                        stroke-width="1" fill="red" uid="0158" lineId="1" style="display:none"></circle>
+                <circle class="marker M0157 L1" cx="960" cy="275" r="1.7999999999999998" id="M0157" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="0157" lineId="1"></circle>
+                <circle class="accent A0157" cx="960" cy="275" r="3" id="A0157" stroke="black" stroke-width="1" fill="red"
+                        uid="0157" lineId="1" style="display:none"></circle>
+                <g class="marker M0156 L1 interchange M0246 L2 M4713 LW" cx="930" cy="275" id="M0156" uid="0156" lineId="1 2 W">
+                    <rect x="927" y="272" width="16" height="6" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="930" cy="275" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                    <circle cx="935" cy="275" r="1.5" stroke="#10a643" stroke-width="1" fill="#10a643"></circle>
+                    <circle cx="940" cy="275" r="1.5" stroke="#878787" stroke-width="1" fill="#878787"></circle>
+                </g>
+                <circle class="accent A0156 A0246 A4713" cx="930" cy="275" r="3" id="A0156" stroke="black" stroke-width="1"
+                        fill="red" uid="0156" lineId="1" style="display:none"></circle>
+                <g class="marker M0159 L1 interchange M2637 L6" cx="900" cy="275" id="M0159" uid="0159" lineId="1 6">
+                    <rect x="897" y="267" width="6" height="11" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="900" cy="275" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                    <circle cx="900" cy="270" r="1.5" stroke="#d08d1a" stroke-width="1" fill="#d08d1a"></circle>
+                </g>
+                <circle class="accent A0159 A2637" cx="900" cy="275" r="3" id="A0159" stroke="black" stroke-width="1" fill="red"
+                        uid="0159" lineId="1" style="display:none"></circle>
+                <g class="marker M0155 L1 interchange M0421 L4" cx="865" cy="275" id="M0155" uid="0155" lineId="1 4">
+                    <rect x="862" y="267" width="6" height="11" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="865" cy="275" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                    <circle cx="865" cy="270" r="1.5" stroke="#0099d1" stroke-width="1" fill="#0099d1"></circle>
+                </g>
+                <circle class="accent A0155 A0421" cx="865" cy="275" r="3" id="A0155" stroke="black" stroke-width="1" fill="red"
+                        uid="0155" lineId="1" style="display:none"></circle>
+                <circle class="marker M0154 L1" cx="795" cy="275" r="1.7999999999999998" id="M0154" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="0154" lineId="1"></circle>
+                <circle class="accent A0154" cx="795" cy="275" r="3" id="A0154" stroke="black" stroke-width="1" fill="red"
+                        uid="0154" lineId="1" style="display:none"></circle>
+                <g class="marker M0153 L1 interchange M0319 L3 M2535 L5" cx="715" cy="275" id="M0153" uid="0153" lineId="1 3 5">
+                    <rect x="712" y="272" width="16" height="6" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="715" cy="275" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                    <circle cx="720" cy="275" r="1.5" stroke="#de6d00" stroke-width="1" fill="#de6d00"></circle>
+                    <circle cx="725" cy="275" r="1.5" stroke="#a95094" stroke-width="1" fill="#a95094"></circle>
+                </g>
+                <circle class="accent A0153 A0319 A2535" cx="715" cy="275" r="3" id="A0153" stroke="black" stroke-width="1"
+                        fill="red" uid="0153" lineId="1" style="display:none"></circle>
+                <circle class="marker M0152 L1" cx="680" cy="310" r="1.7999999999999998" id="M0152" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="0152" lineId="1"></circle>
+                <circle class="accent A0152" cx="680" cy="310" r="3" id="A0152" stroke="black" stroke-width="1" fill="red"
+                        uid="0152" lineId="1" style="display:none"></circle>
+                <g class="marker M0151 L1 interchange M0201 L2" cx="655" cy="345" id="M0151" uid="0151" lineId="1 2">
+                    <rect x="647" y="342" width="11" height="6" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="655" cy="345" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                    <circle cx="650" cy="345" r="1.5" stroke="#10a643" stroke-width="1" fill="#10a643"></circle>
+                </g>
+                <circle class="accent A0151 A0201" cx="655" cy="345" r="3" id="A0151" stroke="black" stroke-width="1" fill="red"
+                        uid="0151" lineId="1" style="display:none"></circle>
+                <g class="marker M0150 L1 interchange M0426 L4 M4201 LA" cx="655" cy="400" id="M0150" uid="0150" lineId="1 4 A">
+                    <rect x="652" y="397" width="6" height="16" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="655" cy="405" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                    <circle cx="655" cy="400" r="1.5" stroke="#0099d1" stroke-width="1" fill="#0099d1"></circle>
+                    <circle cx="655" cy="410" r="1.5" stroke="#038fa0" stroke-width="1" fill="#038fa0"></circle>
+                </g>
+                <circle class="accent A0150 A0426 A4201" cx="655" cy="400" r="3" id="A0150" stroke="black" stroke-width="1"
+                        fill="red" uid="0150" lineId="1" style="display:none"></circle>
+                <circle class="marker M1002 L1" cx="655" cy="440" r="1.7999999999999998" id="M1002" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1002" lineId="1"></circle>
+                <circle class="accent A1002" cx="655" cy="440" r="3" id="A1002" stroke="black" stroke-width="1" fill="red"
+                        uid="1002" lineId="1" style="display:none"></circle>
+                <g class="marker M1003 L1 interchange M100C LK" cx="655" cy="545" id="M1003" uid="1003" lineId="1 K">
+                    <rect x="652" y="537" width="6" height="11" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="655" cy="540" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                    <circle cx="655" cy="545" r="1.5" stroke="#5f9c82" stroke-width="1" fill="#5f9c82"></circle>
+                </g>
+                <circle class="accent A1003 A100C" cx="655" cy="545" r="3" id="A1003" stroke="black" stroke-width="1" fill="red"
+                        uid="1003" lineId="1" style="display:none"></circle>
+                <g class="marker M1004 L1 interchange M4117 L9" cx="590" cy="565" id="M1004" uid="1004" lineId="1 9">
+                    <rect x="587" y="562" width="11" height="6" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="595" cy="565" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                    <circle cx="590" cy="565" r="1.5" stroke="#b58600" stroke-width="1" fill="#b58600"></circle>
+                </g>
+                <circle class="accent A1004 A4117" cx="590" cy="565" r="3" id="A1004" stroke="black" stroke-width="1" fill="red"
+                        uid="1004" lineId="1" style="display:none"></circle>
+                <g class="marker M1005 L1 interchange M4402 LSL" cx="512.5" cy="545" id="M1005" uid="1005" lineId="1 SL">
+                    <rect x="509.5" y="542" width="6" height="11" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="512.5" cy="545" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                    <circle cx="512.5" cy="550" r="1.5" stroke="#0781fa" stroke-width="1" fill="#0781fa"></circle>
+                </g>
+                <circle class="accent A1005 A4402" cx="512.5" cy="545" r="3" id="A1005" stroke="black" stroke-width="1"
+                        fill="red" uid="1005" lineId="1" style="display:none"></circle>
+                <g class="marker M1032 L1 interchange M2526 L5" cx="475" cy="515" id="M1032" uid="1032" lineId="1 5">
+                    <rect x="472" y="512" width="11" height="6" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="475" cy="515" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                    <circle cx="480" cy="515" r="1.5" stroke="#a95094" stroke-width="1" fill="#a95094"></circle>
+                </g>
+                <circle class="accent A1032 A2526" cx="475" cy="515" r="3" id="A1032" stroke="black" stroke-width="1" fill="red"
+                        uid="1032" lineId="1" style="display:none"></circle>
+                <circle class="marker M1006 L1" cx="460" cy="530" r="1.7999999999999998" id="M1006" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1006" lineId="1"></circle>
+                <circle class="accent A1006" cx="460" cy="530" r="3" id="A1006" stroke="black" stroke-width="1" fill="red"
+                        uid="1006" lineId="1" style="display:none"></circle>
+                <g class="marker M1007 L1 interchange M0234 L2" cx="440" cy="550" id="M1007" uid="1007" lineId="1 2">
+                    <rect x="432" y="547" width="11" height="6" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="440" cy="550" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                    <circle cx="435" cy="550" r="1.5" stroke="#10a643" stroke-width="1" fill="#10a643"></circle>
+                </g>
+                <circle class="accent A1007 A0234" cx="440" cy="550" r="3" id="A1007" stroke="black" stroke-width="1" fill="red"
+                        uid="1007" lineId="1" style="display:none"></circle>
+                <g class="marker M1701 L1 interchange" cx="415" cy="575" id="M1701" uid="1701" lineId="1">
+                    <rect x="412" y="572" width="6" height="11" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="415" cy="575" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                    <circle cx="415" cy="580" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                </g>
+                <circle class="accent A1701" cx="415" cy="575" r="3" id="A1701" stroke="black" stroke-width="1" fill="red"
+                        uid="1701" lineId="1" style="display:none"></circle>
+                <circle class="marker M1813 L1" cx="400" cy="590" r="1.7999999999999998" id="M1813" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1813" lineId="1"></circle>
+                <circle class="accent A1813" cx="400" cy="590" r="3" id="A1813" stroke="black" stroke-width="1" fill="red"
+                        uid="1813" lineId="1" style="display:none"></circle>
+                <circle class="marker M1801 L1" cx="380" cy="595" r="1.7999999999999998" id="M1801" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1801" lineId="1"></circle>
+                <circle class="accent A1801" cx="380" cy="595" r="3" id="A1801" stroke="black" stroke-width="1" fill="red"
+                        uid="1801" lineId="1" style="display:none"></circle>
+                <circle class="marker M1802 L1" cx="355" cy="595" r="1.7999999999999998" id="M1802" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1802" lineId="1"></circle>
+                <circle class="accent A1802" cx="355" cy="595" r="3" id="A1802" stroke="black" stroke-width="1" fill="red"
+                        uid="1802" lineId="1" style="display:none"></circle>
+                <g class="marker M1821 L1 interchange M2752 L7" cx="330" cy="600" id="M1821" uid="1821" lineId="1 7">
+                    <rect x="322" y="597" width="11" height="6" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="330" cy="600" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                    <circle cx="325" cy="600" r="1.5" stroke="#657931" stroke-width="1" fill="#657931"></circle>
+                </g>
+                <circle class="accent A1821 A2752" cx="330" cy="600" r="3" id="A1821" stroke="black" stroke-width="1" fill="red"
+                        uid="1821" lineId="1" style="display:none"></circle>
+                <circle class="marker M1803 L1" cx="305" cy="625" r="1.7999999999999998" id="M1803" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1803" lineId="1"></circle>
+                <circle class="accent A1803" cx="305" cy="625" r="3" id="A1803" stroke="black" stroke-width="1" fill="red"
+                        uid="1803" lineId="1" style="display:none"></circle>
+                <g class="marker M1814 L1 interchange M4804 LSH" cx="285" cy="645" id="M1814" uid="1814" lineId="1 SH">
+                    <rect x="282" y="642" width="6" height="11" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="285" cy="645" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                    <circle cx="285" cy="650" r="1.5" stroke="#40a607" stroke-width="1" fill="#40a607"></circle>
+                </g>
+                <circle class="accent A1814 A4804" cx="285" cy="645" r="3" id="A1814" stroke="black" stroke-width="1" fill="red"
+                        uid="1814" lineId="1" style="display:none"></circle>
+                <circle class="marker M1804 L1" cx="255" cy="670" r="1.7999999999999998" id="M1804" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1804" lineId="1"></circle>
+                <circle class="accent A1804" cx="255" cy="670" r="3" id="A1804" stroke="black" stroke-width="1" fill="red"
+                        uid="1804" lineId="1" style="display:none"></circle>
+                <circle class="marker M1822 L1" cx="222.5" cy="670" r="1.7999999999999998" id="M1822" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1822" lineId="1"></circle>
+                <circle class="accent A1822" cx="222.5" cy="670" r="3" id="A1822" stroke="black" stroke-width="1" fill="red"
+                        uid="1822" lineId="1" style="display:none"></circle>
+                <circle class="marker M1805 L1" cx="195" cy="670" r="1.7999999999999998" id="M1805" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1805" lineId="1"></circle>
+                <circle class="accent A1805" cx="195" cy="670" r="3" id="A1805" stroke="black" stroke-width="1" fill="red"
+                        uid="1805" lineId="1" style="display:none"></circle>
+                <circle class="marker M1815 L1" cx="167.5" cy="670" r="1.7999999999999998" id="M1815" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1815" lineId="1"></circle>
+                <circle class="accent A1815" cx="167.5" cy="670" r="3" id="A1815" stroke="black" stroke-width="1" fill="red"
+                        uid="1815" lineId="1" style="display:none"></circle>
+                <g class="marker M1806 L1 interchange M3120 LI" cx="140" cy="670" id="M1806" uid="1806" lineId="1 I">
+                    <rect x="137" y="667" width="11" height="6" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="145" cy="670" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                    <circle cx="140" cy="670" r="1.5" stroke="#6496df" stroke-width="1" fill="#6496df"></circle>
+                </g>
+                <circle class="accent A1806 A3120" cx="140" cy="670" r="3" id="A1806" stroke="black" stroke-width="1" fill="red"
+                        uid="1806" lineId="1" style="display:none"></circle>
+                <circle class="marker M1807 L1" cx="115" cy="670" r="1.7999999999999998" id="M1807" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1807" lineId="1"></circle>
+                <circle class="accent A1807" cx="115" cy="670" r="3" id="A1807" stroke="black" stroke-width="1" fill="red"
+                        uid="1807" lineId="1" style="display:none"></circle>
+                <circle class="marker M1808 L1" cx="95" cy="697.5" r="1.7999999999999998" id="M1808" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1808" lineId="1"></circle>
+                <circle class="accent A1808" cx="95" cy="697.5" r="3" id="A1808" stroke="black" stroke-width="1" fill="red"
+                        uid="1808" lineId="1" style="display:none"></circle>
+                <circle class="marker M1816 L1" cx="95" cy="715" r="1.7999999999999998" id="M1816" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1816" lineId="1"></circle>
+                <circle class="accent A1816" cx="95" cy="715" r="3" id="A1816" stroke="black" stroke-width="1" fill="red"
+                        uid="1816" lineId="1" style="display:none"></circle>
+                <g class="marker M1809 L1 interchange M3218 LI2" cx="95" cy="735" id="M1809" uid="1809" lineId="1 I2">
+                    <rect x="92" y="732" width="6" height="11" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="95" cy="740" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                    <circle cx="95" cy="735" r="1.5" stroke="#cf843c" stroke-width="1" fill="#cf843c"></circle>
+                </g>
+                <circle class="accent A1809 A3218" cx="95" cy="735" r="3" id="A1809" stroke="black" stroke-width="1" fill="red"
+                        uid="1809" lineId="1" style="display:none"></circle>
+                <circle class="marker M1823 L1" cx="95" cy="760" r="1.7999999999999998" id="M1823" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1823" lineId="1"></circle>
+                <circle class="accent A1823" cx="95" cy="760" r="3" id="A1823" stroke="black" stroke-width="1" fill="red"
+                        uid="1823" lineId="1" style="display:none"></circle>
+                <circle class="marker M1810 L1" cx="125" cy="800" r="1.7999999999999998" id="M1810" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1810" lineId="1"></circle>
+                <circle class="accent A1810" cx="125" cy="800" r="3" id="A1810" stroke="black" stroke-width="1" fill="red"
+                        uid="1810" lineId="1" style="display:none"></circle>
+                <circle class="marker M1817 L1" cx="155" cy="800" r="1.7999999999999998" id="M1817" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1817" lineId="1"></circle>
+                <circle class="accent A1817" cx="155" cy="800" r="3" id="A1817" stroke="black" stroke-width="1" fill="red"
+                        uid="1817" lineId="1" style="display:none"></circle>
+                <circle class="marker M1811 L1" cx="185" cy="800" r="1.7999999999999998" id="M1811" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1811" lineId="1"></circle>
+                <circle class="accent A1811" cx="185" cy="800" r="3" id="A1811" stroke="black" stroke-width="1" fill="red"
+                        uid="1811" lineId="1" style="display:none"></circle>
+                <g class="marker M1812 L1 interchange M1891 LB" cx="220" cy="800" id="M1812" uid="1812" lineId="1 B">
+                    <rect x="217" y="797" width="11" height="6" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="220" cy="800" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                    <circle cx="225" cy="800" r="1.5" stroke="#a69500" stroke-width="1" fill="#a69500"></circle>
+                </g>
+                <circle class="accent A1812 A1891" cx="220" cy="800" r="3" id="A1812" stroke="black" stroke-width="1" fill="red"
+                        uid="1812" lineId="1" style="display:none"></circle>
+                <g class="marker M1702 L1 interchange M2748 L7" cx="415" cy="640" id="M1702" uid="1702" lineId="1 7">
+                    <rect x="412" y="632" width="6" height="11" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="415" cy="635" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                    <circle cx="415" cy="640" r="1.5" stroke="#657931" stroke-width="1" fill="#657931"></circle>
+                </g>
+                <circle class="accent A1702 A2748" cx="415" cy="640" r="3" id="A1702" stroke="black" stroke-width="1" fill="red"
+                        uid="1702" lineId="1" style="display:none"></circle>
+                <circle class="marker M1714 L1" cx="415" cy="685" r="1.7999999999999998" id="M1714" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1714" lineId="1"></circle>
+                <circle class="accent A1714" cx="415" cy="685" r="3" id="A1714" stroke="black" stroke-width="1" fill="red"
+                        uid="1714" lineId="1" style="display:none"></circle>
+                <g class="marker M1703 L1 interchange" cx="415" cy="720" id="M1703" uid="1703" lineId="1">
+                    <rect x="412" y="712" width="6" height="11" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="415" cy="720" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                    <circle cx="415" cy="715" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                </g>
+                <circle class="accent A1703" cx="415" cy="720" r="3" id="A1703" stroke="black" stroke-width="1" fill="red"
+                        uid="1703" lineId="1" style="display:none"></circle>
+                <circle class="marker M1750 L1" cx="390" cy="700" r="1.7999999999999998" id="M1750" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1750" lineId="1"></circle>
+                <circle class="accent A1750" cx="390" cy="700" r="3" id="A1750" stroke="black" stroke-width="1" fill="red"
+                        uid="1750" lineId="1" style="display:none"></circle>
+                <circle class="marker M1704 L1" cx="470" cy="720" r="1.7999999999999998" id="M1704" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1704" lineId="1"></circle>
+                <circle class="accent A1704" cx="470" cy="720" r="3" id="A1704" stroke="black" stroke-width="1" fill="red"
+                        uid="1704" lineId="1" style="display:none"></circle>
+                <circle class="marker M1705 L1" cx="515" cy="750" r="1.7999999999999998" id="M1705" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1705" lineId="1"></circle>
+                <circle class="accent A1705" cx="515" cy="750" r="3" id="A1705" stroke="black" stroke-width="1" fill="red"
+                        uid="1705" lineId="1" style="display:none"></circle>
+                <circle class="marker M1706 L1" cx="515" cy="790" r="1.7999999999999998" id="M1706" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1706" lineId="1"></circle>
+                <circle class="accent A1706" cx="515" cy="790" r="3" id="A1706" stroke="black" stroke-width="1" fill="red"
+                        uid="1706" lineId="1" style="display:none"></circle>
+                <circle class="marker M1707 L1" cx="515" cy="830" r="1.7999999999999998" id="M1707" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1707" lineId="1"></circle>
+                <circle class="accent A1707" cx="515" cy="830" r="3" id="A1707" stroke="black" stroke-width="1" fill="red"
+                        uid="1707" lineId="1" style="display:none"></circle>
+                <g class="marker M1708 L1 interchange M1458 L4" cx="515" cy="860" id="M1708" uid="1708" lineId="1 4">
+                    <rect x="512" y="857" width="6" height="11" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="515" cy="865" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                    <circle cx="515" cy="860" r="1.5" stroke="#0099d1" stroke-width="1" fill="#0099d1"></circle>
+                </g>
+                <circle class="accent A1708 A1458" cx="515" cy="860" r="3" id="A1708" stroke="black" stroke-width="1" fill="red"
+                        uid="1708" lineId="1" style="display:none"></circle>
+                <circle class="marker M1709 L1" cx="530" cy="910" r="1.7999999999999998" id="M1709" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1709" lineId="1"></circle>
+                <circle class="accent A1709" cx="530" cy="910" r="3" id="A1709" stroke="black" stroke-width="1" fill="red"
+                        uid="1709" lineId="1" style="display:none"></circle>
+                <circle class="marker M1729 L1" cx="550" cy="930" r="1.7999999999999998" id="M1729" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1729" lineId="1"></circle>
+                <circle class="accent A1729" cx="550" cy="930" r="3" id="A1729" stroke="black" stroke-width="1" fill="red"
+                        uid="1729" lineId="1" style="display:none"></circle>
+                <circle class="marker M1710 L1" cx="585" cy="950" r="1.7999999999999998" id="M1710" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1710" lineId="1"></circle>
+                <circle class="accent A1710" cx="585" cy="950" r="3" id="A1710" stroke="black" stroke-width="1" fill="red"
+                        uid="1710" lineId="1" style="display:none"></circle>
+                <circle class="marker M1711 L1" cx="620" cy="950" r="1.7999999999999998" id="M1711" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1711" lineId="1"></circle>
+                <circle class="accent A1711" cx="620" cy="950" r="3" id="A1711" stroke="black" stroke-width="1" fill="red"
+                        uid="1711" lineId="1" style="display:none"></circle>
+                <circle class="marker M1712 L1" cx="647.5" cy="950" r="1.7999999999999998" id="M1712" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1712" lineId="1"></circle>
+                <circle class="accent A1712" cx="647.5" cy="950" r="3" id="A1712" stroke="black" stroke-width="1" fill="red"
+                        uid="1712" lineId="1" style="display:none"></circle>
+                <g class="marker M1713 L1 interchange M1846 LB" cx="670" cy="950" id="M1713" uid="1713" lineId="1 B">
+                    <rect x="667" y="942" width="6" height="11" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="670" cy="950" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                    <circle cx="670" cy="945" r="1.5" stroke="#a69500" stroke-width="1" fill="#a69500"></circle>
+                </g>
+                <circle class="accent A1713 A1846" cx="670" cy="950" r="3" id="A1713" stroke="black" stroke-width="1" fill="red"
+                        uid="1713" lineId="1" style="display:none"></circle>
+                <circle class="marker M1715 L1" cx="697.5" cy="950" r="1.7999999999999998" id="M1715" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1715" lineId="1"></circle>
+                <circle class="accent A1715" cx="697.5" cy="950" r="3" id="A1715" stroke="black" stroke-width="1" fill="red"
+                        uid="1715" lineId="1" style="display:none"></circle>
+                <g class="marker M1716 L1 interchange" cx="730" cy="950" id="M1716" uid="1716" lineId="1">
+                    <rect x="727" y="942" width="6" height="11" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                    <circle cx="730" cy="950" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                    <circle cx="730" cy="945" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                </g>
+                <circle class="accent A1716" cx="730" cy="950" r="3" id="A1716" stroke="black" stroke-width="1" fill="red"
+                        uid="1716" lineId="1" style="display:none"></circle>
+                <circle class="marker M1717 L1" cx="760" cy="950" r="1.7999999999999998" id="M1717" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1717" lineId="1"></circle>
+                <circle class="accent A1717" cx="760" cy="950" r="3" id="A1717" stroke="black" stroke-width="1" fill="red"
+                        uid="1717" lineId="1" style="display:none"></circle>
+                <circle class="marker M1718 L1" cx="795" cy="950" r="1.7999999999999998" id="M1718" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1718" lineId="1"></circle>
+                <circle class="accent A1718" cx="795" cy="950" r="3" id="A1718" stroke="black" stroke-width="1" fill="red"
+                        uid="1718" lineId="1" style="display:none"></circle>
+                <circle class="marker M1719 L1" cx="825" cy="950" r="1.7999999999999998" id="M1719" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1719" lineId="1"></circle>
+                <circle class="accent A1719" cx="825" cy="950" r="3" id="A1719" stroke="black" stroke-width="1" fill="red"
+                        uid="1719" lineId="1" style="display:none"></circle>
+                <circle class="marker M1720 L1" cx="855" cy="950" r="1.7999999999999998" id="M1720" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1720" lineId="1"></circle>
+                <circle class="accent A1720" cx="855" cy="950" r="3" id="A1720" stroke="black" stroke-width="1" fill="red"
+                        uid="1720" lineId="1" style="display:none"></circle>
+                <circle class="marker M1721 L1" cx="885" cy="950" r="1.7999999999999998" id="M1721" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1721" lineId="1"></circle>
+                <circle class="accent A1721" cx="885" cy="950" r="3" id="A1721" stroke="black" stroke-width="1" fill="red"
+                        uid="1721" lineId="1" style="display:none"></circle>
+                <circle class="marker M1722 L1" cx="917.5" cy="950" r="1.7999999999999998" id="M1722" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1722" lineId="1"></circle>
+                <circle class="accent A1722" cx="917.5" cy="950" r="3" id="A1722" stroke="black" stroke-width="1" fill="red"
+                        uid="1722" lineId="1" style="display:none"></circle>
+                <circle class="marker M1723 L1" cx="950" cy="950" r="1.7999999999999998" id="M1723" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1723" lineId="1"></circle>
+                <circle class="accent A1723" cx="950" cy="950" r="3" id="A1723" stroke="black" stroke-width="1" fill="red"
+                        uid="1723" lineId="1" style="display:none"></circle>
+                <circle class="marker M1724 L1" cx="980" cy="950" r="1.7999999999999998" id="M1724" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1724" lineId="1"></circle>
+                <circle class="accent A1724" cx="980" cy="950" r="3" id="A1724" stroke="black" stroke-width="1" fill="red"
+                        uid="1724" lineId="1" style="display:none"></circle>
+                <circle class="marker M1725 L1" cx="1010" cy="950" r="1.7999999999999998" id="M1725" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1725" lineId="1"></circle>
+                <circle class="accent A1725" cx="1010" cy="950" r="3" id="A1725" stroke="black" stroke-width="1" fill="red"
+                        uid="1725" lineId="1" style="display:none"></circle>
+                <circle class="marker M1726 L1" cx="1040" cy="950" r="1.7999999999999998" id="M1726" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1726" lineId="1"></circle>
+                <circle class="accent A1726" cx="1040" cy="950" r="3" id="A1726" stroke="black" stroke-width="1" fill="red"
+                        uid="1726" lineId="1" style="display:none"></circle>
+                <circle class="marker M1727 L1" cx="1070" cy="950" r="1.7999999999999998" id="M1727" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1727" lineId="1"></circle>
+                <circle class="accent A1727" cx="1070" cy="950" r="3" id="A1727" stroke="black" stroke-width="1" fill="red"
+                        uid="1727" lineId="1" style="display:none"></circle>
+                <circle class="marker M1728 L1" cx="1100" cy="950" r="1.7999999999999998" id="M1728" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1728" lineId="1"></circle>
+                <circle class="accent A1728" cx="1100" cy="950" r="3" id="A1728" stroke="black" stroke-width="1" fill="red"
+                        uid="1728" lineId="1" style="display:none"></circle>
+                <circle class="marker M1401 L1" cx="1130" cy="950" r="1.7999999999999998" id="M1401" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1401" lineId="1"></circle>
+                <circle class="accent A1401" cx="1130" cy="950" r="3" id="A1401" stroke="black" stroke-width="1" fill="red"
+                        uid="1401" lineId="1" style="display:none"></circle>
+                <circle class="marker M1402 L1" cx="1165" cy="950" r="1.7999999999999998" id="M1402" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1402" lineId="1"></circle>
+                <circle class="accent A1402" cx="1165" cy="950" r="3" id="A1402" stroke="black" stroke-width="1" fill="red"
+                        uid="1402" lineId="1" style="display:none"></circle>
+                <circle class="marker M1403 L1" cx="1197.5" cy="950" r="1.7999999999999998" id="M1403" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1403" lineId="1"></circle>
+                <circle class="accent A1403" cx="1197.5" cy="950" r="3" id="A1403" stroke="black" stroke-width="1" fill="red"
+                        uid="1403" lineId="1" style="display:none"></circle>
+                <circle class="marker M1404 L1" cx="1230" cy="950" r="1.7999999999999998" id="M1404" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1404" lineId="1"></circle>
+                <circle class="accent A1404" cx="1230" cy="950" r="3" id="A1404" stroke="black" stroke-width="1" fill="red"
+                        uid="1404" lineId="1" style="display:none"></circle>
+                <circle class="marker M1405 L1" cx="1270" cy="950" r="1.7999999999999998" id="M1405" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1405" lineId="1"></circle>
+                <circle class="accent A1405" cx="1270" cy="950" r="3" id="A1405" stroke="black" stroke-width="1" fill="red"
+                        uid="1405" lineId="1" style="display:none"></circle>
+                <circle class="marker M1407 L1" cx="1310" cy="950" r="1.7999999999999998" id="M1407" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1407" lineId="1"></circle>
+                <circle class="accent A1407" cx="1310" cy="950" r="3" id="A1407" stroke="black" stroke-width="1" fill="red"
+                        uid="1407" lineId="1" style="display:none"></circle>
+                <circle class="marker M1408 L1" cx="1350" cy="950" r="1.7999999999999998" id="M1408" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1408" lineId="1"></circle>
+                <circle class="accent A1408" cx="1350" cy="950" r="3" id="A1408" stroke="black" stroke-width="1" fill="red"
+                        uid="1408" lineId="1" style="display:none"></circle>
+                <circle class="marker M1749 L1" cx="730" cy="920" r="1.7999999999999998" id="M1749" stroke="#052f93"
+                        stroke-width="1" fill="#ffffff" uid="1749" lineId="1"></circle>
+                <circle class="accent A1749" cx="730" cy="920" r="3" id="A1749" stroke="black" stroke-width="1" fill="red"
+                        uid="1749" lineId="1" style="display:none"></circle>
+            </g>
+            
+            <!-- 역이름 나타나는 곳 -->
+            <g class="label-group"
+               style="fill:black; letter-spacing:-1px; font-size:9px; font-weight:normal; font-family: NanumGothic, MalgunGothic, Dotum, Arial;">
+                <text class="label S1916 L1" y="65" id="S1916" style=" text-anchor:middle;" uid="1916" lineId="1">
+                    <tspan x="645" dx="0" dy="13" font-size="9px">소요산</tspan>
+                </text>
+                <text class="label S1915 L1" y="65" id="S1915" style=" text-anchor:middle;" uid="1915" lineId="1">
+                    <tspan x="680" dx="0" dy="13" font-size="9px">동두천</tspan>
+                </text>
+                <text class="label S1914 L1" y="65" id="S1914" style=" text-anchor:middle;" uid="1914" lineId="1">
+                    <tspan x="710" dx="0" dy="13" font-size="9px">보산</tspan>
+                </text>
+                <text class="label S1913 L1" y="65" id="S1913" style=" text-anchor:middle;" uid="1913" lineId="1">
+                    <tspan x="742.5" dx="0" dy="13" font-size="9px">동두천중앙</tspan>
+                </text>
+                <text class="label S1912 L1" y="65" id="S1912" style=" text-anchor:middle;" uid="1912" lineId="1">
+                    <tspan x="775" dx="0" dy="13" font-size="9px">지행</tspan>
+                </text>
+                <text class="label S1911 L1" y="65" id="S1911" style=" text-anchor:middle;" uid="1911" lineId="1">
+                    <tspan x="805" dx="0" dy="13" font-size="9px">덕정</tspan>
+                </text>
+                <text class="label S1910 L1" y="65" id="S1910" style=" text-anchor:middle;" uid="1910" lineId="1">
+                    <tspan x="840" dx="0" dy="13" font-size="9px">덕계</tspan>
+                </text>
+                <text class="label S1909 L1" y="65" id="S1909" style=" text-anchor:middle;" uid="1909" lineId="1">
+                    <tspan x="870" dx="0" dy="13" font-size="9px">양주</tspan>
+                </text>
+                <text class="label S1908 L1" y="65" id="S1908" style=" text-anchor:middle;" uid="1908" lineId="1">
+                    <tspan x="902.5" dx="0" dy="13" font-size="9px">녹양</tspan>
+                </text>
+                <text class="label S1907 L1" y="65" id="S1907" style=" text-anchor:middle;" uid="1907" lineId="1">
+                    <tspan x="935" dx="0" dy="13" font-size="9px">가능</tspan>
+                </text>
+                <text class="label S1906 L1" y="65" id="S1906" style=" text-anchor:middle;" uid="1906" lineId="1">
+                    <tspan x="965" dx="0" dy="13" font-size="9px">의정부</tspan>
+                </text>
+                <text class="label S1905 L1 S4602 LU" y="65" id="S1905" style=" text-anchor:start;" uid="1905"
+                      lineId="1 U">
+                    <tspan x="992.5" dx="7" dy="-7" font-size="9px" font-weight="bold">회룡</tspan>
+                </text>
+                <text class="label S1904 L1" y="65" id="S1904" style=" text-anchor:middle;" uid="1904" lineId="1">
+                    <tspan x="1030" dx="0" dy="13" font-size="9px">망월사</tspan>
+                </text>
+                <text class="label S1903 L1 S2712 L7" y="80" id="S1903" style=" text-anchor:start;" uid="1903"
+                      lineId="1 7">
+                    <tspan x="1070" dx="7" dy="-7" font-size="9px" font-weight="bold">도봉산</tspan>
+                </text>
+                <text class="label S1902 L1" y="100" id="S1902" style=" text-anchor:start;" uid="1902" lineId="1">
+                    <tspan x="1070" dx="5" dy="3" font-size="9px">도봉</tspan>
+                </text>
+                <text class="label S1901 L1" y="120" id="S1901" style=" text-anchor:start;" uid="1901" lineId="1">
+                    <tspan x="1070" dx="5" dy="3" font-size="9px">방학</tspan>
+                </text>
+                <text class="label S1022 L1 S0412 L4" y="155" id="S0412" style=" text-anchor:start;" uid="0412"
+                      lineId="1 4">
+                    <tspan x="1070" dx="7" dy="-7" font-size="9px" font-weight="bold">창동</tspan>
+                </text>
+                <text class="label S1021 L1" y="172.5" id="S1021" style=" text-anchor:start;" uid="1021" lineId="1">
+                    <tspan x="1070" dx="5" dy="3" font-size="9px">녹천</tspan>
+                </text>
+                <text class="label S1020 L1" y="190" id="S1020" style=" text-anchor:start;" uid="1020" lineId="1">
+                    <tspan x="1070" dx="5" dy="3" font-size="9px">월계</tspan>
+                </text>
+                <text class="label S1019 L1 S LG" y="210" id="S1019" style=" text-anchor:start;" uid="1019" lineId="1 G">
+                    <tspan x="1070" dx="9" dy="3" font-size="9px" font-weight="bold">광운대</tspan>
+                </text>
+                <text class="label S1018 L1 S2645 L6" y="225" id="S1018" style=" text-anchor:start;" uid="1018"
+                      lineId="1 6">
+                    <tspan x="1070" dx="7" dy="15" font-size="9px" font-weight="bold">석계</tspan>
+                </text>
+                <text class="label S1017 L1" y="245" id="S1017" style=" text-anchor:start;" uid="1017" lineId="1">
+                    <tspan x="1065" dx="3" dy="11" font-size="9px">신이문</tspan>
+                </text>
+                <text class="label S1016 L1" y="260" id="S1016" style=" text-anchor:start;" uid="1016" lineId="1">
+                    <tspan x="1050" dx="3" dy="11" font-size="9px">외대앞</tspan>
+                </text>
+                <text class="label S1015 L1 S1307 LG S101C LK" y="275" id="S1015" style=" text-anchor:middle;" uid="1015"
+                      lineId="1 G K">
+                    <tspan x="1030" dx="0" dy="-9" font-size="9px" font-weight="bold">회기</tspan>
+                </text>
+                <text class="label S0158 L1 S1306 LG S1014 LK S1845 LB" y="275" id="S0158" style=" text-anchor:middle;"
+                      uid="0158" lineId="1 G K B">
+                    <tspan x="995" dx="0" dy="-9" font-size="9px" font-weight="bold">청량리</tspan>
+                </text>
+                <text class="label S0157 L1" y="275" id="S0157" style=" text-anchor:middle;" uid="0157" lineId="1">
+                    <tspan x="960" dx="0" dy="-5" font-size="9px">제기동</tspan>
+                </text>
+                <text class="label S0156 L1 S0246 L2 S4713 LW" y="275" id="S0156" style=" text-anchor:middle;" uid="0156"
+                      lineId="1 2 W">
+                    <tspan x="930" dx="0" dy="17" font-size="9px" font-weight="bold">신설동</tspan>
+                </text>
+                <text class="label S0159 L1 S2637 L6" y="275" id="S0159" style=" text-anchor:end;" uid="0159"
+                      lineId="1 6">
+                    <tspan x="900" dx="-7" dy="15" font-size="9px" font-weight="bold">동묘앞</tspan>
+                </text>
+                <text class="label S0155 L1 S0421 L4" y="275" id="S0155" style=" text-anchor:end;" uid="0155"
+                      lineId="1 4">
+                    <tspan x="865" dx="-7" dy="15" font-size="9px" font-weight="bold">동대문</tspan>
+                </text>
+                <text class="label S0154 L1" y="275" id="S0154" style=" text-anchor:middle;" uid="0154" lineId="1">
+                    <tspan x="795" dx="0" dy="-5" font-size="9px">종로5가</tspan>
+                </text>
+                <text class="label S0153 L1 S0319 L3 S2535 L5" y="275" id="S0153" style=" text-anchor:start;" uid="0153"
+                      lineId="1 3 5">
+                    <tspan x="715" dx="7" dy="-7" font-size="9px" font-weight="bold">종로3가</tspan>
+                </text>
+                <text class="label S0152 L1" y="310" id="S0152" style=" text-anchor:end;" uid="0152" lineId="1">
+                    <tspan x="680" dx="-3" dy="-3" font-size="9px">종각</tspan>
+                </text>
+                <text class="label S0151 L1 S0201 L2" y="345" id="S0151" style=" text-anchor:end;" uid="0151"
+                      lineId="1 2">
+                    <tspan x="655" dx="-7" dy="-7" font-size="9px" font-weight="bold">시청</tspan>
+                </text>
+                <text class="label S0150 L1 S0426 L4 S4201 LA" y="400" id="S0150" style=" text-anchor:start;" uid="0150"
+                      lineId="1 4 A">
+                    <tspan x="655" dx="7" dy="-7" font-size="9px" font-weight="bold">서울역</tspan>
+                </text>
+                <text class="label S1002 L1" y="440" id="S1002" style=" text-anchor:start;" uid="1002" lineId="1">
+                    <tspan x="655" dx="5" dy="3" font-size="9px">남영</tspan>
+                </text>
+                <text class="label S1003 L1 S100C LK" y="545" id="S1003" style=" text-anchor:start;" uid="1003"
+                      lineId="1 K">
+                    <tspan x="655" dx="7" dy="-7" font-size="9px" font-weight="bold">용산</tspan>
+                </text>
+                <text class="label S1004 L1 S4117 L9" y="565" id="S1004" style=" text-anchor:end;" uid="1004"
+                      lineId="1 9">
+                    <tspan x="590" dx="-7" dy="15" font-size="9px" font-weight="bold">노량진</tspan>
+                </text>
+                <text class="label S1005 L1 S4402 LSL" y="545" id="S1005" style=" text-anchor:end;" uid="1005"
+                      lineId="1 SL">
+                    <tspan x="512.5" dx="-7" dy="15" font-size="9px" font-weight="bold">대방</tspan>
+                </text>
+                <text class="label S1032 L1 S2526 L5" y="515" id="S1032" style=" text-anchor:middle;" uid="1032"
+                      lineId="1 5">
+                    <tspan x="475" dx="0" dy="-9" font-size="9px" font-weight="bold">신길</tspan>
+                </text>
+                <text class="label S1006 L1" y="530" id="S1006" style=" text-anchor:end;" uid="1006" lineId="1">
+                    <tspan x="460" dx="-3" dy="-3" font-size="9px">영등포</tspan>
+                </text>
+                <text class="label S1007 L1 S0234 L2" y="550" id="S1007" style=" text-anchor:start;" uid="1007"
+                      lineId="1 2">
+                    <tspan x="440" dx="9" dy="3" font-size="9px" font-weight="bold">신도림</tspan>
+                </text>
+                <text class="label S1701 L1" y="575" id="S1701" style=" text-anchor:start;" uid="1701" lineId="1">
+                    <tspan x="415" dx="9" dy="3" font-size="9px" font-weight="bold">구로</tspan>
+                </text>
+                <text class="label S1813 L1" y="590" id="S1813" style=" text-anchor:end;" uid="1813" lineId="1">
+                    <tspan x="400" dx="-3" dy="-3" font-size="9px">구일</tspan>
+                </text>
+                <text class="label S1801 L1" y="595" id="S1801" style=" text-anchor:middle;" uid="1801" lineId="1">
+                    <tspan x="380" dx="0" dy="13" font-size="9px">개봉</tspan>
+                </text>
+                <text class="label S1802 L1" y="595" id="S1802" style=" text-anchor:middle;" uid="1802" lineId="1">
+                    <tspan x="355" dx="0" dy="13" font-size="9px">오류동</tspan>
+                </text>
+                <text class="label S1821 L1 S2752 L7" y="600" id="S1821" style=" text-anchor:middle;" uid="1821"
+                      lineId="1 7">
+                    <tspan x="330" dx="0" dy="-9" font-size="9px" font-weight="bold">온수</tspan>
+                </text>
+                <text class="label S1803 L1" y="625" id="S1803" style=" text-anchor:end;" uid="1803" lineId="1">
+                    <tspan x="305" dx="-3" dy="-3" font-size="9px">역곡</tspan>
+                </text>
+                <text class="label S1814 L1 S4804 LSH" y="645" id="S1814" style=" text-anchor:end;" uid="1814"
+                      lineId="1 SH">
+                    <tspan x="285" dx="-7" dy="-7" font-size="9px" font-weight="bold">소사</tspan>
+                </text>
+                <text class="label S1804 L1" y="670" id="S1804" style=" text-anchor:middle;" uid="1804" lineId="1">
+                    <tspan x="255" dx="0" dy="-5" font-size="9px">부천</tspan>
+                </text>
+                <text class="label S1822 L1" y="670" id="S1822" style=" text-anchor:middle;" uid="1822" lineId="1">
+                    <tspan x="222.5" dx="0" dy="-5" font-size="9px">중동</tspan>
+                </text>
+                <text class="label S1805 L1" y="670" id="S1805" style=" text-anchor:middle;" uid="1805" lineId="1">
+                    <tspan x="195" dx="0" dy="-5" font-size="9px">송내</tspan>
+                </text>
+                <text class="label S1815 L1" y="670" id="S1815" style=" text-anchor:middle;" uid="1815" lineId="1">
+                    <tspan x="167.5" dx="0" dy="-5" font-size="9px">부개</tspan>
+                </text>
+                <text class="label S1806 L1 S3120 LI" y="670" id="S1806" style=" text-anchor:end;" uid="1806"
+                      lineId="1 I">
+                    <tspan x="140" dx="-7" dy="15" font-size="9px" font-weight="bold">부평</tspan>
+                </text>
+                <text class="label S1807 L1" y="670" id="S1807" style=" text-anchor:middle;" uid="1807" lineId="1">
+                    <tspan x="115" dx="0" dy="-5" font-size="9px">백운</tspan>
+                </text>
+                <text class="label S1808 L1" y="697.5" id="S1808" style=" text-anchor:start;" uid="1808" lineId="1">
+                    <tspan x="95" dx="5" dy="3" font-size="9px">동암</tspan>
+                </text>
+                <text class="label S1816 L1" y="715" id="S1816" style=" text-anchor:start;" uid="1816" lineId="1">
+                    <tspan x="95" dx="5" dy="3" font-size="9px">간석</tspan>
+                </text>
+                <text class="label S1809 L1 S3218 LI2" y="735" id="S1809" style=" text-anchor:start;" uid="1809"
+                      lineId="1 I2">
+                    <tspan x="95" dx="7" dy="15" font-size="9px" font-weight="bold">주안</tspan>
+                </text>
+                <text class="label S1823 L1" y="760" id="S1823" style=" text-anchor:end;" uid="1823" lineId="1">
+                    <tspan x="95" dx="-5" dy="3" font-size="9px">도화</tspan>
+                </text>
+                <text class="label S1810 L1" y="800" id="S1810" style=" text-anchor:middle;" uid="1810" lineId="1">
+                    <tspan x="125" dx="0" dy="-5" font-size="9px">제물포</tspan>
+                </text>
+                <text class="label S1817 L1" y="800" id="S1817" style=" text-anchor:middle;" uid="1817" lineId="1">
+                    <tspan x="155" dx="0" dy="-5" font-size="9px">도원</tspan>
+                </text>
+                <text class="label S1811 L1" y="800" id="S1811" style=" text-anchor:middle;" uid="1811" lineId="1">
+                    <tspan x="185" dx="0" dy="-5" font-size="9px">동인천</tspan>
+                </text>
+                <text class="label S1812 L1 S1891 LB" y="800" id="S1812" style=" text-anchor:middle;" uid="1812"
+                      lineId="1 B">
+                    <tspan x="220" dx="0" dy="-9" font-size="9px" font-weight="bold">인천</tspan>
+                </text>
+                <text class="label S1702 L1 S2748 L7" y="640" id="S1702" style=" text-anchor:end;" uid="1702"
+                      lineId="1 7">
+                    <tspan x="415" dx="-7" dy="15" font-size="9px" font-weight="bold">가산</tspan>
+                    <tspan x="415" dx="-7" dy="12" font-size="9px" font-weight="bold">디지털단지</tspan>
+                </text>
+                <text class="label S1714 L1" y="685" id="S1714" style=" text-anchor:start;" uid="1714" lineId="1">
+                    <tspan x="415" dx="5" dy="3" font-size="9px">독산</tspan>
+                </text>
+                <text class="label S1703 L1" y="720" id="S1703" style=" text-anchor:start;" uid="1703" lineId="1">
+                    <tspan x="415" dx="7" dy="-7" font-size="9px" font-weight="bold">금천구청</tspan>
+                </text>
+                <text class="label S1750 L1" y="700" id="S1750" style=" text-anchor:end;" uid="1750" lineId="1">
+                    <tspan x="390" dx="-5" dy="3" font-size="9px">광명</tspan>
+                </text>
+                <text class="label S1704 L1" y="720" id="S1704" style=" text-anchor:middle;" uid="1704" lineId="1">
+                    <tspan x="470" dx="0" dy="13" font-size="9px">석수</tspan>
+                </text>
+                <text class="label S1705 L1" y="750" id="S1705" style=" text-anchor:end;" uid="1705" lineId="1">
+                    <tspan x="515" dx="-5" dy="3" font-size="9px">관악</tspan>
+                </text>
+                <text class="label S1706 L1" y="790" id="S1706" style=" text-anchor:end;" uid="1706" lineId="1">
+                    <tspan x="515" dx="-5" dy="3" font-size="9px">안양</tspan>
+                </text>
+                <text class="label S1707 L1" y="830" id="S1707" style=" text-anchor:end;" uid="1707" lineId="1">
+                    <tspan x="515" dx="-5" dy="3" font-size="9px">명학</tspan>
+                </text>
+                <text class="label S1708 L1 S1458 L4" y="860" id="S1708" style=" text-anchor:start;" uid="1708"
+                      lineId="1 4">
+                    <tspan x="515" dx="7" dy="15" font-size="9px" font-weight="bold">금정</tspan>
+                </text>
+                <text class="label S1709 L1" y="910" id="S1709" style=" text-anchor:start;" uid="1709" lineId="1">
+                    <tspan x="530" dx="3" dy="-3" font-size="9px">군포</tspan>
+                </text>
+                <text class="label S1729 L1" y="930" id="S1729" style=" text-anchor:end;" uid="1729" lineId="1">
+                    <tspan x="550" dx="-3" dy="11" font-size="9px">당정</tspan>
+                </text>
+                <text class="label S1710 L1" y="950" id="S1710" style=" text-anchor:middle;" uid="1710" lineId="1">
+                    <tspan x="585" dx="0" dy="-5" font-size="9px">의왕</tspan>
+                </text>
+                <text class="label S1711 L1" y="950" id="S1711" style=" text-anchor:middle;" uid="1711" lineId="1">
+                    <tspan x="620" dx="0" dy="-5" font-size="9px">성균관대</tspan>
+                </text>
+                <text class="label S1712 L1" y="950" id="S1712" style=" text-anchor:middle;" uid="1712" lineId="1">
+                    <tspan x="647.5" dx="0" dy="-5" font-size="9px">화서</tspan>
+                </text>
+                <text class="label S1713 L1 S1846 LB" y="950" id="S1713" style=" text-anchor:start;" uid="1713"
+                      lineId="1 B">
+                    <tspan x="670" dx="7" dy="15" font-size="9px" font-weight="bold">수원</tspan>
+                </text>
+                <text class="label S1715 L1" y="950" id="S1715" style=" text-anchor:middle;" uid="1715" lineId="1">
+                    <tspan x="697.5" dx="0" dy="-5" font-size="9px">세류</tspan>
+                </text>
+                <text class="label S1716 L1" y="950" id="S1716" style=" text-anchor:middle;" uid="1716" lineId="1">
+                    <tspan x="730" dx="0" dy="17" font-size="9px" font-weight="bold">병점</tspan>
+                </text>
+                <text class="label S1717 L1" y="950" id="S1717" style=" text-anchor:middle;" uid="1717" lineId="1">
+                    <tspan x="760" dx="0" dy="-5" font-size="9px">세마</tspan>
+                </text>
+                <text class="label S1718 L1" y="950" id="S1718" style=" text-anchor:middle;" uid="1718" lineId="1">
+                    <tspan x="795" dx="0" dy="-5" font-size="9px">오산대</tspan>
+                </text>
+                <text class="label S1719 L1" y="950" id="S1719" style=" text-anchor:middle;" uid="1719" lineId="1">
+                    <tspan x="825" dx="0" dy="-5" font-size="9px">오산</tspan>
+                </text>
+                <text class="label S1720 L1" y="950" id="S1720" style=" text-anchor:middle;" uid="1720" lineId="1">
+                    <tspan x="855" dx="0" dy="-5" font-size="9px">진위</tspan>
+                </text>
+                <text class="label S1721 L1" y="950" id="S1721" style=" text-anchor:middle;" uid="1721" lineId="1">
+                    <tspan x="885" dx="0" dy="-5" font-size="9px">송탄</tspan>
+                </text>
+                <text class="label S1722 L1" y="950" id="S1722" style=" text-anchor:middle;" uid="1722" lineId="1">
+                    <tspan x="917.5" dx="0" dy="-5" font-size="9px">서정리</tspan>
+                </text>
+                <text class="label S1723 L1" y="950" id="S1723" style=" text-anchor:middle;" uid="1723" lineId="1">
+                    <tspan x="950" dx="0" dy="-5" font-size="9px">평택지제</tspan>
+                </text>
+                <text class="label S1724 L1" y="950" id="S1724" style=" text-anchor:middle;" uid="1724" lineId="1">
+                    <tspan x="980" dx="0" dy="-5" font-size="9px">평택</tspan>
+                </text>
+                <text class="label S1725 L1" y="950" id="S1725" style=" text-anchor:middle;" uid="1725" lineId="1">
+                    <tspan x="1010" dx="0" dy="-5" font-size="9px">성환</tspan>
+                </text>
+                <text class="label S1726 L1" y="950" id="S1726" style=" text-anchor:middle;" uid="1726" lineId="1">
+                    <tspan x="1040" dx="0" dy="-5" font-size="9px">직산</tspan>
+                </text>
+                <text class="label S1727 L1" y="950" id="S1727" style=" text-anchor:middle;" uid="1727" lineId="1">
+                    <tspan x="1070" dx="0" dy="-5" font-size="9px">두정</tspan>
+                </text>
+                <text class="label S1728 L1" y="950" id="S1728" style=" text-anchor:middle;" uid="1728" lineId="1">
+                    <tspan x="1100" dx="0" dy="-5" font-size="9px">천안</tspan>
+                </text>
+                <text class="label S1401 L1" y="950" id="S1401" style=" text-anchor:middle;" uid="1401" lineId="1">
+                    <tspan x="1130" dx="0" dy="-5" font-size="9px">봉명</tspan>
+                </text>
+                <text class="label S1402 L1" y="950" id="S1402" style=" text-anchor:middle;" uid="1402" lineId="1">
+                    <tspan x="1165" dx="0" dy="-5" font-size="9px">쌍용</tspan>
+                </text>
+                <text class="label S1403 L1" y="950" id="S1403" style=" text-anchor:middle;" uid="1403" lineId="1">
+                    <tspan x="1197.5" dx="0" dy="-5" font-size="9px">아산</tspan>
+                </text>
+                <text class="label S1404 L1" y="950" id="S1404" style=" text-anchor:middle;" uid="1404" lineId="1">
+                    <tspan x="1230" dx="0" dy="-5" font-size="9px">탕정</tspan>
+                </text>
+                <text class="label S1405 L1" y="950" id="S1405" style=" text-anchor:middle;" uid="1405" lineId="1">
+                    <tspan x="1270" dx="0" dy="-5" font-size="9px">배방</tspan>
+                </text>
+                <text class="label S1407 L1" y="950" id="S1407" style=" text-anchor:middle;" uid="1407" lineId="1">
+                    <tspan x="1310" dx="0" dy="-5" font-size="9px">온양온천</tspan>
+                </text>
+                <text class="label S1408 L1" y="950" id="S1408" style=" text-anchor:middle;" uid="1408" lineId="1">
+                    <tspan x="1350" dx="0" dy="-5" font-size="9px">신창</tspan>
+                </text>
+                <text class="label S1749 L1" y="920" id="S1749" style=" text-anchor:middle;" uid="1749" lineId="1">
+                    <tspan x="730" dx="0" dy="-5" font-size="9px">서동탄</tspan>
+                </text>
+                </g>
+
+            <use id="marker-start" class="routeMarker" href="#def-marker-start"></use>
+            <use id="marker-stop" class="routeMarker" href="#def-marker-stop"></use>
+            <use id="marker-end" class="routeMarker" href="#def-marker-end"></use>
+        </svg>
+    </div>
+    <!-- 지하철 노선도 끝 -->
+    
+    <!-- 로고 -->
+        <span style="display:inline-block; height:50px; width:170px; background-color:rgb(249, 250, 217); font: italic bold 2.5em/1em Georgia, serif ;" onclick="location.href='index.html'">
+                VSCode
+            </span>
+    <!-- 네비바-->
+    <div class="nav">
+        <div>
+            <!-- <input name="line" type="radio" class="line-1" id="1"></input> -->
+            <label for="1" onclick="location.href='1lines.html'" style='background-color: navy'>1호선</label>
+        </div>
+
+        <div>
+            <label for="2" onclick="location.href='2lines.html'">2호선</label>
+        </div>
+
+        <div>
+            <label for="3" onclick="location.href='3lines.html'">3호선</label>
+        </div>
+
+        <div>
+            <label for="4" onclick="location.href='4lines.html'">4호선</label>
+        </div>
+
+        <div>
+            <label for="5" onclick="location.href='5lines.html'">5호선</label>
+        </div>
+
+        <div>
+            <label for="6" onclick="location.href='6lines.html'">6호선</label>
+        </div>
+
+        <div>
+            <label for="7" onclick="location.href='7lines.html'">7호선</label>
+        </div>
+
+        <div>
+            <label for="8" onclick="location.href='8lines.html'">8호선</label>
+        </div>
+
+        <div>
+            <label for="9" onclick="location.href='9lines.html'">9호선</label>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+ 
+    <style>
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script src="trainlocation_api.js"></script>
+</head>
+<body>
+
+    <script src="main.js"></script>
+    <script>
+        train_loc_info('1');
+    </script>
+
+</body>
+</html>
