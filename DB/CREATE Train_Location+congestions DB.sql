@@ -1,5 +1,5 @@
-﻿CREATE DATABASE train_loc;
-USE train_loc;
+﻿CREATE DATABASE train_info;
+USE train_info;
 CREATE TABLE `지하철 역 정보` (
 	`statnId`	VARCHAR(20)	NOT NULL PRIMARY KEY	COMMENT '역 ID',
 	`subwayList`	VARCHAR(4)	NOT NULL	COMMENT '연계호선ID 리스트',
