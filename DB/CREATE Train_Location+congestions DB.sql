@@ -26,7 +26,6 @@ CREATE TABLE `2,3호선 실시간 혼잡도` (
 
 ALTER TABLE `2,3호선 실시간 혼잡도` ADD CONSTRAINT `PK_2,3호선 실시간 혼잡도` PRIMARY KEY (
 	`trainY`,
-	`subwayLine`
 );
 
 CREATE TABLE `지하철 정보` (
