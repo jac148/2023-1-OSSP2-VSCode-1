@@ -12,13 +12,14 @@
     <script src="../api/statisticcongestion.js"></script>
     <script src="../api/stationid.js" defer></script>
     <script src="../js/drag.js"></script>
+    <script src="../js/refresh.js"></script>
   </head>
 
   <body>
     <!--9호선 정보-->
     <script>
       const subwayLineNumber = 9;
-      train_loc_info(subwayLineNumber);
+      startUpdatingSubwayLocation(subwayLineNumber);
     </script>
 <div id="myModal" class="modal">
   <div class="modal-content">

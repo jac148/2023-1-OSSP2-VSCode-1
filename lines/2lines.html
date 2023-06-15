@@ -14,13 +14,14 @@
     <script src="../api/stationid.js" defer></script>
     <script src="../api/trainID.js" defer></script>
     <script src="../js/drag.js"></script>
+    <script src="../js/refresh.js"></script>
   </head>
 
   <body>
     <!--2호선 정보-->
     <script>
       const subwayLineNumber = 2;
-      train_loc_info(subwayLineNumber);
+      startUpdatingSubwayLocation(subwayLineNumber);
     </script>
     <div id="myModal" class="modal">
       <div class="modal-content">
