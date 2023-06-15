@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="../css/lines.css" />
+    <link rel="stylesheet" href="../css/modal.css" />
+    <link rel="stylesheet" href="../css/nav.css" />
+    <link rel="stylesheet" href="../css/zoom.css" />
+    <title>지하철 혼잡도 알리미</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../js/zoomline.js"></script>
+    <script src="../api/livetraininfo_api.js"></script>
+    <script src="../api/statisticcongestion.js"></script>
+    <script src="../api/stationid.js" defer></script>
+    <script src="../js/drag.js"></script>
+  </head>
+
+  <body>
+    <!--8호선 정보-->
+    <script>
+      const subwayLineNumber = 8;
+      train_loc_info(subwayLineNumber);
+    </script>
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <div id="title" style="position: relative; background-color: lightblue; color: white; height: 20%; display: flex; align-items: center; justify-content: center;">
+      <span class="close" style="position: absolute; right: 10px;">&times;</span>
+      <p id="modal_title">Some text in the Modal..</p>
+    </div>
+    <div id="content" style="height: 80%;">
+      <p id="station_status">Some text in the Modal..</p>
+    </div>
+  </div>
+</div>
+    <div class="container">
+      <!-- 로고 -->
+      <div>
+        <span class="logo" onclick="location.href='../index.html'">VSCode</span>
+      </div>
+
+      <div class="section">
+        <!-- 네비바 -->
+        <div class="nav">
+          <ul>
+            <li>
+              <a href="1lines.html">1호선</a>
+            </li>
+            <li>
+              <a href="2lines.html">2호선</a>
+            </li>
+            <li>
+              <a href="3lines.html">3호선</a>
+            </li>
+            <li>
+              <a href="4lines.html">4호선</a>
+            </li>
+            <li>
+              <a href="5lines.html">5호선</a>
+            </li>
+            <li>
+              <a href="6lines.html">6호선</a>
+            </li>
+            <li>
+              <a href="7lines.html">7호선</a>
+            </li>
+            <li>
+              <a href="8lines.html" class="currentLine">8호선</a>
+            </li>
+            <li>
+              <a href="9lines.html">9호선</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 줌 IN / OUT -->
+        <div class="zoom">
+          <button id="zoomInBtn">+</button>
+          <button id="zoomOutBtn">-</button>
+        </div>
+
+        <!-- 지하철 노선도 -->
+        <div class="train-line">
+          <svg
+            id="trainLine"
+            xmlns="http://www.w3.org/2000/svg"
+            version="1.1"
+            aria-hidden="true"
+            viewBox="0 0 1525 1000"
+            style="
+              position: absolute;
+              z-index: 1000;
+              transform-origin: 0px 0px 0px;
+              backface-visibility: hidden;
+              width: 1290.2px;
+              height: 846px;
+              transform: scale(1.4) scaleZ(1);
+              transition-timing-function: ease;
+              cursor: default;
+            "
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              version="1.1"
+              viewBox="0 0 2440 1600"
+              width="100%"
+            >
+              <path
+                d="M 65 305 H 370 V 430 H 500 L 850 780 H 940 V 888 H 1480 L 1560 808 H 1830 L 1910 888 H 2010 L 2090 808 V 620 H 2300 M 940 860 H 850 L 730 740 H 800"
+                fill="none"
+                stroke="#d3effb"
+                stroke-width="23"
+                stroke-linejoin="round"
+                stroke-linecap="round"
+              ></path>
+            </svg>
+            <!-- 라인들 선 -->
+            <g
+              id="line-8"
+              class="line"
+              fill="none"
+              stroke="#e74e6d"
+              stroke-linejoin="round"
+              stroke-linecap="round"
+            >
+              <path
+                class="path L8"
+                stroke-width="3"
+                d="M 1355 460 V 500 "
+              ></path>
+              <path
+                class="path L8 P28112812 P28122811"
+                stroke-width="3"
+                d="M 1355 500 V 540 "
+              ></path>
+              <path
+                class="path L8 P28122813 P28132812"
+                stroke-width="3"
+                d="M 1355 540 L 1325 569 "
+              ></path>
+              <path
+                class="path L8 P28132814 P28142813"
+                stroke-width="3"
+                d="M 1325 569 L 1295 597.5 "
+              ></path>
+              <path
+                class="path L8 P28142815 P28152814"
+                stroke-width="3"
+                d="M 1295 597.5 L 1255 635 "
+              ></path>
+              <path
+                class="path L8 P28152816 P28162815"
+                stroke-width="3"
+                d="M 1255 635 L 1280 660 "
+              ></path>
+              <path
+                class="path L8 P28162817 P28172816"
+                stroke-width="3"
+                d="M 1280 660 L 1305 685 "
+              ></path>
+              <path
+                class="path L8 P28172818 P28182817"
+                stroke-width="3"
+                d="M 1305 685 L 1332.5 712.5 "
+              ></path>
+              <path
+                class="path L8 P28182819 P28192818"
+                stroke-width="3"
+                d="M 1332.5 712.5 L 1350 730 "
+              ></path>
+              <path
+                class="path L8 P28192820 P28202819"
+                stroke-width="3"
+                d="M 1350 730 L 1370 750 "
+              ></path>
+              <path
+                class="path L8 P28202821 P28212820"
+                stroke-width="3"
+                d="M 1370 750 L 1385 765 "
+              ></path>
+              <path
+                class="path L8 P28212828 P28282821"
+                stroke-width="3"
+                d="M 1385 765 L 1410 790 "
+              ></path>
+              <path
+                class="path L8 P28282822 P28222828"
+                stroke-width="3"
+                d="M 1410 790 L 1420 800 Q 1425 805 1425 810 "
+              ></path>
+              <path
+                class="path L8 P28222823 P28232822"
+                stroke-width="3"
+                d="M 1425 810 V 840 "
+              ></path>
+              <path
+                class="path L8 P28232824 P28242823"
+                stroke-width="3"
+                d="M 1425 840 Q 1425 845 1420 845 H 1392.5 "
+              ></path>
+              <path
+                class="path L8 P28242825 P28252824"
+                stroke-width="3"
+                d="M 1392.5 845 H 1355 "
+              ></path>
+              <path
+                class="path L8 P28252826 P28262825"
+                stroke-width="3"
+                d="M 1355 845 H 1330 Q 1325 845 1320 840 L 1315 835 "
+              ></path>
+              <path
+                class="path L8 P28262827 P28272826"
+                stroke-width="3"
+                d="M 1315 835 L 1295 805 "
+              ></path>
+              <g class="path L8">
+                <rect
+                  x="1350"
+                  y="455"
+                  width="10"
+                  height="10"
+                  fill="#e74e6d"
+                  stroke="#e74e6d"
+                  stroke-linejoin="round"
+                  stroke-linecap="round"
+                  stroke-width="5"
+                ></rect>
+                <text
+                  x="1355"
+                  y="463"
+                  lengthAdjust="spacingAndGlyphs"
+                  text-anchor="middle"
+                  style="
+                    fill: white;
+                    stroke: white;
+                    stroke-width: 0.6;
+                    font-size: 9px;
+                    font-weight: normal;
+                    line-height: 10px;
+                  "
+                >
+                  8
+                </text>
+                <rect
+                  x="1300"
+                  y="785"
+                  width="10"
+                  height="10"
+                  fill="#e74e6d"
+                  stroke="#e74e6d"
+                  stroke-linejoin="round"
+                  stroke-linecap="round"
+                  stroke-width="5"
+                ></rect>
+                <text
+                  x="1305"
+                  y="793"
+                  lengthAdjust="spacingAndGlyphs"
+                  text-anchor="middle"
+                  style="
+                    fill: white;
+                    stroke: white;
+                    stroke-width: 0.6;
+                    font-size: 9px;
+                    font-weight: normal;
+                    line-height: 10px;
+                  "
+                >
+                  8
+                </text>
+              </g>
+            </g>
+
+            <!-- 역(동그라미)나타나는 곳 -->
+            <g class="marker-group" transform-origin="50% 50% 0">
+              <!-- 1호선:소요산역부터 시작 -->
+              <circle
+                class="marker M2811 L8"
+                cx="1355"
+                cy="500"
+                r="3"
+                id="M2811"
+                stroke="#e74e6d"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="2811"
+                lineId="8"
+                stationid="810"
+                stationname="암사"
+              ></circle>
+              <circle
+                class="accent A2811"
+                cx="1355"
+                cy="500"
+                r="3"
+                id="A2811"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="2811"
+                lineId="8"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M2813 L8"
+                cx="1325"
+                cy="569"
+                r="3"
+                id="M2813"
+                stroke="#e74e6d"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="2813"
+                lineId="8"
+                stationid="812"
+                stationname="강동구청"
+              ></circle>
+              <circle
+                class="accent A2813"
+                cx="1325"
+                cy="569"
+                r="3"
+                id="A2813"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="2813"
+                lineId="8"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M2814 L8"
+                cx="1295"
+                cy="597.5"
+                r="3"
+                id="M2814"
+                stroke="#e74e6d"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="2814"
+                lineId="8"
+                stationid="813"
+                stationname="몽촌토성(평화의문)"
+              ></circle>
+              <circle
+                class="accent A2814"
+                cx="1295"
+                cy="597.5"
+                r="3"
+                id="A2814"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="2814"
+                lineId="8"
+                style="display: none"
+              ></circle>
+              <g
+                class="marker M2816 L8 interchange M4133 L9"
+                cx="1280"
+                cy="660"
+                id="M2816"
+                uid="2816"
+                lineId="8 9"
+                stationid="815"
+                stationname="석촌"
+              >
+                <rect
+                  x="1277"
+                  y="657"
+                  width="6"
+                  height="11"
+                  stroke="black"
+                  stroke-width="1"
+                  fill="#ffffff"
+                ></rect>
+                <circle
+                  cx="1280"
+                  cy="660"
+                  r="1.5"
+                  stroke="#e74e6d"
+                  stroke-width="1"
+                  fill="#e74e6d"
+                ></circle>
+                <circle
+                  cx="1280"
+                  cy="665"
+                  r="1.5"
+                  stroke="#b58600"
+                  stroke-width="1"
+                  fill="#b58600"
+                ></circle>
+              </g>
+              <circle
+                class="accent A2816 A4133"
+                cx="1280"
+                cy="660"
+                r="3"
+                id="A2816"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="2816"
+                lineId="8"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M2817 L8"
+                cx="1305"
+                cy="685"
+                r="3"
+                id="M2817"
+                stroke="#e74e6d"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="2817"
+                lineId="8"
+                stationid="816"
+                stationname="송파"
+              ></circle>
+              <circle
+                class="accent A2817"
+                cx="1305"
+                cy="685"
+                r="3"
+                id="A2817"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="2817"
+                lineId="8"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M2819 L8"
+                cx="1350"
+                cy="730"
+                r="3"
+                id="M2819"
+                stroke="#e74e6d"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="2819"
+                lineId="8"
+                stationid="818"
+                stationname="문정"
+              ></circle>
+              <circle
+                class="accent A2819"
+                cx="1350"
+                cy="730"
+                r="3"
+                id="A2819"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="2819"
+                lineId="8"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M2820 L8"
+                cx="1370"
+                cy="750"
+                r="3"
+                id="M2820"
+                stroke="#e74e6d"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="2820"
+                lineId="8"
+                stationid="819"
+                stationname="장지"
+              ></circle>
+              <circle
+                class="accent A2820"
+                cx="1370"
+                cy="750"
+                r="3"
+                id="A2820"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="2820"
+                lineId="8"
+                style="display: none"
+              ></circle>
+              <g
+                class="marker M2821 L8 interchange M1031 LB"
+                cx="1385"
+                cy="765"
+                id="M1031"
+                uid="1031"
+                lineId="8 B"
+                stationid="820"
+                stationname="복정"
+              >
+                <rect
+                  x="1377"
+                  y="762"
+                  width="11"
+                  height="6"
+                  stroke="black"
+                  stroke-width="1"
+                  fill="#ffffff"
+                ></rect>
+                <circle
+                  cx="1385"
+                  cy="765"
+                  r="1.5"
+                  stroke="#e74e6d"
+                  stroke-width="1"
+                  fill="#e74e6d"
+                ></circle>
+                <circle
+                  cx="1380"
+                  cy="765"
+                  r="1.5"
+                  stroke="#a69500"
+                  stroke-width="1"
+                  fill="#a69500"
+                ></circle>
+              </g>
+              <circle
+                class="accent A2821 A1031"
+                cx="1385"
+                cy="765"
+                r="3"
+                id="A1031"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="1031"
+                lineId="8"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M2828 L8"
+                cx="1410"
+                cy="790"
+                r="3"
+                id="M2828"
+                stroke="#e74e6d"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="2828"
+                lineId="8"
+                stationid="821"
+                stationname="남위례"
+              ></circle>
+              <circle
+                class="accent A2828"
+                cx="1410"
+                cy="790"
+                r="3"
+                id="A2828"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="2828"
+                lineId="8"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M2822 L8"
+                cx="1425"
+                cy="810"
+                r="3"
+                id="M2822"
+                stroke="#e74e6d"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="2822"
+                lineId="8"
+                stationid="822"
+                stationname="산성"
+              ></circle>
+              <circle
+                class="accent A2822"
+                cx="1425"
+                cy="810"
+                r="3"
+                id="A2822"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="2822"
+                lineId="8"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M2823 L8"
+                cx="1425"
+                cy="840"
+                r="3"
+                id="M2823"
+                stroke="#e74e6d"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="2823"
+                lineId="8"
+                stationid="823"
+                stationname="남한산성입구(성남법원,검찰청)"
+              ></circle>
+              <circle
+                class="accent A2823"
+                cx="1425"
+                cy="840"
+                r="3"
+                id="A2823"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="2823"
+                lineId="8"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M2824 L8"
+                cx="1392.5"
+                cy="845"
+                r="3"
+                id="M2824"
+                stroke="#e74e6d"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="2824"
+                lineId="8"
+                stationid="824"
+                stationname="단대오거리"
+              ></circle>
+              <circle
+                class="accent A2824"
+                cx="1392.5"
+                cy="845"
+                r="3"
+                id="A2824"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="2824"
+                lineId="8"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M2825 L8"
+                cx="1355"
+                cy="845"
+                r="3"
+                id="M2825"
+                stroke="#e74e6d"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="2825"
+                lineId="8"
+                stationid="825"
+                stationname="신흥"
+              ></circle>
+              <circle
+                class="accent A2825"
+                cx="1355"
+                cy="845"
+                r="3"
+                id="A2825"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="2825"
+                lineId="8"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M2826 L8"
+                cx="1315"
+                cy="835"
+                r="3"
+                id="M2826"
+                stroke="#e74e6d"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="2826"
+                lineId="8"
+                stationid="826"
+                stationname="수진"
+              ></circle>
+              <circle
+                class="accent A2826"
+                cx="1315"
+                cy="835"
+                r="3"
+                id="A2826"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="2826"
+                lineId="8"
+                style="display: none"
+              ></circle>
+              <g
+                class="marker M2827 L8 interchange M1853 LB"
+                cx="1295"
+                cy="805"
+                id="M1853"
+                uid="1853"
+                lineId="8 B"
+                stationid="827"
+                stationname="모란"
+              >
+                <rect
+                  x="1292"
+                  y="802"
+                  width="11"
+                  height="6"
+                  stroke="black"
+                  stroke-width="1"
+                  fill="#ffffff"
+                ></rect>
+                <circle
+                  cx="1295"
+                  cy="805"
+                  r="1.5"
+                  stroke="#e74e6d"
+                  stroke-width="1"
+                  fill="#e74e6d"
+                ></circle>
+                <circle
+                  cx="1300"
+                  cy="805"
+                  r="1.5"
+                  stroke="#a69500"
+                  stroke-width="1"
+                  fill="#a69500"
+                ></circle>
+              </g>
+              <circle
+                class="accent A2827 A1853"
+                cx="1295"
+                cy="805"
+                r="3"
+                id="A1853"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="1853"
+                lineId="8"
+                style="display: none"
+              ></circle>
+            </g>
+            <g
+              class="marker M0340 L3 interchange M2818 L8"
+              cx="1332.5"
+              cy="717.5"
+              id="M2818"
+              uid="2818"
+              lineId="3 8"
+              stationid="817"
+              stationname="가락시장"
+            >
+              <rect
+                x="1329.5"
+                y="709.5"
+                width="6"
+                height="11"
+                stroke="black"
+                stroke-width="1"
+                fill="#ffffff"
+              ></rect>
+              <circle
+                cx="1332.5"
+                cy="717.5"
+                r="1.5"
+                stroke="#de6d00"
+                stroke-width="1"
+                fill="#de6d00"
+              ></circle>
+              <circle
+                cx="1332.5"
+                cy="712.5"
+                r="1.5"
+                stroke="#e74e6d"
+                stroke-width="1"
+                fill="#e74e6d"
+              ></circle>
+            </g>
+            <g
+              class="marker M0216 L2 interchange M2815 L8"
+              cx="1255"
+              cy="635"
+              id="M0216"
+              uid="0216"
+              lineId="2 8"
+              stationid="814"
+              stationname="잠실"
+            >
+              <rect
+                x="1252"
+                y="632"
+                width="6"
+                height="11"
+                stroke="black"
+                stroke-width="1"
+                fill="#ffffff"
+              ></rect>
+              <circle
+                cx="1255"
+                cy="640"
+                r="1.5"
+                stroke="#10a643"
+                stroke-width="1"
+                fill="#10a643"
+              ></circle>
+              <circle
+                cx="1255"
+                cy="635"
+                r="1.5"
+                stroke="#e74e6d"
+                stroke-width="1"
+                fill="#e74e6d"
+              ></circle>
+            </g>
+            <g
+              class="marker M2548 L5 interchange M2812 L8"
+              cx="1355"
+              cy="540"
+              id="M2548"
+              uid="2548"
+              lineId="5 8"
+              stationid="811"
+              stationname="천호(풍납토성)"
+            >
+              <rect
+                x="1352"
+                y="537"
+                width="11"
+                height="6"
+                stroke="black"
+                stroke-width="1"
+                fill="#ffffff"
+              ></rect>
+              <circle
+                cx="1360"
+                cy="540"
+                r="1.5"
+                stroke="#a95094"
+                stroke-width="1"
+                fill="#a95094"
+              ></circle>
+              <circle
+                cx="1355"
+                cy="540"
+                r="1.5"
+                stroke="#e74e6d"
+                stroke-width="1"
+                fill="#e74e6d"
+              ></circle>
+            </g>
+
+            <!-- 역이름 나타나는 곳 -->
+            <g
+              class="label-group"
+              style="
+                fill: black;
+                letter-spacing: -1px;
+                font-size: 9px;
+                font-weight: normal;
+                font-family: 'Noto Sans', 'Malgun Gothic', Dotum, Arial;
+              "
+            >
+              <text
+                class="label S2548 L5 S2812 L8"
+                y="540"
+                id="S2548"
+                style="text-anchor: end"
+                uid="2548"
+                lineId="5 8"
+              >
+                <tspan
+                  x="1355"
+                  dx="-9"
+                  dy="3"
+                  font-size="9px"
+                  font-weight="bold"
+                >
+                  천호
+                </tspan>
+              </text>
+              <text
+                class="label S0216 L2 S2815 L8"
+                y="635"
+                id="S0216"
+                style="text-anchor: end"
+                uid="0216"
+                lineId="2 8"
+              >
+                <tspan
+                  x="1255"
+                  dx="-9"
+                  dy="3"
+                  font-size="9px"
+                  font-weight="bold"
+                >
+                  잠실
+                </tspan>
+              </text>
+              <text
+                class="label S0340 L3 S2818 L8"
+                y="717.5"
+                id="S2818"
+                style="text-anchor: end"
+                uid="2818"
+                lineId="3 8"
+              >
+                <tspan
+                  x="1332.5"
+                  dx="-9"
+                  dy="3"
+                  font-size="9px"
+                  font-weight="bold"
+                >
+                  가락시장
+                </tspan>
+              </text>
+              <text
+                class="label S2811 L8"
+                y="500"
+                id="S2811"
+                style="text-anchor: start"
+                uid="2811"
+                lineId="8"
+              >
+                <tspan x="1355" dx="5" dy="3" font-size="9px">암사</tspan>
+              </text>
+              <text
+                class="label S2813 L8"
+                y="569"
+                id="S2813"
+                style="text-anchor: start"
+                uid="2813"
+                lineId="8"
+              >
+                <tspan x="1325" dx="3" dy="11" font-size="9px">강동구청</tspan>
+              </text>
+              <text
+                class="label S2814 L8"
+                y="597.5"
+                id="S2814"
+                style="text-anchor: start"
+                uid="2814"
+                lineId="8"
+              >
+                <tspan x="1295" dx="3" dy="11" font-size="9px">몽촌토성</tspan>
+              </text>
+              <text
+                class="label S2816 L8 S4133 L9"
+                y="660"
+                id="S2816"
+                style="text-anchor: start"
+                uid="2816"
+                lineId="8 9"
+              >
+                <tspan
+                  x="1280"
+                  dx="9"
+                  dy="3"
+                  font-size="9px"
+                  font-weight="bold"
+                >
+                  석촌
+                </tspan>
+              </text>
+              <text
+                class="label S2817 L8"
+                y="685"
+                id="S2817"
+                style="text-anchor: start"
+                uid="2817"
+                lineId="8"
+              >
+                <tspan x="1305" dx="3" dy="-3" font-size="9px">송파</tspan>
+              </text>
+              <text
+                class="label S2819 L8"
+                y="730"
+                id="S2819"
+                style="text-anchor: start"
+                uid="2819"
+                lineId="8"
+              >
+                <tspan x="1350" dx="3" dy="-3" font-size="9px">문정</tspan>
+              </text>
+              <text
+                class="label S2820 L8"
+                y="750"
+                id="S2820"
+                style="text-anchor: start"
+                uid="2820"
+                lineId="8"
+              >
+                <tspan x="1370" dx="3" dy="-3" font-size="9px">장지</tspan>
+              </text>
+              <text
+                class="label S2821 L8 S1031 LB"
+                y="765"
+                id="S1031"
+                style="text-anchor: start"
+                uid="1031"
+                lineId="8 B"
+              >
+                <tspan
+                  x="1385"
+                  dx="7"
+                  dy="-7"
+                  font-size="9px"
+                  font-weight="bold"
+                >
+                  복정
+                </tspan>
+              </text>
+              <text
+                class="label S2828 L8"
+                y="790"
+                id="S2828"
+                style="text-anchor: start"
+                uid="2828"
+                lineId="8"
+              >
+                <tspan x="1410" dx="3" dy="-3" font-size="9px">남위례</tspan>
+              </text>
+              <text
+                class="label S2822 L8"
+                y="810"
+                id="S2822"
+                style="text-anchor: start"
+                uid="2822"
+                lineId="8"
+              >
+                <tspan x="1425" dx="5" dy="3" font-size="9px">산성</tspan>
+              </text>
+              <text
+                class="label S2823 L8"
+                y="840"
+                id="S2823"
+                style="text-anchor: start"
+                uid="2823"
+                lineId="8"
+              >
+                <tspan x="1425" dx="5" dy="3" font-size="9px">
+                  남한산성입구
+                </tspan>
+              </text>
+              <text
+                class="label S2824 L8"
+                y="845"
+                id="S2824"
+                style="text-anchor: middle"
+                uid="2824"
+                lineId="8"
+              >
+                <tspan x="1392.5" dx="0" dy="-5" font-size="9px">
+                  단대오거리
+                </tspan>
+              </text>
+              <text
+                class="label S2825 L8"
+                y="845"
+                id="S2825"
+                style="text-anchor: middle"
+                uid="2825"
+                lineId="8"
+              >
+                <tspan x="1355" dx="0" dy="-5" font-size="9px">신흥</tspan>
+              </text>
+              <text
+                class="label S2826 L8"
+                y="835"
+                id="S2826"
+                style="text-anchor: start"
+                uid="2826"
+                lineId="8"
+              >
+                <tspan x="1315" dx="3" dy="-3" font-size="9px">수진</tspan>
+              </text>
+              <text
+                class="label S2827 L8 S1853 LB"
+                y="805"
+                id="S1853"
+                style="text-anchor: end"
+                uid="1853"
+                lineId="8 B"
+              >
+                <tspan
+                  x="1295"
+                  dx="-7"
+                  dy="15"
+                  font-size="9px"
+                  font-weight="bold"
+                >
+                  모란
+                </tspan>
+              </text>
+            </g>
+
+            
+            <use
+              id="marker-start"
+              class="routeMarker"
+              href="#def-marker-start"
+            ></use>
+            <use
+              id="marker-stop"
+              class="routeMarker"
+              href="#def-marker-stop"
+            ></use>
+            <use
+              id="marker-end"
+              class="routeMarker"
+              href="#def-marker-end"
+            ></use>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

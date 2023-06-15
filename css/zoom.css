@@ -1,0 +1,66 @@
+.zoom {
+    z-index: 1000001;
+    top: 20%;
+    right: 0%;
+    position: fixed;
+    }
+    
+        .zoom button {
+            color: white;
+            font-size: 30px;
+            border-radius: 90px;
+            margin: 1.25rem 1rem;
+            background-color: navy;
+            border: 6px solid navy;
+            width: 50px;
+            height: 50px;
+            display: block;
+        }
+    
+    /* 2023 06 07 호선별 zoom값*/
+    .zoomline {
+          z-index: 1000001;
+          top: 20%;
+          right: 0%;
+          position: fixed;
+          }
+          
+          .zoomline button {
+                  color: white;
+                  font-size: 30px;
+                  border-radius: 90px;
+                  margin: 1.25rem 1rem;
+                  background-color: navy;
+                  border: 6px solid navy;
+                  width: 50px;
+                  height: 50px;
+                  display: block;
+              }
+
+              @media (min-width: 768px) and (max-width: 1200px) {
+                  .zoom {
+                      top: 10% !important;
+                      display: none;
+                  }
+                
+                  .zoomline {
+                    top: 10% !important;
+                    display: none;
+                  }
+                }
+                
+                
+                /* 모바일 반응형 */
+                @media (max-width: 767px) {
+                .zoom {
+                  top: 10% !important;
+                  display: none;
+                }
+                
+                .zoomline {
+                  top: 10% !important;
+                  display: none;
+                }
+                
+                 
+                }

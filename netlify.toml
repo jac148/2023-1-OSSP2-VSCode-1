@@ -1,0 +1,28 @@
+[[redirects]]
+  from = "/proxy/*"
+  to = "https://ndfu06u1e4.execute-api.ap-northeast-2.amazonaws.com/:splat"
+  status = 200
+  force = true
+
+[[headers]]
+  for = "https://ndfu06u1e4.execute-api.ap-northeast-2.amazonaws.com/*"
+    [headers.values]
+    Access-Control-Allow-Origin = "*"
+
+[[redirects]]
+  from = "/cong/*"
+  to = "https://apis.openapi.sk.com/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/stat/*"
+  to = "https://apis.openapi.sk.com/:splat"
+  status = 200
+  force = true
+
+[[headers]]
+  for = "https://apis.openapi.sk.com/*"
+    [headers.values]
+    Access-Control-Allow-Origin = "*"
+    appkey = "WCfyvYzuLu6HjI65CWiMe4ApH0zgqk9Y5dUoFRet"

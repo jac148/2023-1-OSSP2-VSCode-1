@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="../css/lines.css" />
+    <link rel="stylesheet" href="../css/modal.css" />
+    <link rel="stylesheet" href="../css/nav.css" />
+    <link rel="stylesheet" href="../css/zoom.css" />
+    <title>지하철 혼잡도 알리미</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../js/zoomline.js"></script>
+    <script src="../api/livetraininfo_api.js"></script>
+    <script src="../api/statisticcongestion.js"></script>
+    <script src="../api/stationid.js" defer></script>
+    <script src="../js/drag.js"></script>
+</head>
+
+<body>
+    <!--5호선 정보-->
+    <script>
+        const subwayLineNumber = 5;
+        train_loc_info(subwayLineNumber);
+      </script>
+<div id="myModal" class="modal">
+    <div class="modal-content">
+      <div id="title" style="position: relative; background-color: lightblue; color: white; height: 20%; display: flex; align-items: center; justify-content: center;">
+        <span class="close" style="position: absolute; right: 10px;">&times;</span>
+        <p id="modal_title">Some text in the Modal..</p>
+      </div>
+      <div id="content" style="height: 80%;">
+        <p id="station_status">Some text in the Modal..</p>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+        <!-- 로고 -->
+        <div>
+            <span class="logo" onclick="location.href='../index.html'">VSCode</span>
+        </div>
+
+        <div class="section">
+            <!-- 네비바 -->
+            <div class="nav">
+                <ul>
+                    <li>
+                        <a href="1lines.html">1호선</a>
+                    </li>
+                    <li>
+                        <a href="2lines.html">2호선</a>
+                    </li>
+                    <li>
+                        <a href="3lines.html">3호선</a>
+                    </li>
+                    <li>
+                        <a href="4lines.html">4호선</a>
+                    </li>
+                    <li>
+                        <a href="5lines.html" class="currentLine">5호선</a>
+                    </li>
+                    <li>
+                        <a href="6lines.html">6호선</a>
+                    </li>
+                    <li>
+                        <a href="7lines.html">7호선</a>
+                    </li>
+                    <li>
+                        <a href="8lines.html">8호선</a>
+                    </li>
+                    <li>
+                        <a href="9lines.html">9호선</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 줌 IN / OUT -->
+            <div class="zoomline">
+                <button id="zoomInBtn">
+                    +
+                </button>
+                <button id="zoomOutBtn">
+                    -
+                </button>
+            </div>
+
+            <!-- 지하철 노선도 -->
+            <div class="train-line">
+                <svg id="trainLine" xmlns="http://www.w3.org/2000/svg" version="1.1" aria-hidden="true" viewBox="0 0 1525 1000"
+                    style="position: absolute; z-index: 1000; transform-origin: 0px 0px 0px; backface-visibility: hidden; width: 1290.2px; height: 846px; transform: scale(2) scaleZ(1); transition-timing-function: ease; cursor: default;">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 2440 1600" width="100%">
+                        <path
+                            d="M 65 305 H 370 V 430 H 500 L 850 780 H 940 V 888 H 1480 L 1560 808 H 1830 L 1910 888 H 2010 L 2090 808 V 620 H 2300 M 940 860 H 850 L 730 740 H 800"
+                            fill="none" stroke="#d3effb" stroke-width="23" stroke-linejoin="round" stroke-linecap="round"></path>
+                    </svg>
+                    <!-- 라인들 선 -->
+                    <g id="line-5" class="line" fill="none" stroke="#a95094" stroke-linejoin="round" stroke-linecap="round">
+                        <path class="path L5" stroke-width="3" d="M 210 225 V 275 "></path>
+                        <path class="path L5 P25112512 P25122511" stroke-width="3" d="M 210 275 V 310 "></path>
+                        <path class="path L5 P25122513 P25132512" stroke-width="3" d="M 210 310 V 350 "></path>
+                        <path class="path L5 P25132514 P25142513" stroke-width="3" d="M 210 350 V 377.5 "></path>
+                        <path class="path L5 P25142515 P25152514" stroke-width="3" d="M 210 377.5 V 402.5 "></path>
+                        <path class="path L5 P25152516 P25162515" stroke-width="3" d="M 210 402.5 V 429 "></path>
+                        <path class="path L5 P25162517 P25172516" stroke-width="3" d="M 210 429 V 455 Q 210 460 215 460 H 225 "></path>
+                        <path class="path L5 P25172518 P25182517" stroke-width="3" d="M 225 460 H 255 "></path>
+                        <path class="path L5 P25182519 P25192518" stroke-width="3" d="M 255 460 H 290 "></path>
+                        <path class="path L5 P25192520 P25202519" stroke-width="3" d="M 290 460 H 320 "></path>
+                        <path class="path L5 P25202521 P25212520" stroke-width="3" d="M 320 460 H 345 "></path>
+                        <path class="path L5 P25212522 P25222521" stroke-width="3" d="M 345 460 H 370 "></path>
+                        <path class="path L5 P25222523 P25232522" stroke-width="3" d="M 370 460 H 395 "></path>
+                        <path class="path L5 P25232524 P25242523" stroke-width="3" d="M 395 460 H 415 "></path>
+                        <path class="path L5 P25242525 P25252524" stroke-width="3" d="M 415 460 L 442.5 485 "></path>
+                        <path class="path L5 P25252526 P25262525" stroke-width="3" d="M 442.5 485 L 480 515 "></path>
+                        <path class="path L5 P25262527 P25272526" stroke-width="3" d="M 480 515 L 495 505 H 525 "></path>
+                        <path class="path L5 P25272528 P25282527" stroke-width="3" d="M 525 505 H 565 "></path>
+                        <path class="path L5 P25282529 P25292528" stroke-width="3" d="M 565 505 H 600 "></path>
+                        <path class="path L5 P25292530 P25302529" stroke-width="3" d="M 600 505 Q 605 505 605 500 V 460 "></path>
+                        <path class="path L5 P25302531 P25312530" stroke-width="3" d="M 605 460 V 365 "></path>
+                        <path class="path L5 P25312532 P25322531" stroke-width="3" d="M 605 365 V 345 "></path>
+                        <path class="path L5 P25322533 P25332532" stroke-width="3" d="M 605 345 V 300 "></path>
+                        <path class="path L5 P25332534 P25342533" stroke-width="3" d="M 605 300 V 280 Q 605 275 610 275 H 645 "></path>
+                        <path class="path L5 P25342535 P25352534" stroke-width="3" d="M 645 275 H 725 "></path>
+                        <path class="path L5 P25352536 P25362535" stroke-width="3" d="M 725 275 L 790 340 "></path>
+                        <path class="path L5 P25362537 P25372536" stroke-width="3" d="M 790 340 H 850 "></path>
+                        <path class="path L5 P25372538 P25382537" stroke-width="3" d="M 850 340 V 395 "></path>
+                        <path class="path L5 P25382539 P25392538" stroke-width="3" d="M 850 395 H 905 "></path>
+                        <path class="path L5 P25392540 P25402539" stroke-width="3" d="M 905 395 H 945 "></path>
+                        <path class="path L5 P25402541 P25412540" stroke-width="3" d="M 945 395 H 990 V 390 "></path>
+                        <path class="path L5 P25412542 P25422541" stroke-width="3" d="M 990 390 V 395 H 1035 "></path>
+                        <path class="path L5 P25422543 P25432542" stroke-width="3" d="M 1035 395 H 1085 "></path>
+                        <path class="path L5 P25432544 P25442543" stroke-width="3" d="M 1085 395 H 1130 "></path>
+                        <path class="path L5 P25442545 P25452544" stroke-width="3" d="M 1130 395 H 1165 "></path>
+                        <path class="path L5 P25452546 P25462545" stroke-width="3"
+                            d="M 1165 395 H 1200 Q 1210 395 1215 400 L 1235 420 "></path>
+                        <path class="path L5 P25462547 P25472546" stroke-width="3" d="M 1235 420 L 1275 460 "></path>
+                        <path class="path L5 P25472548 P25482547" stroke-width="3" d="M 1275 460 L 1355 540 "></path>
+                        <path class="path L5 P25482549 P25492548" stroke-width="3" d="M 1355 540 H 1410 "></path>
+                        <path class="path L5 P25492550 P25502549" stroke-width="3" d="M 1410 540 V 515 "></path>
+                        <path class="path L5 P25502551 P25512550" stroke-width="3" d="M 1410 515 V 490 "></path>
+                        <path class="path L5 P25512552 P25522551" stroke-width="3" d="M 1410 490 V 465 "></path>
+                        <path class="path L5 P25522553 P25532552" stroke-width="3" d="M 1410 465 V 440 "></path>
+                        <path class="path L5 P25532554 P25542553" stroke-width="3" d="M 1410 440 V 415 "></path>
+                        <path class="path L5 P25542562 P25622554" stroke-width="3"
+                            d="M 1410 415 V 405 Q 1410 400 1415 400 H 1450 Q 1455 400 1455 405 V 415 "></path>
+                        <path class="path L5 P25622563 P25632562" stroke-width="3" d="M 1455 415 V 435 "></path>
+                        <path class="path L5 P25632564 P25642563" stroke-width="3" d="M 1455 435 V 455 "></path>
+                        <path class="path L5 P25642565 P25652564" stroke-width="3" d="M 1455 455 V 475 "></path>
+                        <path class="path L5 P25652566 P25662565" stroke-width="3" d="M 1455 475 V 495 "></path>
+                        <path class="path L5" stroke-width="3" d="M 1455 495 V 515 "></path>
+                        <path class="path L5 P25492555 P25552549" stroke-width="3" d="M 1410 540 L 1410 565 "></path>
+                        <path class="path L5 P25552556 P25562555" stroke-width="3" d="M 1410 565 V 590 "></path>
+                        <path class="path L5 P25562557 P25572556" stroke-width="3" d="M 1410 590 V 615 "></path>
+                        <path class="path L5 P25572558 P25582557" stroke-width="3" d="M 1410 615 V 640 "></path>
+                        <path class="path L5 P25582559 P25592558" stroke-width="3" d="M 1410 640 V 665 "></path>
+                        <path class="path L5 P25592560 P25602559" stroke-width="3" d="M 1410 665 V 690 "></path>
+                        <path class="path L5 P25602561 P25612560" stroke-width="3" d="M 1410 690 V 715 "></path>
+                        <path class="path L5" stroke-width="3" d="M 1410 715 V 740 "></path>
+                        <g class="path L5">
+                            <rect x="205" y="220" width="10" height="10" fill="#a95094" stroke="#a95094" stroke-linejoin="round"
+                                stroke-linecap="round" stroke-width="5"></rect>
+                            <text x="210" y="228" lengthAdjust="spacingAndGlyphs" text-anchor="middle"
+                                style="fill:white; stroke:white; stroke-width:0.6; font-size:9px; font-weight:normal; line-height:10px">5</text>
+                            <rect x="1450" y="510" width="10" height="10" fill="#a95094" stroke="#a95094" stroke-linejoin="round"
+                                stroke-linecap="round" stroke-width="5"></rect>
+                            <text x="1455" y="518" lengthAdjust="spacingAndGlyphs" text-anchor="middle"
+                                style="fill:white; stroke:white; stroke-width:0.6; font-size:9px; font-weight:normal; line-height:10px">5</text>
+                            <rect x="1405" y="735" width="10" height="10" fill="#a95094" stroke="#a95094" stroke-linejoin="round"
+                                stroke-linecap="round" stroke-width="5"></rect>
+                            <text x="1410" y="743" lengthAdjust="spacingAndGlyphs" text-anchor="middle"
+                                style="fill:white; stroke:white; stroke-width:0.6; font-size:9px; font-weight:normal; line-height:10px">5</text>
+                        </g>
+                    </g>
+                    <!-- 역(동그라미)나타나는 곳 -->
+                    <g class="marker-group" transform-origin="50% 50% 0">
+                        <!-- 1호선:소요산역부터 시작 -->
+                        <circle class="marker M2511 L5" cx="210" cy="275" r="3" id="M2511" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2511" lineId="5" stationid="510" stationname="방화"></circle>
+                        <circle class="accent A2511" cx="210" cy="275" r="3" id="A2511" stroke="black" stroke-width="1" fill="red"
+                            uid="2511" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2512 L5" cx="210" cy="310" r="3" id="M2512" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2512" lineId="5" stationid="511" stationname="개화산"></circle>
+                        <circle class="accent A2512" cx="210" cy="310" r="3" id="A2512" stroke="black" stroke-width="1" fill="red"
+                            uid="2512" lineId="5" style="display:none"></circle>
+                        <g class="marker M2513 L5 interchange M4102 L9 M4929 LKP M4207 LA" cx="210" cy="350" id="M2513" uid="2513"
+                            lineId="5 9 KP A" stationid="512" stationname="김포공항">
+                            <rect x="207" y="332" width="6" height="21" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                            <circle cx="210" cy="335" r="1.5" stroke="#a95094" stroke-width="1" fill="#a95094"></circle>
+                            <circle cx="210" cy="345" r="1.5" stroke="#b58600" stroke-width="1" fill="#b58600"></circle>
+                            <circle cx="210" cy="340" r="1.5" stroke="#a18f57" stroke-width="1" fill="#a18f57"></circle>
+                            <circle cx="210" cy="350" r="1.5" stroke="#038fa0" stroke-width="1" fill="#038fa0"></circle>
+                        </g>
+                        <circle class="accent A2513 A4102 A4929 A4207" cx="210" cy="350" r="3" id="A2513" stroke="black"
+                            stroke-width="1" fill="red" uid="2513" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2514 L5" cx="210" cy="377.5" r="3" id="M2514" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2514" lineId="5" stationid="513" stationname="송정"></circle>
+                        <circle class="accent A2514" cx="210" cy="377.5" r="3" id="A2514" stroke="black" stroke-width="1" fill="red"
+                            uid="2514" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2515 L5" cx="210" cy="402.5" r="3" id="M2515" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2515" lineId="5" stationid="514" stationname="마곡"></circle>
+                        <circle class="accent A2515" cx="210" cy="402.5" r="3" id="A2515" stroke="black" stroke-width="1" fill="red"
+                            uid="2515" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2516 L5" cx="210" cy="429" r="3" id="M2516" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2516" lineId="5" stationid="515" stationname="발산"></circle>
+                        <circle class="accent A2516" cx="210" cy="429" r="3" id="A2516" stroke="black" stroke-width="1" fill="red"
+                            uid="2516" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2517 L5" cx="225" cy="460" r="3" id="M2517" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2517" lineId="5" stationid="516" stationname="우장산"></circle>
+                        <circle class="accent A2517" cx="225" cy="460" r="3" id="A2517" stroke="black" stroke-width="1" fill="red"
+                            uid="2517" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2518 L5" cx="255" cy="460" r="3" id="M2518" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2518" lineId="5" stationid="517" stationname="화곡"></circle>
+                        <circle class="accent A2518" cx="255" cy="460" r="3" id="A2518" stroke="black" stroke-width="1" fill="red"
+                            uid="2518" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2520 L5" cx="320" cy="460" r="3" id="M2520" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2520" lineId="5" stationid="519" stationname="신정(은행정)"></circle>
+                        <circle class="accent A2520" cx="320" cy="460" r="3" id="A2520" stroke="black" stroke-width="1" fill="red"
+                            uid="2520" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2521 L5" cx="345" cy="460" r="3" id="M2521" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2521" lineId="5" stationid="520" stationname="목동"></circle>
+                        <circle class="accent A2521" cx="345" cy="460" r="3" id="A2521" stroke="black" stroke-width="1" fill="red"
+                            uid="2521" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2522 L5" cx="370" cy="460" r="3" id="M2522" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2522" lineId="5" stationid="521" stationname="오목교(목동운동장앞)"></circle>
+                        <circle class="accent A2522" cx="370" cy="460" r="3" id="A2522" stroke="black" stroke-width="1" fill="red"
+                            uid="2522" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2523 L5" cx="395" cy="460" r="3" id="M2523" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2523" lineId="5" stationid="522" stationname="양평"></circle>
+                        <circle class="accent A2523" cx="395" cy="460" r="3" id="A2523" stroke="black" stroke-width="1" fill="red"
+                            uid="2523" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2525 L5" cx="442.5" cy="485" r="3" id="M2525" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2525" lineId="5" stationid="524" stationname="영등포시장"></circle>
+                        <circle class="accent A2525" cx="442.5" cy="485" r="3" id="A2525" stroke="black" stroke-width="1" fill="red"
+                            uid="2525" lineId="5" style="display:none"></circle>
+                        <g class="marker M2527 L5 interchange M4115 L9" cx="525" cy="505" id="M2527" uid="2527" lineId="5 9" stationid="526" stationname="여의도">
+                            <rect x="522" y="502" width="11" height="6" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                            <circle cx="530" cy="505" r="1.5" stroke="#a95094" stroke-width="1" fill="#a95094"></circle>
+                            <circle cx="525" cy="505" r="1.5" stroke="#b58600" stroke-width="1" fill="#b58600"></circle>
+                        </g>
+                        <circle class="accent A2527 A4115" cx="525" cy="505" r="3" id="A2527" stroke="black" stroke-width="1" fill="red"
+                            uid="2527" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2528 L5" cx="565" cy="505" r="3" id="M2528" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2528" lineId="5" stationid="527" stationname="여의나루"></circle>
+                        <circle class="accent A2528" cx="565" cy="505" r="3" id="A2528" stroke="black" stroke-width="1" fill="red"
+                            uid="2528" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2529 L5" cx="600" cy="505" r="3" id="M2529" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2529" lineId="5" stationid="528" stationname="마포"></circle>
+                        <circle class="accent A2529" cx="600" cy="505" r="3" id="A2529" stroke="black" stroke-width="1" fill="red"
+                            uid="2529" lineId="5" style="display:none"></circle>
+                        <g class="marker M2530 L5 interchange M2627 L6 M1262 LK M4202 LA" cx="605" cy="460" id="M2530" uid="2530"
+                            lineId="5 6 K A" stationid="529" stationname="공덕">
+                            <rect x="602" y="457" width="6" height="21" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                            <circle cx="605" cy="465" r="1.5" stroke="#a95094" stroke-width="1" fill="#a95094"></circle>
+                            <circle cx="605" cy="475" r="1.5" stroke="#d08d1a" stroke-width="1" fill="#d08d1a"></circle>
+                            <circle cx="605" cy="470" r="1.5" stroke="#5f9c82" stroke-width="1" fill="#5f9c82"></circle>
+                            <circle cx="605" cy="460" r="1.5" stroke="#038fa0" stroke-width="1" fill="#038fa0"></circle>
+                        </g>
+                        <circle class="accent A2530 A2627 A1262 A4202" cx="605" cy="460" r="3" id="A2530" stroke="black"
+                            stroke-width="1" fill="red" uid="2530" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2531 L5" cx="605" cy="365" r="3" id="M2531" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2531" lineId="5" stationid="530" stationname="애오개"></circle>
+                        <circle class="accent A2531" cx="605" cy="365" r="3" id="A2531" stroke="black" stroke-width="1" fill="red"
+                            uid="2531" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2533 L5" cx="605" cy="300" r="3" id="M2533" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2533" lineId="5" stationid="532" stationname="서대문"></circle>
+                        <circle class="accent A2533" cx="605" cy="300" r="3" id="A2533" stroke="black" stroke-width="1" fill="red"
+                            uid="2533" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2534 L5" cx="645" cy="275" r="3" id="M2534" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2534" lineId="5" stationid="533" stationname="광화문"></circle>
+                        <circle class="accent A2534" cx="645" cy="275" r="3" id="A2534" stroke="black" stroke-width="1" fill="red"
+                            uid="2534" lineId="5" style="display:none"></circle>
+                        <g class="marker M2538 L5 interchange M2635 L6" cx="850" cy="395" id="M2538" uid="2538" lineId="5 6" stationid="537" stationname="청구">
+                            <rect x="847" y="387" width="6" height="11" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                            <circle cx="850" cy="390" r="1.5" stroke="#a95094" stroke-width="1" fill="#a95094"></circle>
+                            <circle cx="850" cy="395" r="1.5" stroke="#d08d1a" stroke-width="1" fill="#d08d1a"></circle>
+                        </g>
+                        <circle class="accent A2538 A2635" cx="850" cy="395" r="3" id="A2538" stroke="black" stroke-width="1" fill="red"
+                            uid="2538" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2539 L5" cx="905" cy="395" r="3" id="M2539" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2539" lineId="5" stationid="538" stationname="신금호"></circle>
+                        <circle class="accent A2539" cx="905" cy="395" r="3" id="A2539" stroke="black" stroke-width="1" fill="red"
+                            uid="2539" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2540 L5" cx="945" cy="395" r="3" id="M2540" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2540" lineId="5" stationid="539" stationname="행당"></circle>
+                        <circle class="accent A2540" cx="945" cy="395" r="3" id="A2540" stroke="black" stroke-width="1" fill="red"
+                            uid="2540" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2542 L5" cx="1035" cy="395" r="3" id="M2542" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2542" lineId="5" stationid="541" stationname="마장"></circle>
+                        <circle class="accent A2542" cx="1035" cy="395" r="3" id="A2542" stroke="black" stroke-width="1" fill="red"
+                            uid="2542" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2543 L5" cx="1085" cy="395" r="3" id="M2543" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2543" lineId="5" stationid="542" stationname="답십리"></circle>
+                        <circle class="accent A2543" cx="1085" cy="395" r="3" id="A2543" stroke="black" stroke-width="1" fill="red"
+                            uid="2543" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2544 L5" cx="1130" cy="395" r="3" id="M2544" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2544" lineId="5" stationid="543" stationname="장한평"></circle>
+                        <circle class="accent A2544" cx="1130" cy="395" r="3" id="A2544" stroke="black" stroke-width="1" fill="red"
+                            uid="2544" lineId="5" style="display:none"></circle>
+                        <g class="marker M2545 L5 interchange M2727 L7" cx="1165" cy="395" id="M2545" uid="2545" lineId="5 7" stationid="544" stationname="군자(능동)">
+                            <rect x="1162" y="392" width="6" height="11" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                            <circle cx="1165" cy="395" r="1.5" stroke="#a95094" stroke-width="1" fill="#a95094"></circle>
+                            <circle cx="1165" cy="400" r="1.5" stroke="#657931" stroke-width="1" fill="#657931"></circle>
+                        </g>
+                        <circle class="accent A2545 A2727" cx="1165" cy="395" r="3" id="A2545" stroke="black" stroke-width="1"
+                            fill="red" uid="2545" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2546 L5" cx="1235" cy="420" r="3" id="M2546" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2546" lineId="5" stationid="545" stationname="아차산(어린이대공원후문)"></circle>
+                        <circle class="accent A2546" cx="1235" cy="420" r="3" id="A2546" stroke="black" stroke-width="1" fill="red"
+                            uid="2546" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2547 L5" cx="1275" cy="460" r="3" id="M2547" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2547" lineId="5" stationid="546" stationname="광나루(장신대)"></circle>
+                        <circle class="accent A2547" cx="1275" cy="460" r="3" id="A2547" stroke="black" stroke-width="1" fill="red"
+                            uid="2547" lineId="5" style="display:none"></circle>
+                        <g class="marker M2548 L5 interchange M2812 L8" cx="1355" cy="540" id="M2548" uid="2548" lineId="5 8" stationid="547" stationname="천호(풍납토성)">
+                            <rect x="1352" y="537" width="11" height="6" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                            <circle cx="1360" cy="540" r="1.5" stroke="#a95094" stroke-width="1" fill="#a95094"></circle>
+                            <circle cx="1355" cy="540" r="1.5" stroke="#e74e6d" stroke-width="1" fill="#e74e6d"></circle>
+                        </g>
+                        <circle class="accent A2548 A2812" cx="1355" cy="540" r="3" id="A2548" stroke="black" stroke-width="1"
+                            fill="red" uid="2548" lineId="5" style="display:none"></circle>
+                        <g class="marker M2549 L5 interchange" cx="1410" cy="540" id="M2549" uid="2549" lineId="5" stationid="548" stationname="강동">
+                            <rect x="1407" y="532" width="6" height="11" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                            <circle cx="1410" cy="540" r="1.5" stroke="#a95094" stroke-width="1" fill="#a95094"></circle>
+                            <circle cx="1410" cy="535" r="1.5" stroke="#a95094" stroke-width="1" fill="#a95094"></circle>
+                        </g>
+                        <circle class="accent A2549" cx="1410" cy="540" r="3" id="A2549" stroke="black" stroke-width="1" fill="red"
+                            uid="2549" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2550 L5" cx="1410" cy="515" r="3" id="M2550" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2550" lineId="5" stationid="549" stationname="길동"></circle>
+                        <circle class="accent A2550" cx="1410" cy="515" r="3" id="A2550" stroke="black" stroke-width="1" fill="red"
+                            uid="2550" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2551 L5" cx="1410" cy="490" r="3" id="M2551" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2551" lineId="5" stationid="550" stationname="굽은다리(강동구민회관앞)"></circle>
+                        <circle class="accent A2551" cx="1410" cy="490" r="3" id="A2551" stroke="black" stroke-width="1" fill="red"
+                            uid="2551" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2552 L5" cx="1410" cy="465" r="3" id="M2552" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2552" lineId="5" stationid="551" stationname="명일"></circle>
+                        <circle class="accent A2552" cx="1410" cy="465" r="3" id="A2552" stroke="black" stroke-width="1" fill="red"
+                            uid="2552" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2553 L5" cx="1410" cy="440" r="3" id="M2553" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2553" lineId="5" stationid="552" stationname="고덕"></circle>
+                        <circle class="accent A2553" cx="1410" cy="440" r="3" id="A2553" stroke="black" stroke-width="1" fill="red"
+                            uid="2553" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2554 L5" cx="1410" cy="415" r="3" id="M2554" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2554" lineId="5" stationid="553" stationname="상일동"></circle>
+                        <circle class="accent A2554" cx="1410" cy="415" r="3" id="A2554" stroke="black" stroke-width="1" fill="red"
+                            uid="2554" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2562 L5" cx="1455" cy="415" r="3" id="M2562" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2562" lineId="5" stationid="554" stationname="강일"></circle>
+                        <circle class="accent A2562" cx="1455" cy="415" r="3" id="A2562" stroke="black" stroke-width="1" fill="red"
+                            uid="2562" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2563 L5" cx="1455" cy="435" r="3" id="M2563" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2563" lineId="5" stationid="555" stationname="미사"></circle>
+                        <circle class="accent A2563" cx="1455" cy="435" r="3" id="A2563" stroke="black" stroke-width="1" fill="red"
+                            uid="2563" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2564 L5" cx="1455" cy="455" r="3" id="M2564" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2564" lineId="5" stationid="556" stationname="하남풍산"></circle>
+                        <circle class="accent A2564" cx="1455" cy="455" r="3" id="A2564" stroke="black" stroke-width="1" fill="red"
+                            uid="2564" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2565 L5" cx="1455" cy="475" r="3" id="M2565" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2565" lineId="5" stationid="557" stationname="하남시청"></circle>
+                        <circle class="accent A2565" cx="1455" cy="475" r="3" id="A2565" stroke="black" stroke-width="1" fill="red"
+                            uid="2565" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2566 L5" cx="1455" cy="495" r="3" id="M2566" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2566" lineId="5" stationid="558" stationname="하남검단산"></circle>
+                        <circle class="accent A2566" cx="1455" cy="495" r="3" id="A2566" stroke="black" stroke-width="1" fill="red"
+                            uid="2566" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2555 L5" cx="1410" cy="565" r="3" id="M2555" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2555" lineId="5" stationid="P549" stationname="둔촌동"></circle>
+                        <circle class="accent A2555" cx="1410" cy="565" r="3" id="A2555" stroke="black" stroke-width="1" fill="red"
+                            uid="2555" lineId="5" style="display:none"></circle>
+                        <g class="marker M2556 L5 interchange M4136 L9" cx="1410" cy="590" id="M2556" uid="2556" lineId="5 9" stationid="P550" stationname="올림픽공원(한국체대)">
+                            <rect x="1407" y="587" width="11" height="6" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                            <circle cx="1410" cy="590" r="1.5" stroke="#a95094" stroke-width="1" fill="#a95094"></circle>
+                            <circle cx="1415" cy="590" r="1.5" stroke="#b58600" stroke-width="1" fill="#b58600"></circle>
+                        </g>
+                        <circle class="accent A2556 A4136" cx="1410" cy="590" r="3" id="A2556" stroke="black" stroke-width="1"
+                            fill="red" uid="2556" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2557 L5" cx="1410" cy="615" r="3" id="M2557" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2557" lineId="5" stationid="P551" stationname="방이"></circle>
+                        <circle class="accent A2557" cx="1410" cy="615" r="3" id="A2557" stroke="black" stroke-width="1" fill="red"
+                            uid="2557" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2559 L5" cx="1410" cy="665" r="3" id="M2559" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2559" lineId="5" stationid="P553" stationname="개롱"></circle>
+                        <circle class="accent A2559" cx="1410" cy="665" r="3" id="A2559" stroke="black" stroke-width="1" fill="red"
+                            uid="2559" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2560 L5" cx="1410" cy="690" r="3" id="M2560" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2560" lineId="5" stationid="P554" stationname="거여"></circle>
+                        <circle class="accent A2560" cx="1410" cy="690" r="3" id="A2560" stroke="black" stroke-width="1" fill="red"
+                            uid="2560" lineId="5" style="display:none"></circle>
+                        <circle class="marker M2561 L5" cx="1410" cy="715" r="3" id="M2561" stroke="#a95094"
+                            stroke-width="1" fill="#ffffff" uid="2561" lineId="5" stationid="P555" stationname="마천"></circle>
+                        <circle class="accent A2561" cx="1410" cy="715" r="3" id="A2561" stroke="black" stroke-width="1" fill="red"
+                            uid="2561" lineId="5" style="display:none"></circle>
+                        <g class="marker M0200 L2 interchange M2519 L5" cx="290" cy="460" id="M0200" uid="0200" lineId="2 5" stationid="518" stationname="까치산">
+                            <rect x="282" y="457" width="11" height="6" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                            <circle cx="290" cy="460" r="1.5" stroke="#10a643" stroke-width="1" fill="#10a643"></circle>
+                            <circle cx="285" cy="460" r="1.5" stroke="#a95094" stroke-width="1" fill="#a95094"></circle>
+                        </g>
+                        <g class="marker M0236 L2 interchange M2524 L5" cx="415" cy="460" id="M0236" uid="0236" lineId="2 5" stationid="523" stationname="영등포구청">
+                            <rect x="412" y="452" width="6" height="11" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                            <circle cx="415" cy="455" r="1.5" stroke="#10a643" stroke-width="1" fill="#10a643"></circle>
+                            <circle cx="415" cy="460" r="1.5" stroke="#a95094" stroke-width="1" fill="#a95094"></circle>
+                        </g>
+                        <g class="marker M1032 L1 interchange M2526 L5" cx="475" cy="515" id="M1032" uid="1032" lineId="1 5" stationid="525" stationname="신길">
+                            <rect x="472" y="512" width="11" height="6" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                            <circle cx="475" cy="515" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                            <circle cx="480" cy="515" r="1.5" stroke="#a95094" stroke-width="1" fill="#a95094"></circle>
+                        </g>
+                        <g class="marker M0243 L2 interchange M2532 L5" cx="605" cy="345" id="M0243" uid="0243" lineId="2 5" stationid="531" stationname="충정로">
+                            <rect x="597" y="342" width="11" height="6" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                            <circle cx="600" cy="345" r="1.5" stroke="#10a643" stroke-width="1" fill="#10a643"></circle>
+                            <circle cx="605" cy="345" r="1.5" stroke="#a95094" stroke-width="1" fill="#a95094"></circle>
+                        </g>
+                        <g class="marker M0153 L1 interchange M0319 L3 M2535 L5" cx="715" cy="275" id="M0153" uid="0153" lineId="1 3 5" stationid="534" stationname="종로3가">
+                            <rect x="712" y="272" width="16" height="6" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                            <circle cx="715" cy="275" r="1.5" stroke="#052f93" stroke-width="1" fill="#052f93"></circle>
+                            <circle cx="720" cy="275" r="1.5" stroke="#de6d00" stroke-width="1" fill="#de6d00"></circle>
+                            <circle cx="725" cy="275" r="1.5" stroke="#a95094" stroke-width="1" fill="#a95094"></circle>
+                        </g>
+                        <g class="marker M0204 L2 interchange M2536 L5" cx="790" cy="345" id="M0204" uid="0204" lineId="2 5" stationid="535" stationname="을지로4가">
+                            <rect x="787" y="337" width="6" height="11" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                            <circle cx="790" cy="345" r="1.5" stroke="#10a643" stroke-width="1" fill="#10a643"></circle>
+                            <circle cx="790" cy="340" r="1.5" stroke="#a95094" stroke-width="1" fill="#a95094"></circle>
+                        </g>
+                        <g class="marker M0205 L2 interchange M0422 L4 M2537 L5" cx="850" cy="340" id="M0205" uid="0205" lineId="2 4 5" stationid="536" stationname="동대문역사문화공원">
+                            <rect x="847" y="337" width="6" height="16" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                            <circle cx="850" cy="345" r="1.5" stroke="#10a643" stroke-width="1" fill="#10a643"></circle>
+                            <circle cx="850" cy="350" r="1.5" stroke="#0099d1" stroke-width="1" fill="#0099d1"></circle>
+                            <circle cx="850" cy="340" r="1.5" stroke="#a95094" stroke-width="1" fill="#a95094"></circle>
+                        </g>
+                        <g class="marker M0208 L2 interchange M2541 L5 M1013 LK M102C LB" cx="990" cy="390" id="M0208" uid="0208"
+                            lineId="2 5 K B" stationid="540" stationname="왕십리">
+                            <rect x="987" y="387" width="6" height="21" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                            <circle cx="990" cy="390" r="1.5" stroke="#10a643" stroke-width="1" fill="#10a643"></circle>
+                            <circle cx="990" cy="395" r="1.5" stroke="#a95094" stroke-width="1" fill="#a95094"></circle>
+                            <circle cx="990" cy="400" r="1.5" stroke="#5f9c82" stroke-width="1" fill="#5f9c82"></circle>
+                            <circle cx="990" cy="405" r="1.5" stroke="#a69500" stroke-width="1" fill="#a69500"></circle>
+                        </g>
+                        <g class="marker M0342 L3 interchange M2558 L5" cx="1410" cy="640" id="M2558" uid="2558" lineId="3 5" stationid="P552" stationname="오금">
+                            <rect x="1407" y="632" width="6" height="11" stroke="black" stroke-width="1" fill="#ffffff"></rect>
+                            <circle cx="1410" cy="640" r="1.5" stroke="#de6d00" stroke-width="1" fill="#de6d00"></circle>
+                            <circle cx="1410" cy="635" r="1.5" stroke="#a95094" stroke-width="1" fill="#a95094"></circle>
+                        </g>
+                
+                        <!-- 역이름 나타나는 곳 -->
+                        <g class="label-group"
+                            style="fill:black; letter-spacing:-1px; font-size:9px; font-weight:normal; font-family: 'Noto Sans', 'Malgun Gothic', Dotum, Arial;">
+                            <text class="label S0342 L3 S2558 L5" y="640" id="S2558" style=" text-anchor:start;" uid="2558"
+                                lineId="3 5">
+                                <tspan x="1410" dx="9" dy="3" font-size="9px" font-weight="bold">오금</tspan>
+                            </text>
+                            <text class="label S0208 L2 S2541 L5 S1013 LK S102C LB" y="390" id="S0208" style=" text-anchor:start;"
+                                uid="0208" lineId="2 5 K B">
+                                <tspan x="990" dx="7" dy="-7" font-size="9px" font-weight="bold">왕십리</tspan>
+                            </text>
+                            <text class="label S0205 L2 S0422 L4 S2537 L5" y="340" id="S0205" style=" text-anchor:end;" uid="0205"
+                                lineId="2 4 5">
+                                <tspan x="850" dx="-7" dy="-7" font-size="9px" font-weight="bold">문화공원</tspan>
+                                <tspan x="850" dx="-7" dy="-12" font-size="9px" font-weight="bold">동대문역사</tspan>
+                            </text>
+                            <text class="label S0204 L2 S2536 L5" y="345" id="S0204" style=" text-anchor:end;" uid="0204" lineId="2 5">
+                                <tspan x="790" dx="-7" dy="15" font-size="9px" font-weight="bold">을지로4가</tspan>
+                            </text>
+                            <text class="label S0153 L1 S0319 L3 S2535 L5" y="275" id="S0153" style=" text-anchor:start;" uid="0153"
+                                lineId="1 3 5">
+                                <tspan x="715" dx="7" dy="-7" font-size="9px" font-weight="bold">종로3가</tspan>
+                            </text>
+                            <text class="label S0243 L2 S2532 L5" y="345" id="S0243" style=" text-anchor:end;" uid="0243" lineId="2 5">
+                                <tspan x="605" dx="-7" dy="-7" font-size="9px" font-weight="bold">충정로</tspan>
+                            </text>
+                            <text class="label S1032 L1 S2526 L5" y="515" id="S1032" style=" text-anchor:middle;" uid="1032"
+                                lineId="1 5">
+                                <tspan x="475" dx="0" dy="-9" font-size="9px" font-weight="bold">신길</tspan>
+                            </text>
+                            <text class="label S0236 L2 S2524 L5" y="460" id="S0236" style=" text-anchor:end;" uid="0236" lineId="2 5">
+                                <tspan x="415" dx="-7" dy="15" font-size="9px" font-weight="bold">영등포구청</tspan>
+                            </text>
+                            <text class="label S0200 L2 S2519 L5" y="460" id="S0200" style=" text-anchor:middle;" uid="0200"
+                                lineId="2 5">
+                                <tspan x="290" dx="0" dy="-9" font-size="9px" font-weight="bold">까치산</tspan>
+                            </text>
+                            <text class="label S2511 L5" y="275" id="S2511" style=" text-anchor:start;" uid="2511" lineId="5">
+                                <tspan x="210" dx="5" dy="3" font-size="9px">방화</tspan>
+                            </text>
+                            <text class="label S2512 L5" y="310" id="S2512" style=" text-anchor:start;" uid="2512" lineId="5">
+                                <tspan x="210" dx="5" dy="3" font-size="9px">개화산</tspan>
+                            </text>
+                            <text class="label S2513 L5 S4102 L9 S4929 LKP S4207 LA" y="350" id="S2513" style=" text-anchor:end;"
+                                uid="2513" lineId="5 9 KP A">
+                                <tspan x="210" dx="-7" dy="15" font-size="9px" font-weight="bold">김포공항</tspan>
+                            </text>
+                            <text class="label S2514 L5" y="377.5" id="S2514" style=" text-anchor:start;" uid="2514" lineId="5">
+                                <tspan x="210" dx="5" dy="3" font-size="9px">송정</tspan>
+                            </text>
+                            <text class="label S2515 L5" y="402.5" id="S2515" style=" text-anchor:start;" uid="2515" lineId="5">
+                                <tspan x="210" dx="5" dy="3" font-size="9px">마곡</tspan>
+                            </text>
+                            <text class="label S2516 L5" y="429" id="S2516" style=" text-anchor:start;" uid="2516" lineId="5">
+                                <tspan x="210" dx="5" dy="3" font-size="9px">발산</tspan>
+                            </text>
+                            <text class="label S2517 L5" y="460" id="S2517" style=" text-anchor:middle;" uid="2517" lineId="5">
+                                <tspan x="225" dx="0" dy="-5" font-size="9px">우장산</tspan>
+                            </text>
+                            <text class="label S2518 L5" y="460" id="S2518" style=" text-anchor:middle;" uid="2518" lineId="5">
+                                <tspan x="255" dx="0" dy="-5" font-size="9px">화곡</tspan>
+                            </text>
+                            <text class="label S2520 L5" y="460" id="S2520" style=" text-anchor:middle;" uid="2520" lineId="5">
+                                <tspan x="320" dx="0" dy="-5" font-size="9px">신정</tspan>
+                            </text>
+                            <text class="label S2521 L5" y="460" id="S2521" style=" text-anchor:middle;" uid="2521" lineId="5">
+                                <tspan x="345" dx="0" dy="-5" font-size="9px">목동</tspan>
+                            </text>
+                            <text class="label S2522 L5" y="460" id="S2522" style=" text-anchor:middle;" uid="2522" lineId="5">
+                                <tspan x="370" dx="0" dy="-5" font-size="9px">오목교</tspan>
+                            </text>
+                            <text class="label S2523 L5" y="460" id="S2523" style=" text-anchor:middle;" uid="2523" lineId="5">
+                                <tspan x="395" dx="0" dy="-5" font-size="9px">양평</tspan>
+                            </text>
+                            <text class="label S2525 L5" y="485" id="S2525" style=" text-anchor:start;" uid="2525" lineId="5">
+                                <tspan x="442.5" dx="5" dy="3" font-size="9px">영등포시장</tspan>
+                            </text>
+                            <text class="label S2527 L5 S4115 L9" y="505" id="S2527" style=" text-anchor:middle;" uid="2527"
+                                lineId="5 9">
+                                <tspan x="525" dx="0" dy="17" font-size="9px" font-weight="bold">여의도</tspan>
+                            </text>
+                            <text class="label S2528 L5" y="505" id="S2528" style=" text-anchor:middle;" uid="2528" lineId="5">
+                                <tspan x="565" dx="0" dy="13" font-size="9px">여의나루</tspan>
+                            </text>
+                            <text class="label S2529 L5" y="505" id="S2529" style=" text-anchor:middle;" uid="2529" lineId="5">
+                                <tspan x="600" dx="0" dy="13" font-size="9px">마포</tspan>
+                            </text>
+                            <text class="label S2530 L5 S2627 L6 S1262 LK S4202 LA" y="460" id="S2530" style=" text-anchor:end;"
+                                uid="2530" lineId="5 6 K A">
+                                <tspan x="605" dx="-9" dy="3" font-size="9px" font-weight="bold">공덕</tspan>
+                            </text>
+                            <text class="label S2531 L5" y="365" id="S2531" style=" text-anchor:start;" uid="2531" lineId="5">
+                                <tspan x="605" dx="5" dy="3" font-size="9px">애오개</tspan>
+                            </text>
+                            <text class="label S2533 L5" y="300" id="S2533" style=" text-anchor:start;" uid="2533" lineId="5">
+                                <tspan x="605" dx="5" dy="3" font-size="9px">서대문</tspan>
+                            </text>
+                            <text class="label S2534 L5" y="275" id="S2534" style=" text-anchor:middle;" uid="2534" lineId="5">
+                                <tspan x="645" dx="0" dy="-5" font-size="9px">광화문</tspan>
+                            </text>
+                            <text class="label S2538 L5 S2635 L6" y="395" id="S2538" style=" text-anchor:start;" uid="2538"
+                                lineId="5 6">
+                                <tspan x="850" dx="7" dy="15" font-size="9px" font-weight="bold">청구</tspan>
+                            </text>
+                            <text class="label S2539 L5" y="395" id="S2539" style=" text-anchor:middle;" uid="2539" lineId="5">
+                                <tspan x="905" dx="0" dy="-5" font-size="9px">신금호</tspan>
+                            </text>
+                            <text class="label S2540 L5" y="395" id="S2540" style=" text-anchor:middle;" uid="2540" lineId="5">
+                                <tspan x="945" dx="0" dy="-5" font-size="9px">행당</tspan>
+                            </text>
+                            <text class="label S2542 L5" y="395" id="S2542" style=" text-anchor:middle;" uid="2542" lineId="5">
+                                <tspan x="1035" dx="0" dy="13" font-size="9px">마장</tspan>
+                            </text>
+                            <text class="label S2543 L5" y="395" id="S2543" style=" text-anchor:middle;" uid="2543" lineId="5">
+                                <tspan x="1085" dx="0" dy="-5" font-size="9px">답십리</tspan>
+                            </text>
+                            <text class="label S2544 L5" y="395" id="S2544" style=" text-anchor:middle;" uid="2544" lineId="5">
+                                <tspan x="1130" dx="0" dy="-5" font-size="9px">장한평</tspan>
+                            </text>
+                            <text class="label S2545 L5 S2727 L7" y="395" id="S2545" style=" text-anchor:start;" uid="2545"
+                                lineId="5 7">
+                                <tspan x="1165" dx="7" dy="-7" font-size="9px" font-weight="bold">군자</tspan>
+                            </text>
+                            <text class="label S2546 L5" y="420" id="S2546" style=" text-anchor:start;" uid="2546" lineId="5">
+                                <tspan x="1235" dx="3" dy="-3" font-size="9px">아차산</tspan>
+                            </text>
+                            <text class="label S2547 L5" y="460" id="S2547" style=" text-anchor:start;" uid="2547" lineId="5">
+                                <tspan x="1275" dx="3" dy="-3" font-size="9px">광나루</tspan>
+                            </text>
+                            <text class="label S2548 L5 S2812 L8" y="540" id="S2548" style=" text-anchor:end;" uid="2548" lineId="5 8">
+                                <tspan x="1355" dx="-9" dy="3" font-size="9px" font-weight="bold">천호</tspan>
+                            </text>
+                            <text class="label S2549 L5" y="540" id="S2549" style=" text-anchor:start;" uid="2549" lineId="5">
+                                <tspan x="1410" dx="9" dy="3" font-size="9px" font-weight="bold">강동</tspan>
+                            </text>
+                            <text class="label S2550 L5" y="515" id="S2550" style=" text-anchor:start;" uid="2550" lineId="5">
+                                <tspan x="1410" dx="5" dy="3" font-size="9px">길동</tspan>
+                            </text>
+                            <text class="label S2551 L5" y="490" id="S2551" style=" text-anchor:start;" uid="2551" lineId="5">
+                                <tspan x="1410" dx="5" dy="3" font-size="9px">굽은다리</tspan>
+                            </text>
+                            <text class="label S2552 L5" y="465" id="S2552" style=" text-anchor:start;" uid="2552" lineId="5">
+                                <tspan x="1410" dx="5" dy="3" font-size="9px">명일</tspan>
+                            </text>
+                            <text class="label S2553 L5" y="440" id="S2553" style=" text-anchor:start;" uid="2553" lineId="5">
+                                <tspan x="1410" dx="5" dy="3" font-size="9px">고덕</tspan>
+                            </text>
+                            <text class="label S2554 L5" y="415" id="S2554" style=" text-anchor:start;" uid="2554" lineId="5">
+                                <tspan x="1410" dx="5" dy="3" font-size="9px">상일동</tspan>
+                            </text>
+                            <text class="label S2562 L5" y="415" id="S2562" style=" text-anchor:start;" uid="2562" lineId="5">
+                                <tspan x="1455" dx="5" dy="3" font-size="9px">강일</tspan>
+                            </text>
+                            <text class="label S2563 L5" y="435" id="S2563" style=" text-anchor:start;" uid="2563" lineId="5">
+                                <tspan x="1455" dx="5" dy="3" font-size="9px">미사</tspan>
+                            </text>
+                            <text class="label S2564 L5" y="455" id="S2564" style=" text-anchor:start;" uid="2564" lineId="5">
+                                <tspan x="1455" dx="5" dy="3" font-size="9px">하남풍산</tspan>
+                            </text>
+                            <text class="label S2565 L5" y="475" id="S2565" style=" text-anchor:start;" uid="2565" lineId="5">
+                                <tspan x="1455" dx="5" dy="3" font-size="9px">하남시청</tspan>
+                            </text>
+                            <text class="label S2566 L5" y="495" id="S2566" style=" text-anchor:start;" uid="2566" lineId="5">
+                                <tspan x="1455" dx="5" dy="3" font-size="9px">하남검단산</tspan>
+                            </text>
+                            <text class="label S2555 L5" y="565" id="S2555" style=" text-anchor:start;" uid="2555" lineId="5">
+                                <tspan x="1410" dx="5" dy="3" font-size="9px">둔촌동</tspan>
+                            </text>
+                            <text class="label S2556 L5 S4136 L9" y="590" id="S2556" style=" text-anchor:start;" uid="2556"
+                                lineId="5 9">
+                                <tspan x="1410" dx="7" dy="15" font-size="9px" font-weight="bold">올림픽공원</tspan>
+                            </text>
+                            <text class="label S2557 L5" y="615" id="S2557" style=" text-anchor:start;" uid="2557" lineId="5">
+                                <tspan x="1410" dx="5" dy="3" font-size="9px">방이</tspan>
+                            </text>
+                            <text class="label S2559 L5" y="665" id="S2559" style=" text-anchor:start;" uid="2559" lineId="5">
+                                <tspan x="1410" dx="5" dy="3" font-size="9px">개롱</tspan>
+                            </text>
+                            <text class="label S2560 L5" y="690" id="S2560" style=" text-anchor:start;" uid="2560" lineId="5">
+                                <tspan x="1410" dx="5" dy="3" font-size="9px">거여</tspan>
+                            </text>
+                            <text class="label S2561 L5" y="715" id="S2561" style=" text-anchor:start;" uid="2561" lineId="5">
+                                <tspan x="1410" dx="5" dy="3" font-size="9px">마천</tspan>
+                            </text>
+                        </g>
+                        
+                        <use id="marker-start" class="routeMarker" href="#def-marker-start"></use>
+                        <use id="marker-stop" class="routeMarker" href="#def-marker-stop"></use>
+                        <use id="marker-end" class="routeMarker" href="#def-marker-end"></use>
+                </svg>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

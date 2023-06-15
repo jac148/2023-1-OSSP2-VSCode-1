@@ -1,0 +1,2112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="../css/lines.css" />
+    <link rel="stylesheet" href="../css/modal.css" />
+    <link rel="stylesheet" href="../css/nav.css" />
+    <link rel="stylesheet" href="../css/zoom.css" />
+    <title>지하철 혼잡도 알리미</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../js/zoomline.js"></script>
+    <script src="../api/livetraininfo_api.js"></script>
+    <script src="../api/statisticcongestion.js"></script>
+    <script src="../api/stationid.js" defer></script>
+    <script src="../js/drag.js"></script>
+  </head>
+
+  <body>
+    <!--9호선 정보-->
+    <script>
+      const subwayLineNumber = 9;
+      train_loc_info(subwayLineNumber);
+    </script>
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <div id="title" style="position: relative; background-color: lightblue; color: white; height: 20%; display: flex; align-items: center; justify-content: center;">
+      <span class="close" style="position: absolute; right: 10px;">&times;</span>
+      <p id="modal_title">Some text in the Modal..</p>
+    </div>
+    <div id="content" style="height: 80%;">
+      <p id="station_status">Some text in the Modal..</p>
+    </div>
+  </div>
+</div>
+    <div class="container">
+      <!-- 로고 -->
+      <div>
+        <span class="logo" onclick="location.href='../index.html'">VSCode</span>
+      </div>
+
+      <div class="section">
+        <!-- 네비바 -->
+        <div class="nav">
+          <ul>
+            <li>
+              <a href="1lines.html">1호선</a>
+            </li>
+            <li>
+              <a href="2lines.html">2호선</a>
+            </li>
+            <li>
+              <a href="3lines.html">3호선</a>
+            </li>
+            <li>
+              <a href="4lines.html">4호선</a>
+            </li>
+            <li>
+              <a href="5lines.html">5호선</a>
+            </li>
+            <li>
+              <a href="6lines.html">6호선</a>
+            </li>
+            <li>
+              <a href="7lines.html">7호선</a>
+            </li>
+            <li>
+              <a href="8lines.html">8호선</a>
+            </li>
+            <li>
+              <a href="9lines.html" class="currentLine">9호선</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 줌 IN / OUT -->
+        <div class="zoomline">
+          <button id="zoomInBtn">+</button>
+          <button id="zoomOutBtn">-</button>
+        </div>
+
+        <!-- 지하철 노선도 -->
+        <div class="train-line">
+          <svg
+            id="trainLine"
+            xmlns="http://www.w3.org/2000/svg"
+            version="1.1"
+            aria-hidden="true"
+            viewBox="0 0 1525 1000"
+            style="
+              position: absolute;
+              z-index: 1000;
+              transform-origin: 0px 0px 0px;
+              backface-visibility: hidden;
+              width: 1290.2px;
+              height: 846px;
+              transform: scale(2) scaleZ(1);
+              transition-timing-function: ease;
+              cursor: default;
+            "
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              version="1.1"
+              viewBox="0 0 2440 1600"
+              width="100%"
+            >
+              <path
+                d="M 65 305 H 370 V 430 H 500 L 850 780 H 940 V 888 H 1480 L 1560 808 H 1830 L 1910 888 H 2010 L 2090 808 V 620 H 2300 M 940 860 H 850 L 730 740 H 800"
+                fill="none"
+                stroke="#d3effb"
+                stroke-width="23"
+                stroke-linejoin="round"
+                stroke-linecap="round"
+              ></path>
+            </svg>
+            <!-- 라인들 선 -->
+            <g
+              id="line-9"
+              class="line"
+              fill="none"
+              stroke="#b58600"
+              stroke-linejoin="round"
+              stroke-linecap="round"
+            >
+              <path
+                class="path L9"
+                stroke-width="3"
+                d="M 185 225 V 275 "
+              ></path>
+              <path
+                class="path L9 P41014102 P41024101"
+                stroke-width="3"
+                d="M 185 275 V 295 V 305 V 340 Q 185 345 190 345 H 210 "
+              ></path>
+              <path
+                class="path L9 P41024103 P41034102"
+                stroke-width="3"
+                d="M 210 345 H 230 "
+              ></path>
+              <path
+                class="path L9 P41034104 P41044103"
+                stroke-width="3"
+                d="M 230 345 H 235 Q 245 345 250 350 L 255 355 "
+              ></path>
+              <path
+                class="path L9 P41044105 P41054104"
+                stroke-width="3"
+                d="M 255 355 L 275 375 "
+              ></path>
+              <path
+                class="path L9 P41054106 P41064105"
+                stroke-width="3"
+                d="M 275 375 L 290 390 "
+              ></path>
+              <path
+                class="path L9 P41064107 P41074106"
+                stroke-width="3"
+                d="M 290 390 L 300 400 Q 315 415 320 415 H 330 "
+              ></path>
+              <path
+                class="path L9 P41074108 P41084107"
+                stroke-width="3"
+                d="M 330 415 H 360 "
+              ></path>
+              <path
+                class="path L9 P41084109 P41094108"
+                stroke-width="3"
+                d="M 360 415 H 385 "
+              ></path>
+              <path
+                class="path L9 P41094110 P41104109"
+                stroke-width="3"
+                d="M 385 415 H 415 "
+              ></path>
+              <path
+                class="path L9 P41104111 P41114110"
+                stroke-width="3"
+                d="M 415 415 H 425 Q 430 415 440 425 "
+              ></path>
+              <path
+                class="path L9 P41114112 P41124111"
+                stroke-width="3"
+                d="M 440 425 L 450 435 "
+              ></path>
+              <path
+                class="path L9 P41124113 P41134112"
+                stroke-width="3"
+                d="M 450 435 L 460 445 "
+              ></path>
+              <path
+                class="path L9 P41134114 P41144113"
+                stroke-width="3"
+                d="M 460 445 L 487.5 470 "
+              ></path>
+              <path
+                class="path L9 P41144115 P41154114"
+                stroke-width="3"
+                d="M 487.5 470 L 525 505 "
+              ></path>
+              <path
+                class="path L9 P41154116 P41164115"
+                stroke-width="3"
+                d="M 525 505 L 548.5 525 "
+              ></path>
+              <path
+                class="path L9 P41164117 P41174116"
+                stroke-width="3"
+                d="M 548.5 525 L 590 565 "
+              ></path>
+              <path
+                class="path L9 P41174118 P41184117"
+                stroke-width="3"
+                d="M 590 565 L 615 590 "
+              ></path>
+              <path
+                class="path L9 P41184119 P41194118"
+                stroke-width="3"
+                d="M 615 590 Q 625 600 635 600 H 660 "
+              ></path>
+              <path
+                class="path L9 P41194120 P41204119"
+                stroke-width="3"
+                d="M 660 600 H 705 "
+              ></path>
+              <path
+                class="path L9 P41204121 P41214120"
+                stroke-width="3"
+                d="M 705 600 H 765 "
+              ></path>
+              <path
+                class="path L9 P41214122 P41224121"
+                stroke-width="3"
+                d="M 765 600 H 810 "
+              ></path>
+              <path
+                class="path L9 P41224123 P41234122"
+                stroke-width="3"
+                d="M 810 600 Q 815 600 820 605 L 860 645 "
+              ></path>
+              <path
+                class="path L9 P41234124 P41244123"
+                stroke-width="3"
+                d="M 860 645 H 935 "
+              ></path>
+              <path
+                class="path L9 P41244125 P41254124"
+                stroke-width="3"
+                d="M 935 645 H 975 "
+              ></path>
+              <path
+                class="path L9 P41254126 P41264125"
+                stroke-width="3"
+                d="M 975 645 H 1025 "
+              ></path>
+              <path
+                class="path L9 P41264127 P41274126"
+                stroke-width="3"
+                d="M 1025 645 H 1050 "
+              ></path>
+              <path
+                class="path L9 P41274128 P41284127"
+                stroke-width="3"
+                d="M 1050 645 H 1115 "
+              ></path>
+              <path
+                class="path L9 P41284129 P41294128"
+                stroke-width="3"
+                d="M 1115 645 H 1140 Q 1145 645 1145 650 "
+              ></path>
+              <path
+                class="path L9 P41294130 P41304129"
+                stroke-width="3"
+                d="M 1145 650 V 680 "
+              ></path>
+              <path
+                class="path L9 P41304131 P41314130"
+                stroke-width="3"
+                d="M 1145 680 V 690 Q 1145 695 1150 695 H 1195 "
+              ></path>
+              <path
+                class="path L9 P41314132 P41324131"
+                stroke-width="3"
+                d="M 1195 695 H 1260 "
+              ></path>
+              <path
+                class="path L9 P41324133 P41334132"
+                stroke-width="3"
+                d="M 1260 695 H 1265 Q 1270 695 1270 690 V 680 Q 1270 675 1275 670 L 1280 665 "
+              ></path>
+              <path
+                class="path L9 P41334134 P41344133"
+                stroke-width="3"
+                d="M 1280 665 L 1315 630 "
+              ></path>
+              <path
+                class="path L9 P41344135 P41354134"
+                stroke-width="3"
+                d="M 1315 630 Q 1315 630 1345 600 "
+              ></path>
+              <path
+                class="path L9 P41354136 P41364135"
+                stroke-width="3"
+                d="M 1345 600 L 1350 595 Q 1355 590 1365 590 H 1410 "
+              ></path>
+              <path
+                class="path L9 P41364137 P41374136"
+                stroke-width="3"
+                d="M 1410 590 H 1450 "
+              ></path>
+              <path
+                class="path L9 P41374138 P41384137"
+                stroke-width="3"
+                d="M 1450 590 H 1465 Q 1470 590 1470 585 V 565 "
+              ></path>
+              <path
+                class="path L9"
+                stroke-width="3"
+                d="M 1470 565 V 555 V 545 "
+              ></path>
+              <g class="path L9">
+                <rect
+                  x="180"
+                  y="220"
+                  width="10"
+                  height="10"
+                  fill="#b58600"
+                  stroke="#b58600"
+                  stroke-linejoin="round"
+                  stroke-linecap="round"
+                  stroke-width="5"
+                ></rect>
+                <text
+                  x="185"
+                  y="228"
+                  lengthAdjust="spacingAndGlyphs"
+                  text-anchor="middle"
+                  style="
+                    fill: white;
+                    stroke: white;
+                    stroke-width: 0.6;
+                    font-size: 9px;
+                    font-weight: normal;
+                    line-height: 10px;
+                  "
+                >
+                  9
+                </text>
+                <rect
+                  x="1465"
+                  y="540"
+                  width="10"
+                  height="10"
+                  fill="#b58600"
+                  stroke="#b58600"
+                  stroke-linejoin="round"
+                  stroke-linecap="round"
+                  stroke-width="5"
+                ></rect>
+                <text
+                  x="1470"
+                  y="548"
+                  lengthAdjust="spacingAndGlyphs"
+                  text-anchor="middle"
+                  style="
+                    fill: white;
+                    stroke: white;
+                    stroke-width: 0.6;
+                    font-size: 9px;
+                    font-weight: normal;
+                    line-height: 10px;
+                  "
+                >
+                  9
+                </text>
+              </g>
+            </g>
+            <!-- 역(동그라미)나타나는 곳 -->
+            <g class="marker-group" transform-origin="50% 50% 0">
+              <!-- 1호선:소요산역부터 시작 -->
+              <circle
+                class="marker M4101 L9"
+                cx="185"
+                cy="275"
+                r="3"
+                id="M4101"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="4101"
+                lineId="9"
+                stationid="901"
+                stationname="개화"
+              ></circle>
+              <circle
+                class="accent A4101"
+                cx="185"
+                cy="275"
+                r="3"
+                id="A4101"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="4101"
+                lineId="9"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M4103 L9"
+                cx="230"
+                cy="345"
+                r="3"
+                id="M4103"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="4103"
+                lineId="9"
+                stationid="903"
+                stationname="공항시장"
+              ></circle>
+              <circle
+                class="accent A4103"
+                cx="230"
+                cy="345"
+                r="3"
+                id="A4103"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="4103"
+                lineId="9"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M4104 L9"
+                cx="255"
+                cy="355"
+                r="3"
+                id="M4104"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="4104"
+                lineId="9"
+                stationid="904"
+                stationname="신방화"
+              ></circle>
+              <circle
+                class="accent A4104"
+                cx="255"
+                cy="355"
+                r="3"
+                id="A4104"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="4104"
+                lineId="9"
+                style="display: none"
+              ></circle>
+              <g
+                class="marker M4105 L9 interchange M4206 LA"
+                cx="275"
+                cy="375"
+                id="M4105"
+                uid="4105"
+                lineId="9 A"
+                stationid="905"
+                stationname="마곡나루"
+              >
+                <rect
+                  x="272"
+                  y="367"
+                  width="6"
+                  height="11"
+                  stroke="black"
+                  stroke-width="1"
+                  fill="#ffffff"
+                ></rect>
+                <circle
+                  cx="275"
+                  cy="375"
+                  r="1.5"
+                  stroke="#b58600"
+                  stroke-width="1"
+                  fill="#b58600"
+                ></circle>
+                <circle
+                  cx="275"
+                  cy="370"
+                  r="1.5"
+                  stroke="#038fa0"
+                  stroke-width="1"
+                  fill="#038fa0"
+                ></circle>
+              </g>
+              <circle
+                class="accent A4105 A4206"
+                cx="275"
+                cy="375"
+                r="3"
+                id="A4105"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="4105"
+                lineId="9"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M4106 L9"
+                cx="290"
+                cy="390"
+                r="3"
+                id="M4106"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="4106"
+                lineId="9"
+                stationid="906"
+                stationname="양천향교"
+              ></circle>
+              <circle
+                class="accent A4106"
+                cx="290"
+                cy="390"
+                r="3"
+                id="A4106"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="4106"
+                lineId="9"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M4107 L9"
+                cx="330"
+                cy="415"
+                r="3"
+                id="M4107"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="4107"
+                lineId="9"
+                stationid="907"
+                stationname="가양"
+              ></circle>
+              <circle
+                class="accent A4107"
+                cx="330"
+                cy="415"
+                r="3"
+                id="A4107"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="4107"
+                lineId="9"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M4108 L9"
+                cx="360"
+                cy="415"
+                r="3"
+                id="M4108"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="4108"
+                lineId="9"
+                stationid="908"
+                stationname="증미"
+              ></circle>
+              <circle
+                class="accent A4108"
+                cx="360"
+                cy="415"
+                r="3"
+                id="A4108"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="4108"
+                lineId="9"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M4109 L9"
+                cx="385"
+                cy="415"
+                r="3"
+                id="M4109"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="4109"
+                lineId="9"
+                stationid="909"
+                stationname="등촌"
+              ></circle>
+              <circle
+                class="accent A4109"
+                cx="385"
+                cy="415"
+                r="3"
+                id="A4109"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="4109"
+                lineId="9"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M4110 L9"
+                cx="415"
+                cy="415"
+                r="3"
+                id="M4110"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="4110"
+                lineId="9"
+                stationid="910"
+                stationname="염창"
+              ></circle>
+              <circle
+                class="accent A4110"
+                cx="415"
+                cy="415"
+                r="3"
+                id="A4110"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="4110"
+                lineId="9"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M4111 L9"
+                cx="440"
+                cy="425"
+                r="3"
+                id="M4111"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="4111"
+                lineId="9"
+                stationid="911"
+                stationname="신목동"
+              ></circle>
+              <circle
+                class="accent A4111"
+                cx="440"
+                cy="425"
+                r="3"
+                id="A4111"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="4111"
+                lineId="9"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M4112 L9"
+                cx="450"
+                cy="435"
+                r="3"
+                id="M4112"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="4112"
+                lineId="9"
+                stationid="912"
+                stationname="선유도"
+              ></circle>
+              <circle
+                class="accent A4112"
+                cx="450"
+                cy="435"
+                r="3"
+                id="A4112"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="4112"
+                lineId="9"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M4114 L9"
+                cx="487.5"
+                cy="470"
+                r="3"
+                id="M4114"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="4114"
+                lineId="9"
+                stationid="914"
+                stationname="국회의사당"
+              ></circle>
+              <circle
+                class="accent A4114"
+                cx="487.5"
+                cy="470"
+                r="3"
+                id="A4114"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="4114"
+                lineId="9"
+                style="display: none"
+              ></circle>
+              <g
+                class="marker M4116 L9 interchange M4401 LSL"
+                cx="548.5"
+                cy="525"
+                id="M4116"
+                uid="4116"
+                lineId="9 SL"
+                stationid="916"
+                stationname="샛강"
+              >
+                <rect
+                  x="540.5"
+                  y="522"
+                  width="11"
+                  height="6"
+                  stroke="black"
+                  stroke-width="1"
+                  fill="#ffffff"
+                ></rect>
+                <circle
+                  cx="548.5"
+                  cy="525"
+                  r="1.5"
+                  stroke="#b58600"
+                  stroke-width="1"
+                  fill="#b58600"
+                ></circle>
+                <circle
+                  cx="543.5"
+                  cy="525"
+                  r="1.5"
+                  stroke="#0781fa"
+                  stroke-width="1"
+                  fill="#0781fa"
+                ></circle>
+              </g>
+              <circle
+                class="accent A4116 A4401"
+                cx="548.5"
+                cy="525"
+                r="3"
+                id="A4116"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="4116"
+                lineId="9"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M4118 L9"
+                cx="615"
+                cy="590"
+                r="3"
+                id="M4118"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="4118"
+                lineId="9"
+                stationid="918"
+                stationname="노들"
+              ></circle>
+              <circle
+                class="accent A4118"
+                cx="615"
+                cy="590"
+                r="3"
+                id="A4118"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="4118"
+                lineId="9"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M4119 L9"
+                cx="660"
+                cy="600"
+                r="3"
+                id="M4119"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="4119"
+                lineId="9"
+                stationid="919"
+                stationname="흑석"
+              ></circle>
+              <circle
+                class="accent A4119"
+                cx="660"
+                cy="600"
+                r="3"
+                id="A4119"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="4119"
+                lineId="9"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M4121 L9"
+                cx="765"
+                cy="600"
+                r="3"
+                id="M4121"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="4121"
+                lineId="9"
+                stationid="921"
+                stationname="구반포"
+              ></circle>
+              <circle
+                class="accent A4121"
+                cx="765"
+                cy="600"
+                r="3"
+                id="A4121"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="4121"
+                lineId="9"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M4122 L9"
+                cx="810"
+                cy="600"
+                r="3"
+                id="M4122"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="4122"
+                lineId="9"
+                stationid="922"
+                stationname="신반포"
+              ></circle>
+              <circle
+                class="accent A4122"
+                cx="810"
+                cy="600"
+                r="3"
+                id="A4122"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="4122"
+                lineId="9"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M4124 L9"
+                cx="935"
+                cy="645"
+                r="3"
+                id="M4124"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="4124"
+                lineId="9"
+                stationid="924"
+                stationname="사평"
+              ></circle>
+              <circle
+                class="accent A4124"
+                cx="935"
+                cy="645"
+                r="3"
+                id="A4124"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="4124"
+                lineId="9"
+                style="display: none"
+              ></circle>
+              <g
+                class="marker M4125 L9 interchange M4306 LS"
+                cx="975"
+                cy="645"
+                id="M4125"
+                uid="4125"
+                lineId="9 S"
+                stationid="925"
+                stationname="신논현"
+              >
+                <rect
+                  x="972"
+                  y="642"
+                  width="6"
+                  height="11"
+                  stroke="black"
+                  stroke-width="1"
+                  fill="#ffffff"
+                ></rect>
+                <circle
+                  cx="975"
+                  cy="645"
+                  r="1.5"
+                  stroke="#b58600"
+                  stroke-width="1"
+                  fill="#b58600"
+                ></circle>
+                <circle
+                  cx="975"
+                  cy="650"
+                  r="1.5"
+                  stroke="#cd2234"
+                  stroke-width="1"
+                  fill="#cd2234"
+                ></circle>
+              </g>
+              <circle
+                class="accent A4125 A4306"
+                cx="975"
+                cy="645"
+                r="3"
+                id="A4125"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="4125"
+                lineId="9"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M4126 L9"
+                cx="1025"
+                cy="645"
+                r="3"
+                id="M4126"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="4126"
+                lineId="9"
+                stationid="926"
+                stationname="언주"
+              ></circle>
+              <circle
+                class="accent A4126"
+                cx="1025"
+                cy="645"
+                r="3"
+                id="A4126"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="4126"
+                lineId="9"
+                style="display: none"
+              ></circle>
+              <g
+                class="marker M4127 L9 interchange M1850 LB"
+                cx="1050"
+                cy="645"
+                id="M1850"
+                uid="1850"
+                lineId="9 B"
+                stationid="927"
+                stationname="선정릉"
+              >
+                <rect
+                  x="1047"
+                  y="642"
+                  width="11"
+                  height="6"
+                  stroke="black"
+                  stroke-width="1"
+                  fill="#ffffff"
+                ></rect>
+                <circle
+                  cx="1055"
+                  cy="645"
+                  r="1.5"
+                  stroke="#b58600"
+                  stroke-width="1"
+                  fill="#b58600"
+                ></circle>
+                <circle
+                  cx="1050"
+                  cy="645"
+                  r="1.5"
+                  stroke="#a69500"
+                  stroke-width="1"
+                  fill="#a69500"
+                ></circle>
+              </g>
+              <circle
+                class="accent A4127 A1850"
+                cx="1050"
+                cy="645"
+                r="3"
+                id="A1850"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="1850"
+                lineId="9"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M4128 L9"
+                cx="1115"
+                cy="645"
+                r="3"
+                id="M4128"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="4128"
+                lineId="9"
+                stationid="928"
+                stationname="삼성중앙"
+              ></circle>
+              <circle
+                class="accent A4128"
+                cx="1115"
+                cy="645"
+                r="3"
+                id="A4128"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="4128"
+                lineId="9"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M4129 L9"
+                cx="1145"
+                cy="650"
+                r="3"
+                id="M4129"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="4129"
+                lineId="9"
+                stationid="929"
+                stationname="봉은사"
+              ></circle>
+              <circle
+                class="accent A4129"
+                cx="1145"
+                cy="650"
+                r="3"
+                id="A4129"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="4129"
+                lineId="9"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M4131 L9"
+                cx="1195"
+                cy="695"
+                r="3"
+                id="M4131"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="4131"
+                lineId="9"
+                stationid="931"
+                stationname="삼전"
+              ></circle>
+              <circle
+                class="accent A4131"
+                cx="1195"
+                cy="695"
+                r="3"
+                id="A4131"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="4131"
+                lineId="9"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M4132 L9"
+                cx="1260"
+                cy="695"
+                r="3"
+                id="M4132"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="4132"
+                lineId="9"
+                stationid="932"
+                stationname="석촌고분"
+              ></circle>
+              <circle
+                class="accent A4132"
+                cx="1260"
+                cy="695"
+                r="3"
+                id="A4132"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="4132"
+                lineId="9"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M4134 L9"
+                cx="1315"
+                cy="630"
+                r="3"
+                id="M4134"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="4134"
+                lineId="9"
+                stationid="934"
+                stationname="송파나루"
+              ></circle>
+              <circle
+                class="accent A4134"
+                cx="1315"
+                cy="630"
+                r="3"
+                id="A4134"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="4134"
+                lineId="9"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M4135 L9"
+                cx="1345"
+                cy="600"
+                r="3"
+                id="M4135"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="4135"
+                lineId="9"
+                stationid="935"
+                stationname="한성백제"
+              ></circle>
+              <circle
+                class="accent A4135"
+                cx="1345"
+                cy="600"
+                r="3"
+                id="A4135"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="4135"
+                lineId="9"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M4137 L9"
+                cx="1450"
+                cy="590"
+                r="3"
+                id="M4137"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="4137"
+                lineId="9"
+                stationid="937"
+                stationname="둔촌오륜"
+              ></circle>
+              <circle
+                class="accent A4137"
+                cx="1450"
+                cy="590"
+                r="3"
+                id="A4137"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="4137"
+                lineId="9"
+                style="display: none"
+              ></circle>
+              <circle
+                class="marker M4138 L9"
+                cx="1470"
+                cy="565"
+                r="3"
+                id="M4138"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#ffffff"
+                uid="4138"
+                lineId="9"
+                stationid="938"
+                stationname="중앙보훈병원"
+              ></circle>
+              <circle
+                class="accent A4138"
+                cx="1470"
+                cy="565"
+                r="3"
+                id="A4138"
+                stroke="black"
+                stroke-width="1"
+                fill="red"
+                uid="4138"
+                lineId="9"
+                style="display: none"
+              ></circle>
+            </g>
+            <g
+              class="marker M2513 L5 interchange M4102 L9 M4929 LKP M4207 LA"
+              cx="210"
+              cy="350"
+              id="M2513"
+              uid="2513"
+              lineId="5 9 KP A"
+              stationid="902"
+            >
+              <rect
+                x="207"
+                y="332"
+                width="6"
+                height="21"
+                stroke="black"
+                stroke-width="1"
+                fill="#ffffff"
+              ></rect>
+              <circle
+                cx="210"
+                cy="335"
+                r="1.5"
+                stroke="#a95094"
+                stroke-width="1"
+                fill="#a95094"
+              ></circle>
+              <circle
+                cx="210"
+                cy="345"
+                r="1.5"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#b58600"
+              ></circle>
+              <circle
+                cx="210"
+                cy="340"
+                r="1.5"
+                stroke="#a18f57"
+                stroke-width="1"
+                fill="#a18f57"
+              ></circle>
+              <circle
+                cx="210"
+                cy="350"
+                r="1.5"
+                stroke="#038fa0"
+                stroke-width="1"
+                fill="#038fa0"
+              ></circle>
+            </g>
+            <g
+              class="marker M0237 L2 interchange M4113 L9"
+              cx="460"
+              cy="445"
+              id="M0237"
+              uid="0237"
+              lineId="2 9"
+              stationid="913"
+            >
+              <rect
+                x="452"
+                y="442"
+                width="11"
+                height="6"
+                stroke="black"
+                stroke-width="1"
+                fill="#ffffff"
+              ></rect>
+              <circle
+                cx="455"
+                cy="445"
+                r="1.5"
+                stroke="#10a643"
+                stroke-width="1"
+                fill="#10a643"
+              ></circle>
+              <circle
+                cx="460"
+                cy="445"
+                r="1.5"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#b58600"
+              ></circle>
+            </g>
+            <g
+              class="marker M2527 L5 interchange M4115 L9"
+              cx="525"
+              cy="505"
+              id="M2527"
+              uid="2527"
+              lineId="5 9"
+              stationid="915"
+            >
+              <rect
+                x="522"
+                y="502"
+                width="11"
+                height="6"
+                stroke="black"
+                stroke-width="1"
+                fill="#ffffff"
+              ></rect>
+              <circle
+                cx="530"
+                cy="505"
+                r="1.5"
+                stroke="#a95094"
+                stroke-width="1"
+                fill="#a95094"
+              ></circle>
+              <circle
+                cx="525"
+                cy="505"
+                r="1.5"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#b58600"
+              ></circle>
+            </g>
+            <g
+              class="marker M1004 L1 interchange M4117 L9"
+              cx="590"
+              cy="565"
+              id="M1004"
+              uid="1004"
+              lineId="1 9"
+              stationid="917"
+            >
+              <rect
+                x="587"
+                y="562"
+                width="11"
+                height="6"
+                stroke="black"
+                stroke-width="1"
+                fill="#ffffff"
+              ></rect>
+              <circle
+                cx="595"
+                cy="565"
+                r="1.5"
+                stroke="#052f93"
+                stroke-width="1"
+                fill="#052f93"
+              ></circle>
+              <circle
+                cx="590"
+                cy="565"
+                r="1.5"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#b58600"
+              ></circle>
+            </g>
+            <g
+              class="marker M0431 L4 interchange M4120 L9"
+              cx="705"
+              cy="600"
+              id="M0431"
+              uid="0431"
+              lineId="4 9"
+              stationid="920"
+            >
+              <rect
+                x="702"
+                y="597"
+                width="6"
+                height="11"
+                stroke="black"
+                stroke-width="1"
+                fill="#ffffff"
+              ></rect>
+              <circle
+                cx="705"
+                cy="605"
+                r="1.5"
+                stroke="#0099d1"
+                stroke-width="1"
+                fill="#0099d1"
+              ></circle>
+              <circle
+                cx="705"
+                cy="600"
+                r="1.5"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#b58600"
+              ></circle>
+            </g>
+            <g
+              class="marker M0329 L3 interchange M2736 L7 M4123 L9"
+              cx="860"
+              cy="645"
+              id="M0329"
+              uid="0329"
+              lineId="3 7 9"
+              stationid="923"
+            >
+              <rect
+                x="857"
+                y="632"
+                width="6"
+                height="16"
+                stroke="black"
+                stroke-width="1"
+                fill="#ffffff"
+              ></rect>
+              <circle
+                cx="860"
+                cy="635"
+                r="1.5"
+                stroke="#de6d00"
+                stroke-width="1"
+                fill="#de6d00"
+              ></circle>
+              <circle
+                cx="860"
+                cy="640"
+                r="1.5"
+                stroke="#657931"
+                stroke-width="1"
+                fill="#657931"
+              ></circle>
+              <circle
+                cx="860"
+                cy="645"
+                r="1.5"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#b58600"
+              ></circle>
+            </g>
+            <g
+              class="marker M0218 L2 interchange M4130 L9"
+              cx="1145"
+              cy="680"
+              id="M0218"
+              uid="0218"
+              lineId="2 9"
+              stationid="930"
+            >
+              <rect
+                x="1142"
+                y="672"
+                width="6"
+                height="11"
+                stroke="black"
+                stroke-width="1"
+                fill="#ffffff"
+              ></rect>
+              <circle
+                cx="1145"
+                cy="680"
+                r="1.5"
+                stroke="#10a643"
+                stroke-width="1"
+                fill="#10a643"
+              ></circle>
+              <circle
+                cx="1145"
+                cy="675"
+                r="1.5"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#b58600"
+              ></circle>
+            </g>
+            <g
+              class="marker M2816 L8 interchange M4133 L9"
+              cx="1280"
+              cy="660"
+              id="M2816"
+              uid="2816"
+              lineId="8 9"
+              stationid="933"
+            >
+              <rect
+                x="1277"
+                y="657"
+                width="6"
+                height="11"
+                stroke="black"
+                stroke-width="1"
+                fill="#ffffff"
+              ></rect>
+              <circle
+                cx="1280"
+                cy="660"
+                r="1.5"
+                stroke="#e74e6d"
+                stroke-width="1"
+                fill="#e74e6d"
+              ></circle>
+              <circle
+                cx="1280"
+                cy="665"
+                r="1.5"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#b58600"
+              ></circle>
+            </g>
+            <g
+              class="marker M2556 L5 interchange M4136 L9"
+              cx="1410"
+              cy="590"
+              id="M2556"
+              uid="2556"
+              lineId="5 9"
+              stationid="936"
+            >
+              <rect
+                x="1407"
+                y="587"
+                width="11"
+                height="6"
+                stroke="black"
+                stroke-width="1"
+                fill="#ffffff"
+              ></rect>
+              <circle
+                cx="1410"
+                cy="590"
+                r="1.5"
+                stroke="#a95094"
+                stroke-width="1"
+                fill="#a95094"
+              ></circle>
+              <circle
+                cx="1415"
+                cy="590"
+                r="1.5"
+                stroke="#b58600"
+                stroke-width="1"
+                fill="#b58600"
+              ></circle>
+            </g>
+
+            <!-- 역이름 나타나는 곳 -->
+            <g
+              class="label-group"
+              style="
+                fill: black;
+                letter-spacing: -1px;
+                font-size: 9px;
+                font-weight: normal;
+                font-family: 'Noto Sans', 'Malgun Gothic', Dotum, Arial;
+              "
+            >
+              <text
+                class="label S2556 L5 S4136 L9"
+                y="590"
+                id="S2556"
+                style="text-anchor: start"
+                uid="2556"
+                lineId="5 9"
+              >
+                <tspan
+                  x="1410"
+                  dx="7"
+                  dy="15"
+                  font-size="9px"
+                  font-weight="bold"
+                >
+                  올림픽공원
+                </tspan>
+              </text>
+              <text
+                class="label S2816 L8 S4133 L9"
+                y="660"
+                id="S2816"
+                style="text-anchor: start"
+                uid="2816"
+                lineId="8 9"
+              >
+                <tspan
+                  x="1280"
+                  dx="9"
+                  dy="3"
+                  font-size="9px"
+                  font-weight="bold"
+                >
+                  석촌
+                </tspan>
+              </text>
+              <text
+                class="label S0218 L2 S4130 L9"
+                y="680"
+                id="S0218"
+                style="text-anchor: end"
+                uid="0218"
+                lineId="2 9"
+              >
+                <tspan
+                  x="1145"
+                  dx="-7"
+                  dy="15"
+                  font-size="9px"
+                  font-weight="bold"
+                >
+                  종합운동장
+                </tspan>
+              </text>
+              <text
+                class="label S0329 L3 S2736 L7 S4123 L9"
+                y="645"
+                id="S0329"
+                style="text-anchor: start"
+                uid="0329"
+                lineId="3 7 9"
+              >
+                <tspan
+                  x="860"
+                  dx="7"
+                  dy="15"
+                  font-size="9px"
+                  font-weight="bold"
+                >
+                  고속터미널
+                </tspan>
+              </text>
+              <text
+                class="label S0431 L4 S4120 L9"
+                y="600"
+                id="S0431"
+                style="text-anchor: start"
+                uid="0431"
+                lineId="4 9"
+              >
+                <tspan
+                  x="705"
+                  dx="7"
+                  dy="-7"
+                  font-size="9px"
+                  font-weight="bold"
+                >
+                  동작
+                </tspan>
+              </text>
+              <text
+                class="label S1004 L1 S4117 L9"
+                y="565"
+                id="S1004"
+                style="text-anchor: end"
+                uid="1004"
+                lineId="1 9"
+              >
+                <tspan
+                  x="590"
+                  dx="-7"
+                  dy="15"
+                  font-size="9px"
+                  font-weight="bold"
+                >
+                  노량진
+                </tspan>
+              </text>
+              <text
+                class="label S2527 L5 S4115 L9"
+                y="505"
+                id="S2527"
+                style="text-anchor: middle"
+                uid="2527"
+                lineId="5 9"
+              >
+                <tspan
+                  x="525"
+                  dx="0"
+                  dy="17"
+                  font-size="9px"
+                  font-weight="bold"
+                >
+                  여의도
+                </tspan>
+              </text>
+              <text
+                class="label S0237 L2 S4113 L9"
+                y="445"
+                id="S0237"
+                style="text-anchor: end"
+                uid="0237"
+                lineId="2 9"
+              >
+                <tspan
+                  x="460"
+                  dx="-7"
+                  dy="15"
+                  font-size="9px"
+                  font-weight="bold"
+                >
+                  당산
+                </tspan>
+              </text>
+              <text
+                class="label S2513 L5 S4102 L9 S4929 LKP S4207 LA"
+                y="350"
+                id="S2513"
+                style="text-anchor: end"
+                uid="2513"
+                lineId="5 9 KP A"
+              >
+                <tspan
+                  x="210"
+                  dx="-7"
+                  dy="15"
+                  font-size="9px"
+                  font-weight="bold"
+                >
+                  김포공항
+                </tspan>
+              </text>
+              <text
+                class="label S4101 L9"
+                y="275"
+                id="S4101"
+                style="text-anchor: start"
+                uid="4101"
+                lineId="9"
+              >
+                <tspan x="185" dx="5" dy="3" font-size="9px">개화</tspan>
+              </text>
+              <text
+                class="label S4103 L9"
+                y="345"
+                id="S4103"
+                style="text-anchor: start"
+                uid="4103"
+                lineId="9"
+              >
+                <tspan x="230" dx="3" dy="-3" font-size="9px">공항시장</tspan>
+              </text>
+              <text
+                class="label S4104 L9"
+                y="355"
+                id="S4104"
+                style="text-anchor: start"
+                uid="4104"
+                lineId="9"
+              >
+                <tspan x="255" dx="3" dy="-3" font-size="9px">신방화</tspan>
+              </text>
+              <text
+                class="label S4105 L9 S4206 LA"
+                y="375"
+                id="S4105"
+                style="text-anchor: start"
+                uid="4105"
+                lineId="9 A"
+              >
+                <tspan
+                  x="275"
+                  dx="7"
+                  dy="-7"
+                  font-size="9px"
+                  font-weight="bold"
+                >
+                  마곡나루
+                </tspan>
+              </text>
+              <text
+                class="label S4106 L9"
+                y="390"
+                id="S4106"
+                style="text-anchor: start"
+                uid="4106"
+                lineId="9"
+              >
+                <tspan x="290" dx="3" dy="-3" font-size="9px">양천향교</tspan>
+              </text>
+              <text
+                class="label S4107 L9"
+                y="415"
+                id="S4107"
+                style="text-anchor: middle"
+                uid="4107"
+                lineId="9"
+              >
+                <tspan x="330" dx="0" dy="-5" font-size="9px">가양</tspan>
+              </text>
+              <text
+                class="label S4108 L9"
+                y="415"
+                id="S4108"
+                style="text-anchor: middle"
+                uid="4108"
+                lineId="9"
+              >
+                <tspan x="360" dx="0" dy="-5" font-size="9px">증미</tspan>
+              </text>
+              <text
+                class="label S4109 L9"
+                y="415"
+                id="S4109"
+                style="text-anchor: middle"
+                uid="4109"
+                lineId="9"
+              >
+                <tspan x="385" dx="0" dy="-5" font-size="9px">등촌</tspan>
+              </text>
+              <text
+                class="label S4110 L9"
+                y="415"
+                id="S4110"
+                style="text-anchor: middle"
+                uid="4110"
+                lineId="9"
+              >
+                <tspan x="415" dx="0" dy="-5" font-size="9px">염창</tspan>
+              </text>
+              <text
+                class="label S4111 L9"
+                y="425"
+                id="S4111"
+                style="text-anchor: start"
+                uid="4111"
+                lineId="9"
+              >
+                <tspan x="440" dx="3" dy="-3" font-size="9px">신목동</tspan>
+              </text>
+              <text
+                class="label S4112 L9"
+                y="435"
+                id="S4112"
+                style="text-anchor: start"
+                uid="4112"
+                lineId="9"
+              >
+                <tspan x="450" dx="3" dy="-3" font-size="9px">선유도</tspan>
+              </text>
+              <text
+                class="label S4114 L9"
+                y="470"
+                id="S4114"
+                style="text-anchor: start"
+                uid="4114"
+                lineId="9"
+              >
+                <tspan x="487.5" dx="3" dy="11" font-size="9px">
+                  국회의사당
+                </tspan>
+              </text>
+              <text
+                class="label S4116 L9 S4401 LSL"
+                y="525"
+                id="S4116"
+                style="text-anchor: middle"
+                uid="4116"
+                lineId="9 SL"
+              >
+                <tspan
+                  x="548.5"
+                  dx="0"
+                  dy="17"
+                  font-size="9px"
+                  font-weight="bold"
+                >
+                  샛강
+                </tspan>
+              </text>
+              <text
+                class="label S4118 L9"
+                y="590"
+                id="S4118"
+                style="text-anchor: end"
+                uid="4118"
+                lineId="9"
+              >
+                <tspan x="615" dx="-3" dy="11" font-size="9px">노들</tspan>
+              </text>
+              <text
+                class="label S4119 L9"
+                y="600"
+                id="S4119"
+                style="text-anchor: middle"
+                uid="4119"
+                lineId="9"
+              >
+                <tspan x="660" dx="0" dy="-5" font-size="9px">흑석</tspan>
+              </text>
+              <text
+                class="label S4121 L9"
+                y="600"
+                id="S4121"
+                style="text-anchor: middle"
+                uid="4121"
+                lineId="9"
+              >
+                <tspan x="765" dx="0" dy="-5" font-size="9px">구반포</tspan>
+              </text>
+              <text
+                class="label S4122 L9"
+                y="600"
+                id="S4122"
+                style="text-anchor: middle"
+                uid="4122"
+                lineId="9"
+              >
+                <tspan x="810" dx="0" dy="-5" font-size="9px">신반포</tspan>
+              </text>
+              <text
+                class="label S4124 L9"
+                y="645"
+                id="S4124"
+                style="text-anchor: middle"
+                uid="4124"
+                lineId="9"
+              >
+                <tspan x="935" dx="0" dy="-5" font-size="9px">사평</tspan>
+              </text>
+              <text
+                class="label S4125 L9 S4306 LS"
+                y="645"
+                id="S4125"
+                style="text-anchor: start"
+                uid="4125"
+                lineId="9 S"
+              >
+                <tspan
+                  x="975"
+                  dx="7"
+                  dy="-7"
+                  font-size="9px"
+                  font-weight="bold"
+                >
+                  신논현
+                </tspan>
+              </text>
+              <text
+                class="label S4126 L9"
+                y="645"
+                id="S4126"
+                style="text-anchor: middle"
+                uid="4126"
+                lineId="9"
+              >
+                <tspan x="1025" dx="0" dy="-5" font-size="9px">언주</tspan>
+              </text>
+              <text
+                class="label S4127 L9 S1850 LB"
+                y="645"
+                id="S1850"
+                style="text-anchor: middle"
+                uid="1850"
+                lineId="9 B"
+              >
+                <tspan
+                  x="1050"
+                  dx="0"
+                  dy="-9"
+                  font-size="9px"
+                  font-weight="bold"
+                >
+                  선정릉
+                </tspan>
+              </text>
+              <text
+                class="label S4128 L9"
+                y="645"
+                id="S4128"
+                style="text-anchor: middle"
+                uid="4128"
+                lineId="9"
+              >
+                <tspan x="1115" dx="0" dy="-5" font-size="9px">삼성중앙</tspan>
+              </text>
+              <text
+                class="label S4129 L9"
+                y="650"
+                id="S4129"
+                style="text-anchor: start"
+                uid="4129"
+                lineId="9"
+              >
+                <tspan x="1145" dx="5" dy="3" font-size="9px">봉은사</tspan>
+              </text>
+              <text
+                class="label S4131 L9"
+                y="695"
+                id="S4131"
+                style="text-anchor: middle"
+                uid="4131"
+                lineId="9"
+              >
+                <tspan x="1195" dx="0" dy="13" font-size="9px">삼전</tspan>
+              </text>
+              <text
+                class="label S4132 L9"
+                y="695"
+                id="S4132"
+                style="text-anchor: middle"
+                uid="4132"
+                lineId="9"
+              >
+                <tspan x="1260" dx="0" dy="13" font-size="9px">석촌고분</tspan>
+              </text>
+              <text
+                class="label S4134 L9"
+                y="630"
+                id="S4134"
+                style="text-anchor: start"
+                uid="4134"
+                lineId="9"
+              >
+                <tspan x="1315" dx="5" dy="3" font-size="9px">송파나루</tspan>
+              </text>
+              <text
+                class="label S4135 L9"
+                y="600"
+                id="S4135"
+                style="text-anchor: start"
+                uid="4135"
+                lineId="9"
+              >
+                <tspan x="1345" dx="5" dy="3" font-size="9px">한성백제</tspan>
+              </text>
+              <text
+                class="label S4137 L9"
+                y="590"
+                id="S4137"
+                style="text-anchor: middle"
+                uid="4137"
+                lineId="9"
+              >
+                <tspan x="1450" dx="0" dy="-5" font-size="9px">둔촌오륜</tspan>
+              </text>
+              <text
+                class="label S4138 L9"
+                y="565"
+                id="S4138"
+                style="text-anchor: start"
+                uid="4138"
+                lineId="9"
+              >
+                <tspan x="1470" dx="5" dy="3" font-size="9px">중앙</tspan>
+                <tspan x="1470" dx="5" dy="12" font-size="9px">보훈병원</tspan>
+              </text>
+            </g>
+
+            
+            <use
+              id="marker-start"
+              class="routeMarker"
+              href="#def-marker-start"
+            ></use>
+            <use
+              id="marker-stop"
+              class="routeMarker"
+              href="#def-marker-stop"
+            ></use>
+            <use
+              id="marker-end"
+              class="routeMarker"
+              href="#def-marker-end"
+            ></use>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

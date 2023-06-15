@@ -1,0 +1,77 @@
+.train-line {
+    padding: 20px;
+    height: fit-content;
+    }
+    
+    #trainLine {
+    overflow: auto;
+    }
+    
+    .container {
+    margin: 0 0 0 1.25rem;
+    width: 100%;
+    height: 100% !important;
+    }
+    
+    .container svg {
+    width: 70% !important;
+    height: 70% !important;
+    }
+    
+    body:has(input:checked) g,
+    body:has(input:checked) .label-group text {
+    opacity: 0.3;
+    }
+    body:has(input:checked) .label-group {
+    opacity: 1;
+    }
+    
+    /* 호선별 활성 스타일 */
+    body:has(.line-1:checked) g#line-1,
+    body:has(.line-1:checked) .L1 {
+    opacity: 1;
+    }
+    body:has(.line-2:checked) g#line-2,
+    body:has(.line-2:checked) .L2 {
+    opacity: 1;
+    }
+    body:has(.line-3:checked) g#line-3,
+    body:has(.line-3:checked) .L3 {
+    opacity: 1;
+    }
+    body:has(.line-4:checked) g#line-4,
+    body:has(.line-4:checked) .L4 {
+    opacity: 1;
+    }
+    body:has(.line-5:checked) g#line-5,
+    body:has(.line-5:checked) .L5 {
+    opacity: 1;
+    }
+    body:has(.line-6:checked) g#line-6,
+    body:has(.line-6:checked) .L6 {
+    opacity: 1;
+    }
+    body:has(.line-7:checked) g#line-7,
+    body:has(.line-7:checked) .L7 {
+    opacity: 1;
+    }
+    body:has(.line-8:checked) g#line-8,
+    body:has(.line-8:checked) .L8 {
+    opacity: 1;
+    }
+    body:has(.line-9:checked) g#line-9,
+    body:has(.line-9:checked) .L9 {
+    opacity: 1;
+    }
+
+    @media (min-width: 1201px) {
+        
+        .section {
+          width: 85%;
+          display: flex;
+        }
+        .train-line {
+          width: 100%;
+        }
+        
+        }
