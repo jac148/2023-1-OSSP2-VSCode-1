@@ -29,6 +29,8 @@
 ![image](https://github.com/CSID-DGU/2023-1-OSSP2-VSCode-1/assets/101847615/2633a5f6-5088-4df1-a623-ef4167e8141f)
 ![image](https://github.com/CSID-DGU/2023-1-OSSP2-VSCode-1/assets/101847615/ca0b6a67-de3c-4a69-ab57-59b5d8775e69)
 
+### Github URL
+https://github.com/CSID-DGU/2023-1-OSSP2-VSCode-1
 ### 설치방법
 Github URL로 들어가 Code 칸을 눌러 Download ZIP을 클릭해 프로젝트를 다운로드한다.
 ### 실행 가이드
