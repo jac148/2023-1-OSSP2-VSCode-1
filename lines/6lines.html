@@ -21,17 +21,30 @@
       const subwayLineNumber = 6;
       startUpdatingSubwayLocation(subwayLineNumber);
     </script>
-<div id="myModal" class="modal">
-  <div class="modal-content">
-    <div id="title" style="position: relative; background-color: lightblue; color: white; height: 20%; display: flex; align-items: center; justify-content: center;">
-      <span class="close" style="position: absolute; right: 10px;">&times;</span>
-      <p id="modal_title">Some text in the Modal..</p>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <div
+          id="title"
+          style="
+            position: relative;
+            background-color: lightblue;
+            color: white;
+            height: 20%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        >
+          <span class="close" style="position: absolute; right: 10px"
+            >&times;</span
+          >
+          <p id="modal_title">Some text in the Modal..</p>
+        </div>
+        <div id="content" style="height: 80%">
+          <p id="station_status">Some text in the Modal..</p>
+        </div>
+      </div>
     </div>
-    <div id="content" style="height: 80%;">
-      <p id="station_status">Some text in the Modal..</p>
-    </div>
-  </div>
-</div>
     <div id="myModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
@@ -86,7 +99,7 @@
         </div>
 
         <!-- 지하철 노선도 -->
-        <div class="train-line">
+        <div class="train-line" id="train-line-6">
           <svg
             id="trainLine"
             xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +107,6 @@
             aria-hidden="true"
             viewBox="0 0 1525 1000"
             style="
-              position: absolute;
               z-index: 1000;
               transform-origin: 0px 0px 0px;
               backface-visibility: hidden;
@@ -2164,7 +2176,6 @@
               </text>
             </g>
 
-            
             <use
               id="marker-start"
               class="routeMarker"

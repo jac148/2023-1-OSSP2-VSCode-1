@@ -1,93 +1,166 @@
 .logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80px;
-    width: 170px;
-    background-color: rgb(224, 222, 243);
-    font: small-caps bold 48px/1.5 sans-serif;
-    position: fixed;
-    z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  width: 170px;
+  background-color: rgb(224, 222, 243);
+  font: small-caps bold 48px/1.5 sans-serif;
+  position: fixed;
+  z-index: 10000;
 }
 
 /* 네비게이션 바 디자인 */
 .nav {
-    height: fit-content;
+  height: fit-content;
 }
 
 .currentLine {
-background-color: navy !important;
+  background-color: navy !important;
 }
 
 .nav ul {
-    margin: 1.25rem 0;
-    padding: 0;
-    top: 80px;
-    z-index: 9999;
+  margin: 1.25rem 0;
+  padding: 0;
+  top: 80px;
+  z-index: 9999;
   /* position: relative;*/
-    position: fixed;
+  position: fixed;
 }
 
-    .nav ul li {
-        margin: 2rem 0;
-        display: block;
-        list-style-type: none;
-        color: black;
-        
-    }
+.nav ul li {
+  margin: 2rem 0;
+  display: block;
+  list-style-type: none;
+  color: black;
+}
 
-  .nav ul li a {
-      color: white;
-      padding: 0.75rem 1.25rem;
-      text-decoration: none;
-      text-align: center;
-      background-color: #6a6ab7;
-      border-radius: 1rem 1rem;
-      border: unset;
-      font: small-caps bold 18px/1.5 sans-serif;
+.nav ul li a {
+  color: white;
+  padding: 0.75rem 1.25rem;
+  text-decoration: none;
+  text-align: center;
+  background-color: #6a6ab7;
+  border-radius: 1rem 1rem;
+  border: unset;
+  font: small-caps bold 18px/1.5 sans-serif;
+}
 
+@media (min-width: 1201px) {
+  .nav {
+    width: 15%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  .nav ul li {
+    display: inline-block;
   }
 
-  @media (min-width: 1201px) {
-    .nav {
-      width: 15%;
-    }
-    }
-    
-    @media (min-width: 768px) and (max-width: 1200px) {
-    .nav ul li {
-      display: inline-block;
-    }
-    
-    .nav ul {
-      position: static;
-      top: initial;
-    }
-    
-    .logo {
-      position: static;
-    }
-    }
-    
-    
-    /* 모바일 반응형 */
-    @media (max-width: 767px) {
-    .nav ul li {
-      display: inline-block;
-    }
-    /* .nav > div {
+  .nav ul {
+    position: static;
+    top: initial;
+  }
+
+  .nav ul li a {
+    font-size: 50px;
+  }
+
+  .logo {
+    position: static;
+    width: 255px;
+    height: 150px;
+    font-size: 80px;
+  }
+  #train-line-0 {
+    transform: translate(1800px, 900px) scale(5);
+  }
+
+  #train-line-1 {
+    transform: translate(700px, 500px) scale(3);
+  }
+  #train-line-2 {
+    transform: translate(300px, 500px) scale(3);
+  }
+  #train-line-3 {
+    transform: translate(850px, 700px) scale(3);
+  }
+  #train-line-4 {
+    transform: translate(700px, 500px) scale(3);
+  }
+  #train-line-5 {
+    transform: translate(-5700px, 700px) scale(30);
+  }
+  #train-line-6 {
+    transform: translate(100px, 500px) scale(3);
+  }
+  #train-line-7 {
+    transform: translate(1000px, 500px) scale(3);
+  }
+  #train-line-8 {
+    transform: translate(-1000px, 500px) scale(3);
+  }
+  #train-line-9 {
+    transform: translate(700px, 500px) scale(3);
+  }
+}
+
+/* 모바일 반응형 */
+@media (max-width: 767px) {
+  .nav ul li {
+    display: inline-block;
+  }
+  /* .nav > div {
       display: inline-block;
       position: relative;
       top: 25px;
     } */
-    
-    .nav ul {
-      position: static;
-      top: initial;
-    }
-    
-    .logo {
-      position: static;
-    }
-     
-    }
+
+  .nav ul {
+    position: static;
+    top: initial;
+  }
+
+  .nav ul li a {
+    font-size: 50px;
+  }
+
+  .logo {
+    position: static;
+    width: 255px;
+    height: 150px;
+    font-size: 180px;
+  }
+  #train-line-0 {
+    transform: translate(1800px, 900px) scale(5);
+  }
+  #train-line-1 {
+    transform: translate(700px, 500px) scale(3);
+  }
+
+  #train-line-2 {
+    transform: translate(300px, 500px) scale(3);
+  }
+  #train-line-3 {
+    transform: translate(850px, 700px) scale(3);
+  }
+  #train-line-4 {
+    transform: translate(700px, 500px) scale(3);
+  }
+  #train-line-5 {
+    transform: translate(-5700px, 700px) scale(30);
+  }
+
+  #train-line-6 {
+    transform: translate(100px, 500px) scale(3);
+  }
+  #train-line-7 {
+    transform: translate(1000px, 500px) scale(3);
+  }
+  #train-line-8 {
+    transform: translate(-1000px, 500px) scale(3);
+  }
+  #train-line-9 {
+    transform: translate(700px, 500px) scale(3);
+  }
+}
