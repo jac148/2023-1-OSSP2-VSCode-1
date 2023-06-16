@@ -29,10 +29,9 @@
 ![image](https://github.com/CSID-DGU/2023-1-OSSP2-VSCode-1/assets/101847615/2633a5f6-5088-4df1-a623-ef4167e8141f)
 ![image](https://github.com/CSID-DGU/2023-1-OSSP2-VSCode-1/assets/101847615/ca0b6a67-de3c-4a69-ab57-59b5d8775e69)
 
-### Github URL
-https://github.com/CSID-DGU/2023-1-OSSP2-VSCode-1
+
 ### 설치방법
-Github URL로 들어가 Code 칸을 눌러 Download ZIP을 클릭해 프로젝트를 다운로드한다.
+Code 칸을 눌러 Download ZIP을 클릭해 프로젝트를 다운로드한다.
 ### 실행 가이드
 
 ZIP 파일을 압축해제한 뒤, 최적화 폴더 내의 index.html 파일을 열면 ‘실시간 혼잡도 알리미’ 웹이 나온다. 이후 웹을 활용하면 된다.
